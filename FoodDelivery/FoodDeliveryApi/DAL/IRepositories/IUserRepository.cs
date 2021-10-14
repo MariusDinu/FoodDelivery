@@ -8,11 +8,11 @@ namespace FoodDeliveryApi.DAL.IRepositories
 
          User Add(User user);
          bool Update(int id,User user);
+        bool VerifyExistence(User user);
          User GetByUsername(string username);
          User GetById(int id);
          IEnumerable<User> GetAll();
-         
-    
+        object VerifyExistence(User user);
     }
 
 }

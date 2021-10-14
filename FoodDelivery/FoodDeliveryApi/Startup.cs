@@ -1,15 +1,13 @@
+using FoodDeliveryApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+using FoodDeliveryApi.DAL.IRepositories;
+using FoodDeliveryApi.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDeliveryApi
 {
@@ -26,6 +24,9 @@ namespace FoodDeliveryApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            var conn = Configuration.GetConnectionString("FoodDelivery");
+            services.AddDbContext<FoodDeliveryContext>(options => options.UseSqlServer(conn));
+            services.AddTransient<IUserRepository,UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

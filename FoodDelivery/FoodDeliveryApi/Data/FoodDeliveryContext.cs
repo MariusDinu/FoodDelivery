@@ -11,15 +11,38 @@ namespace FoodDeliveryApi.Data
 {
     public class FoodDeliveryContext : DbContext
     {
-        public FoodDeliveryContext()
+        public FoodDeliveryContext(DbContextOptions<FoodDeliveryContext> options) : base(options)
         {
-          
+            ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public DbSet<User> Users { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        public FoodDeliveryContext() { }
+        public override int SaveChanges()
+        {
 
-            modelBuilder.Entity<User>();
+            return base.SaveChanges();
+        }
+
+
+
+        public DbSet<User> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<User>().HasData(
+                new User(1, "mariusd30", "mariusd30", "12345"));
+
+            modelBuilder.Entity<Restaurant>().HasData(
+                new Restaurant(1, "SmilePizza", "Pacurari", "22", "Sc.B"));
+
+            modelBuilder.Entity<Product>().HasData(
+                new Product(1, 1, "Pizza", "10", "Pizza cu de toate"));
+
+            modelBuilder.Entity<Order>().HasData(
+                new Order(1, 1, 1, "{'1':2}", "100", "Pacurari,22"));
+
+
+
         }
     }
 }

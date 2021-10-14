@@ -22,5 +22,12 @@ namespace FoodDeliveryApi.Models
             this.Email = Email;
             this.Password = Password;
         }
+        public User(string UserName, string Email, string Password)
+        {
+            this.UserName = UserName;
+            this.Email = Email;
+            this.Password = Password;
+        }
+        public User() { }
     }
 }

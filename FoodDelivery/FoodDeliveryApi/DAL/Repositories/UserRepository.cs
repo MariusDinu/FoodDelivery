@@ -1,4 +1,5 @@
 ﻿using FoodDeliveryApi.DAL.IRepositories;
+using FoodDeliveryApi.Data;
 using FoodDeliveryApi.Models;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,32 @@ namespace FoodDeliveryApi.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        private readonly FoodDeliveryContext context;
+        public UserRepository(FoodDeliveryContext context)
+        {
+            this.context = context;
+        }
+
+        public bool VerifyExistence(User user)
+        {
+            User existingUser = (from u in context.Users
+                                 where (u.UserName == user.UserName || u.Email == user.Email)
+                                 select u).FirstOrDefault();
+            if (existingUser == null)
+                return true;
+            return false;
+        }
+
         User IUserRepository.Add(User user)
         {
-            throw new NotImplementedException();
+            context.Users.Add(user);
+            context.SaveChanges();
+            return user;
         }
 
         IEnumerable<User> IUserRepository.GetAll()
         {
-            throw new NotImplementedException();
+            return context.Users;
         }
 
         User IUserRepository.GetById(int id)
