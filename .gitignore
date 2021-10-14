@@ -383,3 +383,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+FoodDelivery/.vs/FoodDelivery/v16/.suo
