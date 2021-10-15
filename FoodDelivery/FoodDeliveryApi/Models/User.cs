@@ -2,7 +2,7 @@
 
 namespace FoodDeliveryApi.Models
 {
-    public class User 
+    public class User
     {
 
         public int Id { get; set; }
@@ -12,10 +12,9 @@ namespace FoodDeliveryApi.Models
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
-        [Required]
         [MaxLength(100)]
         public string Password { get; set; }
-        public User(int Id,string UserName,string Email,string Password)
+        public User(int Id, string UserName, string Email, string Password)
         {
             this.Id = Id;
             this.UserName = UserName;

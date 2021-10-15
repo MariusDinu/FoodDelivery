@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDelivery", "FoodDelivery\FoodDelivery.csproj", "{C9439A21-2B23-4B70-BC9D-7F15B646BD6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDeliveryApi", "FoodDeliveryApi\FoodDeliveryApi.csproj", "{CDB06ABB-FC36-4138-B45C-7AA9914E7B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryApi", "FoodDeliveryApi\FoodDeliveryApi.csproj", "{CDB06ABB-FC36-4138-B45C-7AA9914E7B72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60573701-73E3-417C-A631-500A195AFC0A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

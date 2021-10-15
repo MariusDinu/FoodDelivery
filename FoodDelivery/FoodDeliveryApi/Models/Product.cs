@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 
 namespace FoodDeliveryApi.Models
 {
-    public class Product 
+    public class Product
     {
         public int Id { get; set; }
         [Required]

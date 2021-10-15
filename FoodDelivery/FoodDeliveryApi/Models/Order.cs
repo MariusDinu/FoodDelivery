@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 
@@ -17,7 +13,7 @@ namespace FoodDeliveryApi.Models
         [Required]
         [MaxLength(100)]
         public int IdRestaurant { get; set; }
-      
+
         public string Products { get; set; }
         [Required]
         [MaxLength(100)]
@@ -36,7 +32,7 @@ namespace FoodDeliveryApi.Models
             this.Location = Location;
         }
 
-        public Order(int IdUser,int IdRestaurant, string Products, string Price, string Location)
+        public Order(int IdUser, int IdRestaurant, string Products, string Price, string Location)
         {
             this.IdRestaurant = IdRestaurant;
             this.IdUser = IdUser;
@@ -45,6 +41,6 @@ namespace FoodDeliveryApi.Models
             this.Location = Location;
         }
 
-       
+
     }
 }

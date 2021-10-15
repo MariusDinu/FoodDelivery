@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FoodDeliveryApi</name>
+    </assembly>
+    <members>
+        <member name="M:FoodDeliveryApi.Controllers.UserController.Add(FoodDeliveryApi.Models.User)">
+            Method: POST
+            Description: add an user in database
+            Return:
+            Ok - if user is created successfully
+            BadRequest - if Json is null or user already exist (email/username)
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.UserController.GetAll">
+            Method: GET
+            Description: return all existent users
+            Return:
+            Ok - with a list of users
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.UserController.GetByUsername(System.String)">
+            Method: GET
+            Description: return existent user by username
+            Return:
+            Ok - return the user
+            BadRequest - if user doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.UserController.Update(System.Int32,FoodDeliveryApi.Models.User)">
+            Method: Put
+            Description: update existent user
+            Return:
+            Ok - if the user has updated profile successfully
+            BadRequest - 
+                1. The username exist
+                2. The email exist
+                3. Internal problem(Sql server,visual)
+        </member>
+    </members>
+</doc>
