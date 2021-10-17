@@ -8,9 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
 
 namespace FoodDeliveryApi
 {
@@ -27,14 +24,17 @@ namespace FoodDeliveryApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c=> 
-            { 
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FoodDelivery", Version = "v1" }); 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FoodDelivery", Version = "v1" });
             });
 
             var conn = Configuration.GetConnectionString("FoodDelivery");
             services.AddDbContext<FoodDeliveryContext>(options => options.UseSqlServer(conn));
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRestaurantRepository, RestaurantRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +45,7 @@ namespace FoodDeliveryApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c=>c.SwaggerEndpoint("/swagger/v1/swagger.json","FoodDelivery v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FoodDelivery v1"));
             }
 
             app.UseHttpsRedirection();

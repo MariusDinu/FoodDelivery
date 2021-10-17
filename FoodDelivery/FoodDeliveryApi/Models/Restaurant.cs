@@ -36,6 +36,7 @@ namespace FoodDeliveryApi.Models
             this.StreetNumber = StreetNumber;
             this.Building = Building;
         }
+        public Restaurant() { }
     }
 
 }

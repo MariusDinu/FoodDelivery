@@ -21,10 +21,7 @@ namespace FoodDeliveryApi.DAL.Repositories
             User existingUser = (from u in context.Users
                                  where (u.Email == email)
                                  select u).FirstOrDefault();
-            if (existingUser == null)
-                return true;
-            return false;
-            //rework
+            return existingUser == null;
         }
 
         public bool VerifyExistence(User user)
@@ -32,9 +29,7 @@ namespace FoodDeliveryApi.DAL.Repositories
             User existingUser = (from u in context.Users
                                  where (u.UserName == user.UserName || u.Email == user.Email)
                                  select u).FirstOrDefault();
-            if (existingUser == null)
-                return true;
-            return false;
+            return existingUser == null;
         }
 
         public bool VerifyUsername(string username)
@@ -42,13 +37,12 @@ namespace FoodDeliveryApi.DAL.Repositories
             User existingUser = (from u in context.Users
                                  where (u.UserName == username)
                                  select u).FirstOrDefault();
-            if (existingUser == null)
-                return true;
-            return false;
+            return existingUser == null;
         }
 
         User IUserRepository.Add(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             context.Users.Add(user);
             context.SaveChanges();
             return user;

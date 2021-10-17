@@ -34,9 +34,9 @@ namespace FoodDeliveryApi.Controllers
             if (user != null)
             {
                 var exists = userRepository.VerifyExistence(user);
-                if (exists)
+                if (exists == false)
                 {
-                    BadRequest(new { succes = false, message = "Email or Username already exist" });
+                    return BadRequest(new { succes = false, message = "Email or Username already exist" });
                 }
                 userRepository.Add(user);
                 return Ok(new { succes = true });
@@ -90,7 +90,7 @@ namespace FoodDeliveryApi.Controllers
          *     2. The email exist
          *     3. Internal problem(Sql server,visual)
          */
-        [HttpPut("update")]
+        [HttpPut("update/{id}")]
         public IActionResult Update(int id, User user)
         {
 

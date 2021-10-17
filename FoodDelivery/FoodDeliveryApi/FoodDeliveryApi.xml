@@ -4,6 +4,126 @@
         <name>FoodDeliveryApi</name>
     </assembly>
     <members>
+        <member name="M:FoodDeliveryApi.Controllers.OrderController.Add(FoodDeliveryApi.Models.Order)">
+            Method: POST
+            Description: add an order in database
+            Return:
+            Ok - if order is created successfully
+            BadRequest - if Json is null or order already exist 
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.OrderController.GetAll">
+            Method: GET
+            Description: return all existent orders
+            Return:
+            Ok - with a list of orders
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.OrderController.GetByRestaurantId(System.Int32)">
+            Method: GET
+            Description: return existents orders by restaurant id
+            Return:
+            Ok - return the orders
+            BadRequest - if restaurant doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.OrderController.GetByUserId(System.Int32)">
+            Method: GET
+            Description: return existents orders by user id
+            Return:
+            Ok - return the orders
+            BadRequest - if user doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.OrderController.Update(System.Int32,FoodDeliveryApi.Models.Order)">
+            Method: Put
+            Description: update existent order
+            Return:
+            Ok - if the order has updated successfully
+            BadRequest - 
+                1. The order doesn't exist
+                2. Internal problem(Sql server,visual)
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.Add(FoodDeliveryApi.Models.Product)">
+            Method: POST
+            Description: add an product in database
+            Return:
+            Ok - if product is created successfully
+            BadRequest - if Json is null or restaurant doesnt exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.GetAll">
+            Method: GET
+            Description: return all existent users
+            Return:
+            Ok - with a list of users
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.GetByRestaurantId(System.Int32)">
+            Method: GET
+            Description: return existents products by restaurant id
+            Return:
+            Ok - return the products
+            BadRequest - if restaurant doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.GetByRestaurantName(System.String)">
+            Method: GET
+            Description: return existents products by restaurant id
+            Return:
+            Ok - return the products
+            BadRequest - if restaurant doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.Update(System.Int32,FoodDeliveryApi.Models.Product)">
+            Method: Put
+            Description: update existent product
+            Return:
+            Ok - if the product has updated profile successfully
+            BadRequest - 
+                1. The name exist
+                2. Internal problem(Sql server,visual)
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.Add(FoodDeliveryApi.Models.Restaurant)">
+            Method: POST
+            Description: add an restaurant in database
+            Return:
+            Ok - if restaurant is created successfully
+            BadRequest - if Json is null or restaurant already exist (restaurant name)
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.GetAll">
+            Method: GET
+            Description: return all existent restaurants
+            Return:
+            Ok - with a list of restaurants
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.GetByUsername(System.String)">
+            Method: GET
+            Description: return restaurant by name
+            Return:
+            Ok - return the restaurant
+            BadRequest - if restaurant doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.GetById(System.Int32)">
+            Method: GET
+            Description: return restaurant by id
+            Return:
+            Ok - return the restaurant
+            BadRequest - if restaurant doesnt't exist
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.Update(System.Int32,FoodDeliveryApi.Models.Restaurant)">
+            Method: Put
+            Description: update existent restaurant
+            Return:
+            Ok - if the restaurant has updated profile successfully
+            BadRequest - 
+                1. The name exist
+                2. Internal problem(Sql server,visual)
+        </member>
         <member name="M:FoodDeliveryApi.Controllers.UserController.Add(FoodDeliveryApi.Models.User)">
             Method: POST
             Description: add an user in database

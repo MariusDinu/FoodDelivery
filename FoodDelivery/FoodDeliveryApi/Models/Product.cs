@@ -8,7 +8,6 @@ namespace FoodDeliveryApi.Models
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(100)]
         public int IdRestaurant { get; set; }
         [Required]
         [MaxLength(100)]
@@ -36,5 +35,7 @@ namespace FoodDeliveryApi.Models
             this.Price = Price;
             this.Description = Description;
         }
+
+        public Product() { }
     }
 }

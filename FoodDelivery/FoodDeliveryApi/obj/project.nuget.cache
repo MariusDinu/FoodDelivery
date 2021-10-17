@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZK5TcwkXgvoNTXGRQF2rXTXDNJfH/0DiI1xzPi6hjoani6yfmicyB3dfnNOMm+GAB6TUOuVL6V2OWBmLPWAD9Q==",
+  "dgSpecHash": "UvexMtYwVjlAk3Ot8RePrk7D8bfwbz2f/bg1AvkVEaoitNvvVPwQDv20/C+2NVZBwrNfO+4xJUXnkIqbBww/rg==",
   "success": true,
   "projectFilePath": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDeliveryApi\\FoodDeliveryApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\V3790391\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\V3790391\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\V3790391\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\V3790391\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
