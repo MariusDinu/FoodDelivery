@@ -64,9 +64,9 @@ namespace FoodDeliveryApi.Controllers
          * BadRequest - if restaurant doesnt't exist
          * */
         [HttpGet("get/{name}")]
-        public IActionResult GetByUsername(string name)
+        public IActionResult GetByName(string name)
         {
-            Restaurant restaurant = restaurantRepository.GetByUsername(name);
+            Restaurant restaurant = restaurantRepository.GetByName(name);
 
             if (restaurant == null)
             {

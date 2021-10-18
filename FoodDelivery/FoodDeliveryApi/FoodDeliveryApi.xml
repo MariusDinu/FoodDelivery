@@ -99,7 +99,7 @@
             Ok - with a list of restaurants
             
         </member>
-        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.GetByUsername(System.String)">
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.GetByName(System.String)">
             Method: GET
             Description: return restaurant by name
             Return:
@@ -130,6 +130,16 @@
             Return:
             Ok - if user is created successfully
             BadRequest - if Json is null or user already exist (email/username)
+            
+        </member>
+        <member name="M:FoodDeliveryApi.Controllers.UserController.Auth(FoodDeliveryApi.Models.User)">
+            Method: POST
+            Description: Login 
+            Return:
+            Ok - if user is login successfully
+            BadRequest - 
+               1.if Json is null or user doesn't exist 
+               2.if password doesn't match
             
         </member>
         <member name="M:FoodDeliveryApi.Controllers.UserController.GetAll">
