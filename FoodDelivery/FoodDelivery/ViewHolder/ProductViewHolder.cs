@@ -20,8 +20,8 @@ namespace FoodDelivery.ViewHolder
 
         public ProductViewHolder(View itemView):base(itemView)
         {
-            ProductImageView = itemView.FindViewById<ImageView>(Resource.Id.productImageView);
-            ProductTextView = itemView.FindViewById<TextView>(Resource.Id.productNameTextView);
+           // ProductImageView = itemView.FindViewById<ImageView>(Resource.Id.productImageView);
+            //ProductTextView = itemView.FindViewById<TextView>(Resource.Id.productNameTextView);
         }
     
     }

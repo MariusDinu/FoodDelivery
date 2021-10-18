@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FoodDelivery</string>
     <string name="action_settings">Settings</string>
+	<string name="pattern_email">^([\w]+)@([\w]+)((\.(\w){2,3})+)$</string>
+	<string name="a">^([\w]+)$</string>
+	<string name="pattern_username">^[a-z0-9_-]{3,15}$</string>
+	<string name="pattern_password">^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!$</string>
 </resources>

@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
+using FoodDelivery.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace FoodDelivery
         private RecyclerView _productRecyclerView;
         private RecyclerView.LayoutManager _productLayoutManager;
         private ProductAdapter _productAdapter;
+        private RestaurantRepository restaurantRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,9 +32,17 @@ namespace FoodDelivery
             _productAdapter.ItemClick += ProductAdapter_ItemClick;
             // Create your application here
 
+            restaurantRepository = new RestaurantRepository();
+            LoadDataAsync();
 
           
         }
+
+        private async void LoadDataAsync()
+        {
+            var response = await restaurantRepository.GetProducts(Intent.GetIntExtra("id",0));
+        }
+
         private void ProductAdapter_ItemClick(object sender, int e)
         {
             //var intent = new Intent();

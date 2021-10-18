@@ -4,17 +4,20 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using FoodDelivery.Model;
+using FoodDelivery.Repository;
 using System;
+using System.Text.RegularExpressions;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme",MainLauncher =true)]
     public class MainActivity : AppCompatActivity
     {
-        private Button btnRegister;
         private Button btnLogin;
-
-       
+        private EditText username;
+        private EditText password;
+        private ApiRepository apiRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -22,31 +25,57 @@ namespace FoodDelivery
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             FindViews();
+            apiRepository = new ApiRepository();
             LinkEventHandler();
         }
 
         private void LinkEventHandler()
         {
-            btnRegister.Click += btnRegister_Click; ;
             btnLogin.Click += btnLogin_Click; ;
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(Registration));
-            StartActivity(intent);
+            if (CheckData())
+            {
+                User user = apiRepository.CreateUser(username.Text, password.Text);
+                var response = await apiRepository.Login(user);
+                if (response.Equals("True"))
+                {
+                    Toast.MakeText(Application.Context, "Login successfully!", ToastLength.Long).Show();
+                    Intent intent = new Intent(this, typeof(Profile));
+                    StartActivity(intent);
+                }
+                else
+                {
+                    Toast.MakeText(Application.Context, response, ToastLength.Long).Show();
+                }
+                
+            }
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+         private bool CheckData()
         {
-            Intent intent = new Intent(this, typeof(Profile));
-            StartActivity(intent);
+            if (!Regex.Match(username.Text, @"^[a-z0-9_-]{3,15}$").Success)
+            {
+                Toast.MakeText(Application.Context, "Username doesn't match requirements!", ToastLength.Short).Show();
+                return false;
+            }
+            if (!Regex.Match(password.Text, @"^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$").Success ||
+                password.Text.Contains(" ") || password.Text.Length < 10)
+            {
+                Toast.MakeText(Application.Context, "Password doesn't match requirements!", ToastLength.Short).Show();
+                return false;
+            }
+            return true;
         }
 
         private void FindViews()
         {
-            btnRegister = FindViewById<Button>(Resource.Id.btnRegister);
             btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
+            username = FindViewById<EditText>(Resource.Id.usernameEditText);
+            password = FindViewById<EditText>(Resource.Id.passwordEditText);
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -55,5 +84,10 @@ namespace FoodDelivery
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+/*
+        email.Text = "abcdddd@yahoo.com";
+            username.Text = "abdddcd";
+            password.Text = "12345Marius@";
+            passwordConfirm.Text = "12345Marius@";*/
     }
 }

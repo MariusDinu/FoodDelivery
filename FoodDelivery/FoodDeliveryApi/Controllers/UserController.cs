@@ -1,6 +1,10 @@
-﻿using FoodDeliveryApi.DAL.IRepositories;
+﻿using FoodDeliveryApi.Config;
+using FoodDeliveryApi.DAL.IRepositories;
 using FoodDeliveryApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
+using System;
 using System.Collections.Generic;
 
 
@@ -13,9 +17,11 @@ namespace FoodDeliveryApi.Controllers
     {
 
         private readonly IUserRepository userRepository;
-        public UserController(IUserRepository userRepository)
+        private readonly JwtConfig jwtConfig;
+        public UserController(IUserRepository userRepository,IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             this.userRepository = userRepository;
+            jwtConfig = optionsMonitor.CurrentValue;
         }
 
 
@@ -38,8 +44,9 @@ namespace FoodDeliveryApi.Controllers
                 {
                     return BadRequest(new { succes = false, message = "Email or Username already exist" });
                 }
-                userRepository.Add(user);
-                return Ok(new { succes = true });
+                var newUser=userRepository.Add(user);
+                var jwtToken = JwtUser.Encode(newUser, jwtConfig);
+                return Ok(new { succes = true ,token=jwtToken,message="Succes"});
             }
             return BadRequest(new { succes = false, message = "Null username" });
         }
@@ -69,11 +76,35 @@ namespace FoodDeliveryApi.Controllers
                 bool verified = BCrypt.Net.BCrypt.Verify(user.Password, userToLog.Password);
                 if (verified)
                 {
-                    return Ok(new { succes = true });
+
+                    var jwtToken = JwtUser.Encode(userToLog, jwtConfig);
+                    return Ok(new { succes = true, token = jwtToken, message="Login Successfully!" });
                 }
                 return BadRequest(new { succes = false, message = "Password doesn't match" });
             }
             return BadRequest(new { succes = false, message = "Null user" });
+        }
+
+
+
+
+        [HttpGet("profile")]
+        public IActionResult GetByToken()
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            User userFromToken = JwtUser.Decode(accessToken);
+            if (userFromToken == null)
+            {
+                return Unauthorized();
+            }
+            User user = userRepository.GetById(userFromToken.Id);
+
+            if (user == null)
+            {
+                return BadRequest(new { success = false, message = "User with that username does not exist!" });
+            }
+
+            return Ok(new { user });
         }
 
 
@@ -87,6 +118,7 @@ namespace FoodDeliveryApi.Controllers
         [HttpGet("get")]
         public IActionResult GetAll()
         {
+            Console.WriteLine("A intrat");
             IEnumerable<User> users = userRepository.GetAll();
             return Ok(users);
         }
