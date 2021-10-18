@@ -153,6 +153,7 @@ namespace FoodDelivery
 			global::Xamarin.Essentials.Resource.Id.text2 = global::FoodDelivery.Resource.Id.text2;
 			global::Xamarin.Essentials.Resource.Id.time = global::FoodDelivery.Resource.Id.time;
 			global::Xamarin.Essentials.Resource.Id.title = global::FoodDelivery.Resource.Id.title;
+			global::Xamarin.Essentials.Resource.Id.view_tree_lifecycle_owner = global::FoodDelivery.Resource.Id.view_tree_lifecycle_owner;
 			global::Xamarin.Essentials.Resource.Integer.status_bar_notification_info_maxnum = global::FoodDelivery.Resource.Integer.status_bar_notification_info_maxnum;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_page = global::FoodDelivery.Resource.Layout.browser_actions_context_menu_page;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_row = global::FoodDelivery.Resource.Layout.browser_actions_context_menu_row;
@@ -4599,7 +4600,7 @@ namespace FoodDelivery
 			public const int notification_template_part_time = 2131427381;
 			
 			// aapt resource value: 0x7F0B0036
-			public const int ProductDetail = 2131427382;
+			public const int productdetail = 2131427382;
 			
 			// aapt resource value: 0x7F0B0037
 			public const int ProductViewHolder = 2131427383;
@@ -4608,7 +4609,7 @@ namespace FoodDelivery
 			public const int Registration = 2131427384;
 			
 			// aapt resource value: 0x7F0B0039
-			public const int Restaurant = 2131427385;
+			public const int restaurant = 2131427385;
 			
 			// aapt resource value: 0x7F0B003A
 			public const int RestaurantMenu = 2131427386;

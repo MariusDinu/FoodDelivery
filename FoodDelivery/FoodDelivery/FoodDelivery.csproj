@@ -68,9 +68,14 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Restaurant.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="Registration.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestaurantList.cs" />
+    <Compile Include="RestaurantMenu.cs" />
     <Compile Include="ViewHolder\ProductViewHolder.cs" />
+    <Compile Include="ViewHolder\RestaurantViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig">
@@ -110,9 +115,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.3.1.3" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.4" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Registration.xml">
@@ -125,12 +130,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Restaurant.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\ProductDetail.xml">
+    <AndroidResource Include="Resources\layout\RestaurantViewHolder.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
