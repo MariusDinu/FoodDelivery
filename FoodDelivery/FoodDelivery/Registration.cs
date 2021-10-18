@@ -1,18 +1,11 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using Message = FoodDelivery.Model;
 
 namespace FoodDelivery
 {
@@ -64,9 +57,10 @@ namespace FoodDelivery
 
         }
 
-        private bool CheckData() {
+        private bool CheckData()
+        {
 
-            if (!Regex.Match(email.Text,@"^([\w]+)@([\w]+)((\.(\w){2,3})+)$").Success)
+            if (!Regex.Match(email.Text, @"^([\w]+)@([\w]+)((\.(\w){2,3})+)$").Success)
             {
                 Toast.MakeText(Application.Context, "Email doesn't match requirements!", ToastLength.Short).Show();
                 return false;
@@ -77,12 +71,13 @@ namespace FoodDelivery
                 return false;
             }
             if (!Regex.Match(password.Text, @"^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$").Success ||
-                password.Text.Contains(" ")|| password.Text.Length < 10 )
+                password.Text.Contains(" ") || password.Text.Length < 10)
             {
                 Toast.MakeText(Application.Context, "Password doesn't match requirements!", ToastLength.Short).Show();
                 return false;
             }
-            if (!password.Text.Equals(passwordConfirm.Text)) {
+            if (!password.Text.Equals(passwordConfirm.Text))
+            {
                 Toast.MakeText(Application.Context, "Passwords doesn't match!", ToastLength.Short).Show();
                 return false;
             }

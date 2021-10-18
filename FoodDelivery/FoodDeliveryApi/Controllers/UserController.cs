@@ -18,7 +18,7 @@ namespace FoodDeliveryApi.Controllers
 
         private readonly IUserRepository userRepository;
         private readonly JwtConfig jwtConfig;
-        public UserController(IUserRepository userRepository,IOptionsMonitor<JwtConfig> optionsMonitor)
+        public UserController(IUserRepository userRepository, IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             this.userRepository = userRepository;
             jwtConfig = optionsMonitor.CurrentValue;
@@ -44,9 +44,9 @@ namespace FoodDeliveryApi.Controllers
                 {
                     return BadRequest(new { succes = false, message = "Email or Username already exist" });
                 }
-                var newUser=userRepository.Add(user);
+                var newUser = userRepository.Add(user);
                 var jwtToken = JwtUser.Encode(newUser, jwtConfig);
-                return Ok(new { succes = true ,token=jwtToken,message="Succes"});
+                return Ok(new { succes = true, token = jwtToken, message = "Succes" });
             }
             return BadRequest(new { succes = false, message = "Null username" });
         }
@@ -78,7 +78,7 @@ namespace FoodDeliveryApi.Controllers
                 {
 
                     var jwtToken = JwtUser.Encode(userToLog, jwtConfig);
-                    return Ok(new { succes = true, token = jwtToken, message="Login Successfully!" });
+                    return Ok(new { succes = true, token = jwtToken, message = "Login Successfully!" });
                 }
                 return BadRequest(new { succes = false, message = "Password doesn't match" });
             }

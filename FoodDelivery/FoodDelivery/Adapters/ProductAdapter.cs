@@ -1,16 +1,9 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using AndroidX.RecyclerView.Widget;
+using FoodDelivery.Model;
 using FoodDelivery.ViewHolder;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FoodDelivery.Model;
 
 
 
@@ -22,7 +15,7 @@ namespace FoodDelivery.Adapters
         private List<Product> _products;
         public ProductAdapter()
         {
-            _products = new List<Product>();           
+            _products = new List<Product>();
         }
         public override int ItemCount => _products.Count;
 

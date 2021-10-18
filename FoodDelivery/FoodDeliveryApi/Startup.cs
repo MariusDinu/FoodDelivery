@@ -11,9 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
 using System.Text;
 
 namespace FoodDeliveryApi
@@ -35,7 +32,7 @@ namespace FoodDeliveryApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FoodDelivery", Version = "v1" });
-               
+
             });
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
@@ -45,12 +42,14 @@ namespace FoodDeliveryApi
             services.AddTransient<IRestaurantRepository, RestaurantRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
-            services.AddAuthentication(options => {
+            services.AddAuthentication(options =>
+            {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-           .AddJwtBearer(jwt => {
+           .AddJwtBearer(jwt =>
+           {
                var key = Encoding.ASCII.GetBytes(Configuration["JwtConfig:Secret"]);
 
                jwt.SaveToken = true;
@@ -82,7 +81,7 @@ namespace FoodDeliveryApi
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCors(endpoints=>endpoints.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin=>true).AllowCredentials());
+            app.UseCors(endpoints => endpoints.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,22 +1,15 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FoodDelivery
 {
     [Activity(Label = "RestaurantMenu")]
     public class RestaurantMenu : Activity
-   
+
     {
         private RecyclerView _productRecyclerView;
         private RecyclerView.LayoutManager _productLayoutManager;
@@ -35,12 +28,12 @@ namespace FoodDelivery
             restaurantRepository = new RestaurantRepository();
             LoadDataAsync();
 
-          
+
         }
 
         private async void LoadDataAsync()
         {
-            var response = await restaurantRepository.GetProducts(Intent.GetIntExtra("id",0));
+            var response = await restaurantRepository.GetProducts(Intent.GetIntExtra("id", 0));
         }
 
         private void ProductAdapter_ItemClick(object sender, int e)

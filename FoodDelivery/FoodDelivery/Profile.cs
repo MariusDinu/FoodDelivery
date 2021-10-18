@@ -1,16 +1,6 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodDelivery
 {
@@ -32,7 +22,7 @@ namespace FoodDelivery
         private async void LoadDataAsync()
         {
             var response = await apiRepository.GetProfile();
-          //set data 
+            //set data 
         }
     }
 }

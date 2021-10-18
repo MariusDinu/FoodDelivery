@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme",MainLauncher =true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         private Button btnLogin;
@@ -50,11 +50,11 @@ namespace FoodDelivery
                 {
                     Toast.MakeText(Application.Context, response, ToastLength.Long).Show();
                 }
-                
+
             }
         }
 
-         private bool CheckData()
+        private bool CheckData()
         {
             if (!Regex.Match(username.Text, @"^[a-z0-9_-]{3,15}$").Success)
             {
@@ -84,10 +84,10 @@ namespace FoodDelivery
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-/*
-        email.Text = "abcdddd@yahoo.com";
-            username.Text = "abdddcd";
-            password.Text = "12345Marius@";
-            passwordConfirm.Text = "12345Marius@";*/
+        /*
+                email.Text = "abcdddd@yahoo.com";
+                    username.Text = "abdddcd";
+                    password.Text = "12345Marius@";
+                    passwordConfirm.Text = "12345Marius@";*/
     }
 }

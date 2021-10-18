@@ -1,24 +1,23 @@
 ﻿using FoodDeliveryApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodDeliveryApi.Config
 {
     public static class JwtUser
     {
-        public static string Encode(User user, JwtConfig jwtConfig) {
+        public static string Encode(User user, JwtConfig jwtConfig)
+        {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(jwtConfig.Secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] 
+                Subject = new ClaimsIdentity(new[]
                 {
                 new Claim("id",user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.GivenName,user.UserName)
@@ -33,20 +32,24 @@ namespace FoodDeliveryApi.Config
 
             return jwtToken;
         }
-        public static User Decode(string token) {
+        public static User Decode(string token)
+        {
 
             var handler = new JwtSecurityTokenHandler();
-            try {
+            try
+            {
                 var jsonToken = handler.ReadToken(token);
                 var tokenS = jsonToken as JwtSecurityToken;
                 var id = tokenS.Claims.First(claim => claim.Type == "id").Value;
-                var username=tokenS.Claims.First(claim => claim.Type == "given_name").Value;
+                var username = tokenS.Claims.First(claim => claim.Type == "given_name").Value;
                 return new User(int.Parse(id), username);
 
-            } catch(ArgumentException) {
+            }
+            catch (ArgumentException)
+            {
                 return null;
             }
-        
+
         }
     }
 }

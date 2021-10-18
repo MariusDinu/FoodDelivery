@@ -30,17 +30,13 @@ namespace FoodDeliveryApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<User>().HasData(
-                new User(1, "mariusd30", "mariusd30", "12345"));
+            modelBuilder.Entity<User>();
 
-            modelBuilder.Entity<Restaurant>().HasData(
-                new Restaurant(1, "SmilePizza", "Pacurari", "22", "Sc.B"));
+            modelBuilder.Entity<Restaurant>();
 
-            modelBuilder.Entity<Product>().HasData(
-                new Product(1, 1, "Pizza", "10", "Pizza cu de toate"));
+            modelBuilder.Entity<Product>();
 
-            modelBuilder.Entity<Order>().HasData(
-                new Order(1, 1, 1, "{'1':2}", "100", "Pacurari,22", System.DateTime.Now, "Preparation"));
+            modelBuilder.Entity<Order>();
 
 
 

@@ -1,20 +1,11 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using FoodDelivery.Model;
+﻿using FoodDelivery.Model;
 using Newtonsoft.Json;
-using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Message = FoodDelivery.Model;
 
 namespace FoodDelivery.Repository
 {
@@ -63,7 +54,8 @@ namespace FoodDelivery.Repository
             return mess.Succes.ToString();
         }
 
-        public async Task<User> GetProfile() {
+        public async Task<User> GetProfile()
+        {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://192.168.100.37:5000");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -72,11 +64,12 @@ namespace FoodDelivery.Repository
             var response = await client.GetAsync("/user/profile");
 
             /*if the call fail response still have message and succes*/
-            User user= JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
+            User user = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
 
             return user;
         }
-        public async Task<IEnumerable<Restaurant>> GetRestaurants() {
+        public async Task<IEnumerable<Restaurant>> GetRestaurants()
+        {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://192.168.100.37:5000");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -89,7 +82,7 @@ namespace FoodDelivery.Repository
 
             return listRestaurants;
 
-      
+
         }
         public User CreateUser(string username, string email, string password)
         {
