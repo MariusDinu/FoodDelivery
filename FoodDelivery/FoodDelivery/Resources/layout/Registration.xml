@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:minWidth="25px"
+    android:minHeight="25px"
+    android:paddingRight="25dp"
+    android:paddingLeft="25dp"
+    android:textAlignment="center"
+    android:gravity="center"
+    android:id="@+id/linearLayout1">
+    
+     <TextView
+        android:text="Enter your email:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/textViewEmail" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      
+        android:textSize="25dp"
+        android:id="@+id/editTextEmail" />
+        <TextView
+        android:text="Choose your username:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/textViewUserName" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25dp"
+        android:id="@+id/editTextUserName" />
+
+
+    <TextView
+        android:text="Choose your password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/textViewPassword" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25dp"
+        android:id="@+id/editTextPassword" />
+      <TextView
+        android:text="Enter your password again:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/textViewPassword2" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25dp"
+        android:id="@+id/editTextPassword2" />
+    <Button
+        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnRegister" />
+</LinearLayout>
+

@@ -843,6 +843,16 @@
         "build": {
           "buildTransitive/monoandroid50/Xamarin.Google.Guava.ListenableFuture.targets": {}
         }
+      },
+      "FoodDeliveryApi/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/FoodDeliveryApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FoodDeliveryApi.dll": {}
+        }
       }
     }
   },
@@ -1684,28 +1694,34 @@
         "xamarin.google.guava.listenablefuture.1.0.0.2.nupkg.sha512",
         "xamarin.google.guava.listenablefuture.nuspec"
       ]
+    },
+    "FoodDeliveryApi/1.0.0": {
+      "type": "project",
+      "path": "../FoodDeliveryApi/FoodDeliveryApi.csproj",
+      "msbuildProject": "../FoodDeliveryApi/FoodDeliveryApi.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v11.0": [
+      "FoodDeliveryApi >= 1.0.0",
       "Xamarin.AndroidX.AppCompat >= 1.2.0.5",
       "Xamarin.Essentials >= 1.6.1",
       "Xamarin.Google.Android.Material >= 1.0.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\V3790391\\.nuget\\packages\\": {},
+    "C:\\Users\\V3790388\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
+      "projectUniqueName": "C:\\Users\\V3790388\\Documents\\GitHub\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
       "projectName": "FoodDelivery",
-      "projectPath": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
-      "packagesPath": "C:\\Users\\V3790391\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\obj\\",
+      "projectPath": "C:\\Users\\V3790388\\Documents\\GitHub\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
+      "packagesPath": "C:\\Users\\V3790388\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\V3790388\\Documents\\GitHub\\FoodDelivery\\FoodDelivery\\FoodDelivery\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1713,7 +1729,7 @@
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\V3790391\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\V3790388\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -1727,7 +1743,11 @@
       },
       "frameworks": {
         "monoandroid11.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\V3790388\\Documents\\GitHub\\FoodDelivery\\FoodDelivery\\FoodDeliveryApi\\FoodDeliveryApi.csproj": {
+              "projectPath": "C:\\Users\\V3790388\\Documents\\GitHub\\FoodDelivery\\FoodDelivery\\FoodDeliveryApi\\FoodDeliveryApi.csproj"
+            }
+          }
         }
       }
     },
@@ -1749,5 +1769,16 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project FoodDeliveryApi is not compatible with monoandroid11.0 (MonoAndroid,Version=v11.0). Project FoodDeliveryApi supports: netcoreapp3.1 (.NETCoreApp,Version=v3.1)",
+      "libraryId": "FoodDeliveryApi",
+      "targetGraphs": [
+        "MonoAndroid,Version=v11.0"
+      ]
+    }
+  ]
 }

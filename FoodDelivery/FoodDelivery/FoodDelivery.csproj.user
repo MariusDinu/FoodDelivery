@@ -4,5 +4,7 @@
     <SelectedDevice>pixel_2_pie_9_0_-_api_28-gshape</SelectedDevice>
     <ActiveDebugProfile>pixel_2_pie_9_0_-_api_28-gshape</ActiveDebugProfile>
     <DefaultDevice>pixel_2_pie_9_0_-_api_28-gshape</DefaultDevice>
+    <AndroidDesignerPreferredTheme>AppTheme</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>
