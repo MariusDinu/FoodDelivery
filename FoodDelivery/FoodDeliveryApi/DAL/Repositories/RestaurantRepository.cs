@@ -35,7 +35,7 @@ namespace FoodDeliveryApi.DAL.Repositories
             return existingRestaurant;
         }
 
-        Restaurant IRestaurantRepository.GetByUsername(string name)
+        Restaurant IRestaurantRepository.GetByName(string name)
         {
             Restaurant existingRestaurant = (from r in context.Restaurants
                                              where (r.RestaurantName == name)

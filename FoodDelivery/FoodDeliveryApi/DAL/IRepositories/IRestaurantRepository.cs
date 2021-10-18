@@ -7,7 +7,7 @@ namespace FoodDeliveryApi.DAL.IRepositories
     {
         Restaurant Add(Restaurant restaurant);
         bool Update(int id, Restaurant restaurant);
-        Restaurant GetByUsername(string name);
+        Restaurant GetByName(string name);
         Restaurant GetById(int id);
         IEnumerable<Restaurant> GetAll();
         bool VerifyExistence(Restaurant restaurant);

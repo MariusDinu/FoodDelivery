@@ -45,6 +45,38 @@ namespace FoodDeliveryApi.Controllers
         }
 
 
+        /**
+        * Method: POST
+        * Description: Login 
+        * Return:
+        * Ok - if user is login successfully
+        * BadRequest - 
+        *    1.if Json is null or user doesn't exist 
+        *    2.if password doesn't match
+        * */
+
+        [HttpPost("auth")]
+        public IActionResult Auth(User user)
+        {
+            if (user != null)
+            {
+                User userToLog = userRepository.GetByUsername(user.UserName);
+                if (userToLog == null)
+                {
+                    return BadRequest(new { succes = false, message = "Username doesn't exist" });
+                }
+
+                bool verified = BCrypt.Net.BCrypt.Verify(user.Password, userToLog.Password);
+                if (verified)
+                {
+                    return Ok(new { succes = true });
+                }
+                return BadRequest(new { succes = false, message = "Password doesn't match" });
+            }
+            return BadRequest(new { succes = false, message = "Null user" });
+        }
+
+
 
         /**
          * Method: GET
