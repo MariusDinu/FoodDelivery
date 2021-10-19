@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
@@ -15,12 +15,12 @@
         android:text="ProductName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/productNametextView" />
+        android:id="@+id/productNametextView2" />
     <TextView
         android:text="ProductDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ProductDescriptiontextView" />
+        android:id="@+id/ProductDescriptionTextView" />
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -37,10 +37,15 @@
         android:text="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/quantityEditText" />
+        android:id="@+id/productQuantityEditText" />
     </LinearLayout>
     <Button
         android:text="Add to chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAdd" />
+     <Button
+        android:text="Remove from chart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnAdd" />

@@ -1,6 +1,7 @@
 ﻿using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
+using System;
 
 namespace FoodDelivery.ViewHolder
 {
@@ -10,10 +11,11 @@ namespace FoodDelivery.ViewHolder
 
         public TextView RestaurantNameView { get; set; }
 
-        public RestaurantViewHolder(View itemView) : base(itemView)
+        public RestaurantViewHolder(View itemView, Action<int> listener) : base(itemView)
         {
             RestaurantImageView = itemView.FindViewById<ImageView>(Resource.Id.restaurantImageView);
             RestaurantNameView = itemView.FindViewById<TextView>(Resource.Id.restaurantNameTextView);
+            itemView.Click += (sender, e) => listener(base.LayoutPosition);
         }
 
     }

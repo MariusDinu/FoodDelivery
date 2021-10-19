@@ -69,6 +69,7 @@
     <Compile Include="Adapters\RestaurantAdapter.cs" />
     <Compile Include="Adapters\ShoppingChartAdapter.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Model\ShoppingChartRepository.cs" />
     <Compile Include="Model\ShoppingChartItem.cs" />
     <Compile Include="Model\Response.cs" />
     <Compile Include="Model\Order.cs" />
