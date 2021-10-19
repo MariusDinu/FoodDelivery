@@ -22,6 +22,7 @@ namespace FoodDelivery
             _productLayoutManager = new LinearLayoutManager(this);
             _productRecyclerView.SetLayoutManager(_productLayoutManager);
             _productAdapter = new ProductAdapter();
+            _productRecyclerView.SetAdapter(_productAdapter);
             _productAdapter.ItemClick += ProductAdapter_ItemClick;
             // Create your application here
 
@@ -38,10 +39,10 @@ namespace FoodDelivery
 
         private void ProductAdapter_ItemClick(object sender, int e)
         {
-            //var intent = new Intent();
-            //intent.SetClass(this, typeof());
-            //intent.PutExtra("selectedPieId", e);
-            //StartActivity(intent);
+            var intent = new Intent();
+            intent.SetClass(this, typeof(ProductDetail));
+            intent.PutExtra("selectedItemId", e);
+            StartActivity(intent);
         }
 
         private void FindViews()
@@ -53,6 +54,7 @@ namespace FoodDelivery
         }
         private void BinData()
         {
+
             //_pieNameTextView = _selectedPie.Name;
             //do it for all properties
         }

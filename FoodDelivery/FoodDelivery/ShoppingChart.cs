@@ -26,6 +26,7 @@ namespace FoodDelivery
             chartLayoutManager = new LinearLayoutManager(this);
             chartRecyclerView.SetLayoutManager(chartLayoutManager);
             chartAdapter = new ShoppingChartAdapter();
+            chartRecyclerView.SetAdapter(chartAdapter);
             chartAdapter.ItemClick += ShoppingChartAdapter_ItemClick;
             // Create your application here
         }
@@ -33,7 +34,7 @@ namespace FoodDelivery
         private void ShoppingChartAdapter_ItemClick()
         {
             var intent = new Intent();
-            intent.SetClass(this, typeof(RestaurantMenu));
+            intent.SetClass(this, typeof(ProductDetail));
             StartActivity(intent);
         }
     }

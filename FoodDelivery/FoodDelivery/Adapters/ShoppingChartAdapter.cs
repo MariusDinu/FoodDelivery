@@ -16,22 +16,24 @@ namespace FoodDelivery.Adapters
 {
     class ShoppingChartAdapter : RecyclerView.Adapter
     {
-        public List<ShoppingChartItem> ShoppingChart;
-        public override int ItemCount => ShoppingChart.Count;
+        public ShoppingChartRepository ShoppingChart;
+        public override int ItemCount => ShoppingChart.GetAllProducts().Count;
 
         public Action ItemClick { get; internal set; }
 
         public ShoppingChartAdapter()
         {
-            ShoppingChart = new List<ShoppingChartItem>();
+            ShoppingChart = new ShoppingChartRepository();
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (holder is ShoppingChartViewHolder shoppingChartViewHolder)
             {
-                shoppingChartViewHolder.ProductName.Text = ShoppingChart[position].Product.Name;
-                shoppingChartViewHolder.Quantity.Text = ShoppingChart[position].Quantity.ToString();
+                
+                var product = ShoppingChart.GetAllProducts()[position].Product.Name;
+                shoppingChartViewHolder.ProductName.Text = product;
+                shoppingChartViewHolder.Quantity.Text = ShoppingChart.GetAllProducts()[position].Quantity.ToString();
 
             }
         }

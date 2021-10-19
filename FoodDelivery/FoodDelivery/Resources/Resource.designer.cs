@@ -6814,16 +6814,16 @@ namespace FoodDelivery
 			public const int postLayout = 2131231065;
 			
 			// aapt resource value: 0x7F080008
-			public const int ProductDescriptiontextView = 2131230728;
+			public const int ProductDescriptionTextView = 2131230728;
 			
 			// aapt resource value: 0x7F08015A
 			public const int productImageView = 2131231066;
 			
-			// aapt resource value: 0x7F08015C
-			public const int productNametextView = 2131231068;
-			
 			// aapt resource value: 0x7F08015B
 			public const int productNameTextView = 2131231067;
+			
+			// aapt resource value: 0x7F08015C
+			public const int productNametextView2 = 2131231068;
 			
 			// aapt resource value: 0x7F08015E
 			public const int productPricetextView = 2131231070;
@@ -6832,13 +6832,13 @@ namespace FoodDelivery
 			public const int productPriceTextView = 2131231069;
 			
 			// aapt resource value: 0x7F08015F
-			public const int progress_circular = 2131231071;
+			public const int productQuantityEditText = 2131231071;
 			
 			// aapt resource value: 0x7F080160
-			public const int progress_horizontal = 2131231072;
+			public const int progress_circular = 2131231072;
 			
 			// aapt resource value: 0x7F080161
-			public const int quantityEditText = 2131231073;
+			public const int progress_horizontal = 2131231073;
 			
 			// aapt resource value: 0x7F080009
 			public const int QuantityTextView = 2131230729;
