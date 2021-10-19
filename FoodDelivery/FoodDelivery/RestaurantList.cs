@@ -21,9 +21,9 @@ namespace FoodDelivery
 
         private async void LoadDataAsync()
         {
-            IEnumerable<Restaurant> list = (IEnumerable<Restaurant>)apiRepository.GetRestaurants();
+            IEnumerable<Restaurant> list = await apiRepository.GetRestaurants();
             //add list in adapter
-            //i.PutExtra("id", sender.id); de adaugat la on click
+            //i.PutExtra("id", object.id); de adaugat la on click
         }
     }
 }

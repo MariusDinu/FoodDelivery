@@ -1,6 +1,8 @@
-﻿using FoodDeliveryApi.DAL.IRepositories;
+﻿using FoodDeliveryApi.Config;
+using FoodDeliveryApi.DAL.IRepositories;
 using FoodDeliveryApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using System.Collections.Generic;
 
 namespace FoodDeliveryApi.Controllers
@@ -69,6 +71,12 @@ namespace FoodDeliveryApi.Controllers
         [HttpGet("get/{id:int}")]
         public IActionResult GetByRestaurantId(int id)
         {
+            var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            User userFromToken = JwtUser.Decode(accessToken);
+            if (userFromToken == null)
+            {
+                return Unauthorized();
+            }
             IEnumerable<Product> product = productRepository.GetByRestaurantId(id);
 
             if (product == null)
