@@ -67,7 +67,9 @@
   <ItemGroup>
     <Compile Include="Adapters\ProductAdapter.cs" />
     <Compile Include="Adapters\RestaurantAdapter.cs" />
+    <Compile Include="Adapters\ShoppingChartAdapter.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Model\ShoppingChartItem.cs" />
     <Compile Include="Model\Response.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
@@ -78,12 +80,15 @@
     <Compile Include="Repository\ApiRepository.cs" />
     <Compile Include="Repository\JwtRepository.cs" />
     <Compile Include="Repository\RestaurantRepository.cs" />
+    <Compile Include="ProductDetail.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestaurantList.cs" />
     <Compile Include="RestaurantMenu.cs" />
+    <Compile Include="ShoppingChart.cs" />
     <Compile Include="ViewHolder\ProductViewHolder.cs" />
     <Compile Include="ViewHolder\RestaurantViewHolder.cs" />
+    <Compile Include="ViewHolder\ShoppingChartViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig">
@@ -119,7 +124,11 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ShoppingChartViewHolder.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
@@ -164,6 +173,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\net_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ShoppingChart.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ProductDetail.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

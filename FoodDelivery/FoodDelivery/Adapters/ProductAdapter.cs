@@ -34,8 +34,15 @@ namespace FoodDelivery.Adapters
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.RestaurantViewHolder, parent, false);
-            ProductViewHolder productViewHolder = new ProductViewHolder(itemView);
+            ProductViewHolder productViewHolder = new ProductViewHolder(itemView, OnClick);
             return productViewHolder;
+        }
+
+
+        private void OnClick(int position)
+        {
+            var productId = _products[position].Id;
+            ItemClick?.Invoke(this, productId);
         }
     }
 }
