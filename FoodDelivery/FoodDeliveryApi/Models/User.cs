@@ -9,7 +9,6 @@ namespace FoodDeliveryApi.Models
         [Required]
         [MaxLength(100)]
         public string UserName { get; set; }
-        [Required]
         [MaxLength(100)]
         public string Email { get; set; }
         [MaxLength(100)]
