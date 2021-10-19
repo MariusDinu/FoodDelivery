@@ -16,9 +16,10 @@ namespace FoodDelivery
     public class ProductDetail : Activity
     {
         private Button btnAddToChart;
-        private Button btnRemovefromChart;
+        //private Button btnRemovefromChart;
         private ShoppingChartItem _selectedProduct;
         private ShoppingChartRepository _itemrepository;
+        private ShoppingChartRepository _chartRepository;
         private TextView _productNameTextView;
         private TextView _productDescriptionTextView;
         private TextView _productPriceTextView;
@@ -28,14 +29,14 @@ namespace FoodDelivery
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ProductDetail);
-            _itemrepository = new ShoppingChartRepository();
+            _itemrepository = new ShoppingChartRepository(); //repo with all products
+            _chartRepository = new ShoppingChartRepository(); //repo with chart items
             var selectedItem = Intent.Extras.GetInt("selectedItemId");
-            _selectedProduct = _itemrepository.GetProductById(selectedItem);
-            
+            _selectedProduct = _itemrepository.GetProductById(selectedItem);           
             FindViews();
             BinData();
             btnAddToChart.Click += BtnAddToChart_Click;
-            // Create your application here
+          
         }
 
         private void BinData()
@@ -61,8 +62,8 @@ namespace FoodDelivery
         private void BtnAddToChart_Click(object sender, EventArgs e)
         {
             var quantity = int.Parse(_productQuantityEditText.Text);
-            ShoppingChartRepository repository = new ShoppingChartRepository();
-            repository.AddToShoppingCart(_selectedProduct);
+            _selectedProduct.Quantity = quantity;
+            _chartRepository.AddToShoppingCart(_selectedProduct);
             this.Finish();
         }
     }
