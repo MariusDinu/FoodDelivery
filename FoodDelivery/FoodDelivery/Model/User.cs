@@ -14,6 +14,7 @@
             this.Password = password;
         }
 
+        public User() { }
         public int Id { get; set; }
 
         public string UserName { get; set; }

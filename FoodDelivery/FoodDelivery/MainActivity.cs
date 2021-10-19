@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme",MainLauncher =true)]
     public class MainActivity : AppCompatActivity
     {
         private Button btnLogin;
@@ -84,10 +84,6 @@ namespace FoodDelivery
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        /*
-                email.Text = "abcdddd@yahoo.com";
-                    username.Text = "abdddcd";
-                    password.Text = "12345Marius@";
-                    passwordConfirm.Text = "12345Marius@";*/
+        
     }
 }
