@@ -16,5 +16,11 @@
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:id="@+id/productNameTextView" />
+    <TextView
+        android:text="ProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:id="@+id/productPriceTextView" />
 
 </LinearLayout>
