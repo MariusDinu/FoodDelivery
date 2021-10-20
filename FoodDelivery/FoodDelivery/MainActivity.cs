@@ -4,79 +4,64 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using AndroidX.AppCompat.App;
-using FoodDelivery.Model;
 using FoodDelivery.Repository;
 using System;
-using System.Text.RegularExpressions;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme",MainLauncher =true)]
+
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private Button btnLogin;
-        private EditText username;
-        private EditText password;
-        private ApiRepository apiRepository;
+        private Button login;
+        private Button register;
+        private ConfigRepository config;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            FindViews();
-            apiRepository = new ApiRepository();
-            LinkEventHandler();
+            if (!JwtRepository.CheckJWT())
+            {
+                config = new ConfigRepository();
+                FindViews();
+                LinkEventHandler();
+            }
+            else
+            {
+                var intent = new Intent();
+                intent.SetClass(this, typeof(Profile));
+                StartActivity(intent);
+            }
         }
 
         private void LinkEventHandler()
         {
-            btnLogin.Click += btnLogin_Click; ;
+            login.Click += Login_Click;
+            register.Click += Register_Click;
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private void Register_Click(object sender, EventArgs e)
         {
-            if (CheckData())
-            {
-                User user = apiRepository.CreateUser(username.Text, password.Text);
-                var response = await apiRepository.Login(user);
-                if (response.Equals("True"))
-                {
-                    Toast.MakeText(Application.Context, "Login successfully!", ToastLength.Long).Show();
-                    Intent intent = new Intent(this, typeof(Profile));
-                    StartActivity(intent);
-                }
-                else
-                {
-                    Toast.MakeText(Application.Context, response, ToastLength.Long).Show();
-                }
-
-            }
+            var intent = new Intent();
+            intent.SetClass(this, typeof(Registration));
+            StartActivity(intent);
         }
 
-        private bool CheckData()
+        private void Login_Click(object sender, EventArgs e)
         {
-            if (!Regex.Match(username.Text, @"^[a-z0-9_-]{3,15}$").Success)
-            {
-                Toast.MakeText(Application.Context, "Username doesn't match requirements!", ToastLength.Short).Show();
-                return false;
-            }
-            if (!Regex.Match(password.Text, @"^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$").Success ||
-                password.Text.Contains(" ") || password.Text.Length < 10)
-            {
-                Toast.MakeText(Application.Context, "Password doesn't match requirements!", ToastLength.Short).Show();
-                return false;
-            }
-            return true;
+            var intent = new Intent();
+            intent.SetClass(this, typeof(Login));
+            StartActivity(intent);
         }
 
         private void FindViews()
         {
-            btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
-            username = FindViewById<EditText>(Resource.Id.usernameEditText);
-            password = FindViewById<EditText>(Resource.Id.passwordEditText);
-
+            login = FindViewById<Button>(Resource.Id.buttonLoginStart);
+            register = FindViewById<Button>(Resource.Id.buttonRegisterStart);
         }
+
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -84,6 +69,7 @@ namespace FoodDelivery
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        
+
     }
+
 }

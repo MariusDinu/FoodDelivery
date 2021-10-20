@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
       <ImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
@@ -10,29 +11,31 @@
        
         android:minWidth="25px"
         android:minHeight="25px"
+        android:paddingBottom="50px"
         android:id="@+id/UserimageView"/>
-    <Button
-        android:text="Restaurants"
+    <TextView
+        android:text="@string/textName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:id="@+id/showResturantsButton" /> 
-    <Button
-        android:text="Button"
+        android:textAlignment="center"
+        android:id="@+id/textViewProfileName" />
+    <TextView
+        android:text="@string/textEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         android:layout_marginTop="15dp"
-        android:id="@+id/button2" /> 
+        android:textAlignment="center"
+        android:paddingBottom="50px"
+        android:id="@+id/textViewProfileEmail" />
     <Button
-        android:text="Button"
-        android:layout_width="match_parent"
+        android:text="@string/btnOrderProducts"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginTop="15dp"
-        android:id="@+id/button3" /> 
+        android:layout_margin="25dp"
+        android:id="@+id/showResturantsButton" />
     <Button
-        android:text="Button"
-        android:layout_width="match_parent"
+        android:text="@string/btnOrderProfile"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginTop="15dp"
-        android:id="@+id/button4" /> 
+        android:id="@+id/btnOrder" /> 
+     
 </LinearLayout>

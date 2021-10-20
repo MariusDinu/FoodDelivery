@@ -5,8 +5,8 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoodDelivery
@@ -25,9 +25,9 @@ namespace FoodDelivery
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.RestaurantList);
 
-            
+
             apiRepository = new ApiRepository();
-            restaurantsList=await LoadDataAsync();
+            restaurantsList = await LoadDataAsync();
 
 
             _restaurantRecyclerView = FindViewById<RecyclerView>(Resource.Id.restaurantListRecyclerView);
@@ -39,7 +39,7 @@ namespace FoodDelivery
             // Create your application here
         }
 
-       
+
 
         private async Task<IEnumerable<Restaurant>> LoadDataAsync()
         {

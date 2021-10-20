@@ -1,21 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-      <TextView
+    android:layout_height="wrap_content"
+    android:gravity="center">
+    <TextView
         android:text="Shopping Chart"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="25px"
         android:minHeight="50dp"
+        android:paddingTop="25dp"
         android:id="@+id/shoppingChartTextView" />
+    <TextView
+        android:text="Restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="50dp"
+        android:id="@+id/shoppingChartRestaurantName" />
     <androidx.recyclerview.widget.RecyclerView
         android:minWidth="25px"
         android:minHeight="25px"
         android:scrollbars="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/shoppingChartRecyclerView" />
-   
+        android:layout_margin="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="224.5dp"
+        android:id="@+id/shoppingChartRecyclerView"
+        android:layout_marginTop="0.0dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:text="Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="50dp"
+            android:id="@+id/shoppingChartPriceText" />
+        <TextView
+            android:text="Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="50dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/shoppingChartPriceInput"/>
+        
+    </LinearLayout>
+<Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonOrderFinal" />
+
 </LinearLayout>

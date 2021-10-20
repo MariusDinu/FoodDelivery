@@ -1,39 +1,32 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.ViewHolder;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FoodDelivery.Adapters
 {
     class ShoppingChartAdapter : RecyclerView.Adapter
     {
-        public ShoppingChartRepository ShoppingChart;
-        public override int ItemCount => ShoppingChart.GetAllProducts().Count;
+        List<ItemChart> list;
+        public override int ItemCount => list.Count;
 
-        public Action ItemClick { get; internal set; }
+        public Action<object,int> ItemClick { get; internal set; }
 
-        public ShoppingChartAdapter()
+        public ShoppingChartAdapter(List<ItemChart> list)
         {
-            ShoppingChart = new ShoppingChartRepository();
+            this.list = list;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (holder is ShoppingChartViewHolder shoppingChartViewHolder)
             {
-                
-                var product = ShoppingChart.GetAllProducts()[position].Product.Name;
+
+                var product = list[position].Product.Name;
                 shoppingChartViewHolder.ProductName.Text = product;
-                shoppingChartViewHolder.Quantity.Text = ShoppingChart.GetAllProducts()[position].Quantity.ToString();
+                shoppingChartViewHolder.Quantity.Text = list[position].Quantity.ToString();
 
             }
         }
@@ -41,8 +34,14 @@ namespace FoodDelivery.Adapters
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ShoppingChartViewHolder, parent, false);
-            ShoppingChartViewHolder restaurantViewHolder = new ShoppingChartViewHolder(itemView);
+            ShoppingChartViewHolder restaurantViewHolder = new ShoppingChartViewHolder(itemView,OnClick);
             return restaurantViewHolder;
+        }
+
+        private void OnClick(int position)
+        {
+            var productId = list[position].Product.Id;
+            ItemClick?.Invoke(this, productId);
         }
     }
 }

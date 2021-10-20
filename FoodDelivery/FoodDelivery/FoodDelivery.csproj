@@ -68,9 +68,12 @@
     <Compile Include="Adapters\ProductAdapter.cs" />
     <Compile Include="Adapters\RestaurantAdapter.cs" />
     <Compile Include="Adapters\ShoppingChartAdapter.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Model\ShoppingChartRepository.cs" />
-    <Compile Include="Model\ShoppingChartItem.cs" />
+    <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\ItemList.cs" />
+    <Compile Include="Model\ListProducts.cs" />
+    <Compile Include="Model\ItemChart.cs" />
     <Compile Include="Model\Response.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
@@ -79,6 +82,8 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="Repository\ApiRepository.cs" />
+    <Compile Include="Repository\ChartRepository.cs" />
+    <Compile Include="Repository\ConfigRepository.cs" />
     <Compile Include="Repository\HttpRepository.cs" />
     <Compile Include="Repository\JwtRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
@@ -97,12 +102,13 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <EmbeddedResource Include="Config\config.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_main.xml">
+    <AndroidResource Include="Resources\layout\Login.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -194,9 +200,15 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\http.xml">
+    <AndroidResource Include="Resources\layout\activity_main.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\dimens.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\drawables.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

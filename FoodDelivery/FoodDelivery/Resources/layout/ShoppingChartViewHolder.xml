@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="20px">
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
@@ -10,17 +13,53 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/shoppingChartImageView" />
-    <TextView
-        android:text="Product Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:id="@+id/NameTextView" />
-    <TextView
-        android:text="Product Quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textSize="20dp"
-        android:id="@+id/QuantityTextView" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Product Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20px"
+            android:textSize="20dp"
+            android:id="@+id/ProductNameOrder" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:text="Product Quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:padding="20px"
+                android:id="@+id/QuantityTextView" />
+            <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:text="@string/btnMinusProduct"
+                android:layout_width="38.5dp"
+                android:layout_height="wrap_content"
+                android:padding="20px"
+                android:id="@+id/buttonMinus" />
+            <TextView
+                android:text="Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                    android:padding="20px"
+                android:id="@+id/ProductQuantityOrder" />
+            <Button
+                android:text="@string/btnPlusProduct"
+                android:layout_width="38.5dp"
+                android:layout_height="wrap_content"
+                android:padding="20px"
+                android:id="@+id/buttonPlus" />
+                </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

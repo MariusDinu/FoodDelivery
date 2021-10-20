@@ -15,8 +15,8 @@ namespace FoodDelivery.ViewHolder
 
         public ProductViewHolder(View itemView, Action<int> listener) : base(itemView)
         {
-             ProductImageView = itemView.FindViewById<ImageView>(Resource.Id.productImageView);
-             ProductTextView = itemView.FindViewById<TextView>(Resource.Id.productNameTextView);
+            ProductImageView = itemView.FindViewById<ImageView>(Resource.Id.productImageView);
+            ProductTextView = itemView.FindViewById<TextView>(Resource.Id.productNameTextView);
             ProductPriceTextView = itemView.FindViewById<TextView>(Resource.Id.productPriceTextView);
 
             itemView.Click += (sender, e) => listener(base.LayoutPosition);

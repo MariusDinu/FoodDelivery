@@ -54,12 +54,12 @@
             android:text="ProductDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ProductDescriptionTextView" />
+            android:id="@+id/ProductDescriptionTextString" />
         <TextView
             android:text="Text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/textView1" />
+            android:id="@+id/ProductDescriptionTextView" />
         
 
     </LinearLayout>
@@ -93,7 +93,7 @@
         android:text="Add to chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnAdd" />
+        android:id="@+id/buttonAddChart" />
     <!--<Button
         android:text="Remove from chart"
         android:layout_width="wrap_content"

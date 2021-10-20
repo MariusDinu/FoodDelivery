@@ -6,8 +6,8 @@ using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FoodDelivery
 {
@@ -34,7 +34,7 @@ namespace FoodDelivery
             _productAdapter.ItemClick += ProductAdapter_ItemClick;
             // Create your application here
 
-           
+
 
         }
 

@@ -26,8 +26,8 @@ namespace FoodDelivery.Adapters
             if (holder is ProductViewHolder productViewHolder)
             {
                 productViewHolder.ProductTextView.Text = _products[position].Name;
-               // productViewHolder.ProductTextView.Text = _products[position].Description;
-                productViewHolder.ProductPriceTextView.Text = _products[position].Price;
+                // productViewHolder.ProductTextView.Text = _products[position].Description;
+                productViewHolder.ProductPriceTextView.Text = _products[position].Price + " Ron";
             }
         }
 

@@ -90,9 +90,9 @@ namespace FoodDeliveryApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            
 
-            
+
+
 
             migrationBuilder.CreateIndex(
                            name: "IX_Orders_UserId",

@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">FoodDelivery</string>
     <string name="action_settings">Settings</string>
-	<string name="pattern_email">^([\w]+)@([\w]+)((\.(\w){2,3})+)$</string>
-	<string name="a">^([\w]+)$</string>
-	<string name="pattern_username">^[a-z0-9_-]{3,15}$</string>
-	<string name="pattern_password">^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!$</string>
+	<string name="buttonRegisterStart">Register</string>
+	<string name="buttonLoginStart">Login</string>
+	<string name="TitleStart">Welcome!</string>
+	<string name="SpaceBetweenButtonsStart">Or if you have account </string>
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="btnMinusProduct">-</string>
+	<string name="btnPlusProduct">+</string>
+	<string name="btnOrderProfile">Order</string>
+	<string name="textName">Name</string>
+	<string name="textEmail">Email</string>
+	<string name="btnOrderProducts">Restaurants</string>
+	
+
 </resources>

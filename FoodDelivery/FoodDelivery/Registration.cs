@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "Registration",MainLauncher =true)]
+    [Activity(Label = "Registration", MainLauncher = true)]
     public class Registration : Activity
     {
         private Button btnRegister;
@@ -41,12 +41,12 @@ namespace FoodDelivery
         {
             if (CheckData())
             {
-                User user = apiRepository.CreateUser(username.Text,email.Text, password.Text);
+                User user = apiRepository.CreateUser(username.Text, email.Text, password.Text);
                 var response = await apiRepository.Registration(user);
                 if (response.Equals("True"))
                 {
                     Toast.MakeText(Application.Context, "Register successfully!", ToastLength.Long).Show();
-                    Intent intent = new Intent(this, typeof(MainActivity));
+                    Intent intent = new Intent(this, typeof(Login));
                     StartActivity(intent);
                 }
                 else

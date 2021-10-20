@@ -104,7 +104,7 @@ namespace FoodDeliveryApi.Controllers
                 return BadRequest(new { success = false, message = "User with that username does not exist!" });
             }
 
-            return Ok(new { user });
+            return Ok(user);
         }
 
 

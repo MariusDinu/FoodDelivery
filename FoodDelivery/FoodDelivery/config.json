@@ -1,0 +1,10 @@
+{
+    "ip_port": "http://192.168.100.37:5000",
+    "login_route": "/user/auth",
+    "register_route": "/user/add",
+    "profile_route": "/user/profile",
+    "restaurants_route": "/restaurant/get",
+    "products_route": "/product/get/restaurant/",
+    "product_route": "/product/get/"
+  
+  }

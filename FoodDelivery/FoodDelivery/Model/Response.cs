@@ -14,7 +14,7 @@
             this.Message = Message;
         }
 
-      
+
         public Response(bool Succes, string Message)
         {
             this.Succes = Succes;
