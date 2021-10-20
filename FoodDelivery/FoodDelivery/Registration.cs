@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "Registration")]
+    [Activity(Label = "Registration",MainLauncher =true)]
     public class Registration : Activity
     {
         private Button btnRegister;

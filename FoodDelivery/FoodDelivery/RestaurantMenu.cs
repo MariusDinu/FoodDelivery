@@ -3,7 +3,11 @@ using Android.Content;
 using Android.OS;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
+using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace FoodDelivery
 {
@@ -15,33 +19,36 @@ namespace FoodDelivery
         private RecyclerView.LayoutManager _productLayoutManager;
         private ProductAdapter _productAdapter;
         private RestaurantRepository restaurantRepository;
-        protected override void OnCreate(Bundle savedInstanceState)
+        private IEnumerable<Product> productsList;
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.RestaurantMenu);
+            restaurantRepository = new RestaurantRepository();
+            productsList = await LoadDataAsync();
             _productRecyclerView = FindViewById<RecyclerView>(Resource.Id.restaurantMenuRecyclerView);
             _productLayoutManager = new LinearLayoutManager(this);
             _productRecyclerView.SetLayoutManager(_productLayoutManager);
-            _productAdapter = new ProductAdapter();
+            _productAdapter = new ProductAdapter(productsList.ToList());
             _productRecyclerView.SetAdapter(_productAdapter);
             _productAdapter.ItemClick += ProductAdapter_ItemClick;
             // Create your application here
 
-            restaurantRepository = new RestaurantRepository();
-            LoadDataAsync();
-
+           
 
         }
 
-        private async void LoadDataAsync()
+        private async Task<IEnumerable<Product>> LoadDataAsync()
         {
             var response = await restaurantRepository.GetProducts(Intent.GetIntExtra("id", 0));
+            return response;
         }
 
         private void ProductAdapter_ItemClick(object sender, int e)
         {
             var intent = new Intent();
             intent.SetClass(this, typeof(ProductDetail));
-            intent.PutExtra("selectedItemId", e);
+            intent.PutExtra("productId", e);
             StartActivity(intent);
         }
 

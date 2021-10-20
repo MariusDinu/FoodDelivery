@@ -13,9 +13,9 @@ namespace FoodDelivery.Adapters
     public class ProductAdapter : RecyclerView.Adapter
     {
         private List<Product> _products;
-        public ProductAdapter()
+        public ProductAdapter(List<Product> list)
         {
-            _products = new List<Product>();
+            _products = list;
         }
         public override int ItemCount => _products.Count;
 
@@ -26,8 +26,8 @@ namespace FoodDelivery.Adapters
             if (holder is ProductViewHolder productViewHolder)
             {
                 productViewHolder.ProductTextView.Text = _products[position].Name;
-                productViewHolder.ProductTextView.Text = _products[position].Description;
-                productViewHolder.ProductTextView.Text = _products[position].Price;
+               // productViewHolder.ProductTextView.Text = _products[position].Description;
+                productViewHolder.ProductPriceTextView.Text = _products[position].Price;
             }
         }
 

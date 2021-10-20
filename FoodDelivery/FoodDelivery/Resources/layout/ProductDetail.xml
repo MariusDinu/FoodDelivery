@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:gravity="center">
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
@@ -11,42 +12,91 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:id="@+id/imageView1" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <TextView
+        android:text="ProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25px"
+        android:id="@+id/productNameTextString" />
+        <TextView
         android:text="ProductName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="25px"
         android:id="@+id/productNametextView2" />
-    <TextView
-        android:text="ProductDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ProductDescriptionTextView" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1" >
-    <TextView
-        android:text="ProductPrice"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/productPricetextView" />
-    <EditText
-        android:text="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/productQuantityEditText" />
+        android:layout_height="55.0dp">
+        <TextView
+            android:text="ProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25px"
+            android:id="@+id/productPriceTextString" />
+        <TextView
+            android:text="ProductPrice11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25px"
+            android:id="@+id/productPricetextView" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="101.5dp">
+        <TextView
+            android:text="ProductDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ProductDescriptionTextView" />
+        <TextView
+            android:text="Text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1" />
+        
+
+    </LinearLayout>
+        
+
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="66.0dp">
+        <TextView
+            android:text="Quantity"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25px"
+            android:id="@+id/productQuantitytextView" />
+        <EditText
+            android:text="1"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:id="@+id/productQuantityEditText" />
+        <Button
+            android:text="+"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_margin="20px"
+            
+            android:id="@+id/buttonAddQuantity" />
     </LinearLayout>
     <Button
         android:text="Add to chart"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnAdd" />
-     <Button
+    <!--<Button
         android:text="Remove from chart"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnAdd" />
+        android:id="@+id/btnAdd" />-->
 </LinearLayout>

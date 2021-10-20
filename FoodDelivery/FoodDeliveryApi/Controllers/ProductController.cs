@@ -68,7 +68,7 @@ namespace FoodDeliveryApi.Controllers
          * Ok - return the products
          * BadRequest - if restaurant doesnt't exist
          * */
-        [HttpGet("get/{id:int}")]
+        [HttpGet("get/restaurant/{id:int}")]
         public IActionResult GetByRestaurantId(int id)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
@@ -94,14 +94,14 @@ namespace FoodDeliveryApi.Controllers
         * Ok - return the products
         * BadRequest - if restaurant doesnt't exist
         * */
-        [HttpGet("get/{name}")]
-        public IActionResult GetByRestaurantName(string name)
+        [HttpGet("get/{id:int}")]
+        public IActionResult GetById(int id)
         {
-            IEnumerable<Product> product = productRepository.GetByRestaurantName(name);
+            Product product = productRepository.GetById(id);
 
             if (product == null)
             {
-                return BadRequest(new { suces = false, message = "Restaurant with that name doesn't exist" });
+                return BadRequest(new { suces = false, message = "Product with that id doesn't exist" });
             }
             return Ok(product);
         }

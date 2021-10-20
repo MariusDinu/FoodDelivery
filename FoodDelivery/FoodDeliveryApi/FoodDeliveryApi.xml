@@ -67,7 +67,7 @@
             BadRequest - if restaurant doesnt't exist
             
         </member>
-        <member name="M:FoodDeliveryApi.Controllers.ProductController.GetByRestaurantName(System.String)">
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.GetById(System.Int32)">
             Method: GET
             Description: return existents products by restaurant id
             Return:

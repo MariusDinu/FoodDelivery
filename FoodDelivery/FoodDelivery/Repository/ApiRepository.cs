@@ -12,9 +12,11 @@ namespace FoodDelivery.Repository
     public class ApiRepository
     {
         private Response mess;
-
+        private HttpRepository httpRepository;
         public async Task<string> Registration(User user)
         {
+
+            //reowrk json ip
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://192.168.100.37:5000");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -29,6 +31,7 @@ namespace FoodDelivery.Repository
             if (!response.IsSuccessStatusCode) return mess.Message;
 
             //save the token in secure storage
+            //delete token*
             JwtRepository.SaveJWT(mess.Token);
             return mess.Succes.ToString();
         }
@@ -36,12 +39,10 @@ namespace FoodDelivery.Repository
         public async Task<string> Login(User user)
         {
 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://192.168.100.37:5000");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+           
 
             /*call api from FoodDeliveryApi*/
-            var response = await client.PostAsync("/user/auth", new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"));
+            var response = await httpRepository.client.PostAsync("/user/add", new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"));
 
             /*if the call fail response still have message and succes*/
             mess = JsonConvert.DeserializeObject<Response>(response.Content.ReadAsStringAsync().Result);
@@ -56,12 +57,10 @@ namespace FoodDelivery.Repository
 
         public async Task<User> GetProfile()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://192.168.100.37:5000");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtRepository.GetJWT());
+            //create api repo and http client
+            httpRepository.client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtRepository.GetJWT());
             /*call api from FoodDeliveryApi*/
-            var response = await client.GetAsync("/user/profile");
+            var response = await httpRepository.client.GetAsync("/user/profile");
 
             /*if the call fail response still have message and succes*/
             User user = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
@@ -70,12 +69,10 @@ namespace FoodDelivery.Repository
         }
         public async Task<IEnumerable<Restaurant>> GetRestaurants()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://192.168.100.37:5000");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtRepository.GetJWT());
+
+            httpRepository.client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtRepository.GetJWT());
             /*call api from FoodDeliveryApi*/
-            var response = await client.GetAsync("/restaurant/get");
+            var response = await httpRepository.client.GetAsync("/restaurant/get");
 
             /*if the call fail response still have message and succes*/
             IEnumerable<Restaurant> listRestaurants = JsonConvert.DeserializeObject<IEnumerable<Restaurant>>(response.Content.ReadAsStringAsync().Result);
@@ -84,6 +81,8 @@ namespace FoodDelivery.Repository
 
 
         }
+
+        //rework email=null;
         public User CreateUser(string username, string email, string password)
         {
             User user = new User(username, email, password);
@@ -94,7 +93,10 @@ namespace FoodDelivery.Repository
             User user = new User(username, password);
             return user;
         }
-        public ApiRepository() { }
+        public ApiRepository() {
+
+            this.httpRepository = new HttpRepository();
+        }
 
 
     }

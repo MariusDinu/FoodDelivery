@@ -1,16 +1,24 @@
-﻿using FoodDelivery.Model;
+﻿using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using FoodDelivery.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodDelivery.Repository
 {
-    public class RestaurantRepository
+   public class ProductRepository
     {
-        public async Task<IEnumerable<Product>> GetProducts(int id)
+        public async Task<Product> GetProduct(int id)
         {
             //add in stirngs
             HttpClient client = new HttpClient();
@@ -18,14 +26,14 @@ namespace FoodDelivery.Repository
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtRepository.GetJWT());
             /*call api from FoodDeliveryApi*/
-            var response = await client.GetAsync("/product/get/restaurant/" + id);
+            var response = await client.GetAsync("/product/get/" + id);
 
             /*if the call fail response still have message and succes*/
-            IEnumerable<Product> list = JsonConvert.DeserializeObject<IEnumerable<Product>>(response.Content.ReadAsStringAsync().Result);
+            Product product = JsonConvert.DeserializeObject<Product>(response.Content.ReadAsStringAsync().Result);
 
-            return list;
+            return product;
         }
 
-        public RestaurantRepository() { }
+        public ProductRepository() { }
     }
 }

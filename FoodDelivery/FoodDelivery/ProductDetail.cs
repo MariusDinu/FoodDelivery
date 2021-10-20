@@ -5,10 +5,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using FoodDelivery.Model;
+using FoodDelivery.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FoodDelivery
 {
@@ -17,33 +19,37 @@ namespace FoodDelivery
     {
         private Button btnAddToChart;
         //private Button btnRemovefromChart;
-        private ShoppingChartItem _selectedProduct;
-        private ShoppingChartRepository _itemrepository;
-        private ShoppingChartRepository _chartRepository;
+        private ProductRepository productRepository;
+        private Product selectedProduct;
         private TextView _productNameTextView;
         private TextView _productDescriptionTextView;
         private TextView _productPriceTextView;
         private EditText _productQuantityEditText;
         //private ImageView _productInageTextView;
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ProductDetail);
-            _itemrepository = new ShoppingChartRepository(); //repo with all products
-            _chartRepository = new ShoppingChartRepository(); //repo with chart items
-            var selectedItem = Intent.Extras.GetInt("selectedItemId");
-            _selectedProduct = _itemrepository.GetProductById(selectedItem);           
+            productRepository = new ProductRepository();//repo with all products
+            //_chartRepository = new ShoppingChartRepository(); //repo with chart items
+            selectedProduct = await LoadDataAsync();           
             FindViews();
             BinData();
-            btnAddToChart.Click += BtnAddToChart_Click;
+          //  btnAddToChart.Click += BtnAddToChart_Click;
           
+        }
+
+        private async Task<Product> LoadDataAsync()
+        {
+            Product product = await productRepository.GetProduct(Intent.Extras.GetInt("productId"));
+            return product;
         }
 
         private void BinData()
         {
-            _productNameTextView.Text = _selectedProduct.Product.Name;
-            _productDescriptionTextView.Text = _selectedProduct.Product.Description;
-            _productPriceTextView.Text = _selectedProduct.Product.Price;
+            _productNameTextView.Text = selectedProduct.Name;
+            _productDescriptionTextView.Text = selectedProduct.Description;
+            _productPriceTextView.Text = selectedProduct.Price+" Ron";
         }
 
        
@@ -59,12 +65,12 @@ namespace FoodDelivery
            
         }
 
-        private void BtnAddToChart_Click(object sender, EventArgs e)
+        /*private void BtnAddToChart_Click(object sender, EventArgs e)
         {
             var quantity = int.Parse(_productQuantityEditText.Text);
             _selectedProduct.Quantity = quantity;
             _chartRepository.AddToShoppingCart(_selectedProduct);
             this.Finish();
-        }
+        }*/
     }
 }

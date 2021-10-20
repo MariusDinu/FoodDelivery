@@ -10,9 +10,9 @@ namespace FoodDelivery.Adapters
     class RestaurantAdapter : RecyclerView.Adapter
     {
         private List<Restaurant> _restaurants;
-        public RestaurantAdapter()
+        public RestaurantAdapter(List<Restaurant> list)
         {
-            _restaurants = new List<Restaurant>();
+            _restaurants = list;
 
         }
         public override int ItemCount => _restaurants.Count;

@@ -12,11 +12,11 @@
         android:minHeight="25px"
         android:id="@+id/UserimageView"/>
     <Button
-        android:text="Button"
+        android:text="Restaurants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:id="@+id/button1" /> 
+        android:id="@+id/showResturantsButton" /> 
     <Button
         android:text="Button"
         android:layout_width="match_parent"

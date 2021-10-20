@@ -79,7 +79,9 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="Repository\ApiRepository.cs" />
+    <Compile Include="Repository\HttpRepository.cs" />
     <Compile Include="Repository\JwtRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\RestaurantRepository.cs" />
     <Compile Include="ProductDetail.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -153,7 +155,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\RestaurantMenu.xml">
+    <AndroidResource Include="Resources\layout\RestaurantList.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -182,6 +184,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ProductDetail.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\RestaurantMenu.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\http.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="30px"
     android:minWidth="25px"
     android:minHeight="25px">
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/restaurantImageView" />
-    <TextView
-        android:text="Restaurant Name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/restaurantNameTextView" />
-</LinearLayout>
+        android:layout_marginTop="10dp"
+        android:id="@+id/restaurantImageView" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+        <TextView
+            android:text="Restaurant Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/restaurantNameTextView" />
+    </LinearLayout>
+
+        </LinearLayout>
+    

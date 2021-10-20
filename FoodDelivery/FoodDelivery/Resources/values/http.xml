@@ -1,0 +1,7 @@
+<resources>
+	<string name="ip_port">http://192.168.100.37:5000</string>
+	<string name="login_route">/user/auth</string>
+		<string name="register_route">/user/add</string>
+			<string name="profile_route">/user/profile</string>
+				<string name="restaurants_route">/restaurant/get</string>
+</resources>
