@@ -1,17 +1,9 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
-using AndroidX.AppCompat.App;
-using AndroidX.Core.View;
-using AndroidX.DrawerLayout.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using Google.Android.Material.FloatingActionButton;
-using Google.Android.Material.Navigation;
-using Google.Android.Material.Snackbar;
-using Google.Android.Material.Tabs.AppCompat.App;
 using System;
 
 namespace FoodDelivery
@@ -65,6 +57,6 @@ namespace FoodDelivery
             name.Text = response.UserName;
             email.Text = response.Email;
         }
-        
+
     }
 }

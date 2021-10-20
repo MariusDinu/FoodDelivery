@@ -1,6 +1,8 @@
-﻿using FoodDeliveryApi.DAL.IRepositories;
+﻿using FoodDeliveryApi.Config;
+using FoodDeliveryApi.DAL.IRepositories;
 using FoodDeliveryApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using System.Collections.Generic;
 
 namespace FoodDeliveryApi.Controllers
@@ -28,15 +30,21 @@ namespace FoodDeliveryApi.Controllers
         [HttpPost("add")]
         public IActionResult Add(Order order)
         {
-            if (order != null)
+            var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            User userFromToken = JwtUser.Decode(accessToken);
+            if (userFromToken != null)
             {
-                var exists = orderRepository.VerifyExistence(order);
-                if (exists == false)
+                order.IdUser = userFromToken.Id;
+                if (order != null)
                 {
-                    return BadRequest(new { succes = false, message = "The order already exist" });
+                    var exists = orderRepository.VerifyExistence(order);
+                    if (exists == false)
+                    {
+                        return BadRequest(new { succes = false, message = "The order already exist" });
+                    }
+                    orderRepository.Add(order);
+                    return Ok(new { succes = true, message = "Succes!" });
                 }
-                orderRepository.Add(order);
-                return Ok(new { succes = true });
             }
             return BadRequest(new { succes = false, message = "Null order" });
         }

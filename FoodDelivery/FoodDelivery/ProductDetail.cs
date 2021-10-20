@@ -64,8 +64,8 @@ namespace FoodDelivery
             {
                 ShowAlert();
             }
-            else {Finish();}
-            
+            else { Finish(); }
+
         }
         private void ShowAlert()
         {
@@ -80,12 +80,12 @@ namespace FoodDelivery
                 chartRepository.ChangeRestaurant();
                 AddProducts();
                 Finish();
-                
-               
+
+
             });
             alert.SetButton2("Cancel", (c, ev) =>
             {
-                
+
             });
             alert.Show();
         }

@@ -26,8 +26,8 @@ namespace FoodDelivery
             FindViews();
             apiRepository = new ApiRepository();
             LinkEventHandler();
-            
-            
+
+
         }
 
         private void LinkEventHandler()

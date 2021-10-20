@@ -5,6 +5,7 @@
     "profile": "/user/profile",
     "restaurants": "/restaurant/get",
     "products": "/product/get/restaurant/",
-    "product": "/product/get/"
+    "product": "/product/get/",
+    "command": "/order/add"
   
   }

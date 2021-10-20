@@ -86,6 +86,7 @@
     <Compile Include="Repository\ConfigRepository.cs" />
     <Compile Include="Repository\HttpRepository.cs" />
     <Compile Include="Repository\JwtRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\RestaurantRepository.cs" />
     <Compile Include="ProductDetail.cs" />

@@ -12,7 +12,7 @@ namespace FoodDelivery.Adapters
         List<ItemChart> list;
         public override int ItemCount => list.Count;
 
-        public Action<object,int> ItemClick { get; internal set; }
+        public Action<object, int> ItemClick { get; internal set; }
 
         public ShoppingChartAdapter(List<ItemChart> list)
         {
@@ -34,7 +34,7 @@ namespace FoodDelivery.Adapters
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.ShoppingChartViewHolder, parent, false);
-            ShoppingChartViewHolder restaurantViewHolder = new ShoppingChartViewHolder(itemView,OnClick);
+            ShoppingChartViewHolder restaurantViewHolder = new ShoppingChartViewHolder(itemView, OnClick);
             return restaurantViewHolder;
         }
 

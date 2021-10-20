@@ -1,11 +1,10 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
-using System;
+using FoodDelivery.Repository;
 
 namespace FoodDelivery
 {
@@ -16,65 +15,61 @@ namespace FoodDelivery
         private RecyclerView.LayoutManager chartLayoutManager;
         private ShoppingChartAdapter chartAdapter;
         private Button order;
-        private Button plus;
-        private Button minus;
-
-        private TextView quantity;
+        private TextView price;
+        private ChartRepository chart;
+        private OrderRepository orderRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ShoppingChart);
             chartRecyclerView = FindViewById<RecyclerView>(Resource.Id.shoppingChartRecyclerView);
             order = FindViewById<Button>(Resource.Id.buttonOrderFinal);
-            plus = FindViewById<Button>(Resource.Id.buttonPlus);
-            minus = FindViewById<Button>(Resource.Id.buttonMinus);
-            quantity = FindViewById<TextView>(Resource.Id.ProductQuantityOrder);
+            price = FindViewById<TextView>(Resource.Id.shoppingChartPriceInput);
             chartLayoutManager = new LinearLayoutManager(this);
             chartRecyclerView.SetLayoutManager(chartLayoutManager);
             chartAdapter = new ShoppingChartAdapter(ListProducts.listProducts);
             chartRecyclerView.SetAdapter(chartAdapter);
             chartAdapter.ItemClick += ShoppingChartAdapter_ItemClick;
-            //minus.Click += (sender, e) => MinusQuantity(id);
-            //plus.Click += (sender, e) => PlusQuantity(id);
+            chart = new ChartRepository();
+            orderRepository = new OrderRepository();
+            price.Text = chart.GetMoney().ToString();
             LinkEventHandler();
             // Create your application here
         }
 
         private void LinkEventHandler()
         {
-            order.Click += Order_Click; 
+            order.Click += Order_Click;
         }
 
-        
 
 
 
 
-        private void Order_Click(object sender, System.EventArgs e)
+
+        private async void Order_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Order order = orderRepository.CreateOrder(price.Text);
+            var response = await orderRepository.AddOrder(order);
+            if (response.Equals("True"))
+            {
+                Toast.MakeText(Application.Context, "Succes!", ToastLength.Long).Show();
+                Finish();
+            }
+            else
+            {
+                Toast.MakeText(Application.Context, "Failed!", ToastLength.Long).Show();
+            }
         }
 
-        
+
 
 
         private void ShoppingChartAdapter_ItemClick(object sender, int id)
         {
-            
+
         }
 
-        private void PlusQuantity(int id)
-        {
-            var count = int.Parse(quantity.Text);
-            count++;
-            quantity.Text = count.ToString();
-        }
 
-        private void MinusQuantity(int id)
-        {
-            var count = int.Parse(quantity.Text);
-            count--;
-            quantity.Text = count.ToString();
-        }
     }
 }

@@ -18,7 +18,7 @@ namespace FoodDeliveryApi.Models
         [Required]
         [MaxLength(100)]
         public string Price { get; set; }
-        [Required]
+
         [MaxLength(100)]
         public string Location { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -49,7 +49,13 @@ namespace FoodDeliveryApi.Models
             this.Status = Status;
         }
 
-
+        public Order(int IdRestaurant, string Products, string Price, string Status)
+        {
+            this.IdRestaurant = IdRestaurant;
+            this.Products = Products;
+            this.Price = Price;
+            this.Status = Status;
+        }
 
         public Order() { }
 

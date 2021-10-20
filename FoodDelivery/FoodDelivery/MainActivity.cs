@@ -22,18 +22,18 @@ namespace FoodDelivery
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            if (!JwtRepository.CheckJWT())
-            {
-                config = new ConfigRepository();
-                FindViews();
-                LinkEventHandler();
-            }
+            /* if (!JwtRepository.CheckJWT())
+             {*/
+            config = new ConfigRepository();
+            FindViews();
+            LinkEventHandler();
+            /*}
             else
             {
                 var intent = new Intent();
                 intent.SetClass(this, typeof(Profile));
                 StartActivity(intent);
-            }
+            }*/
         }
 
         private void LinkEventHandler()
