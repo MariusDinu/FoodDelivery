@@ -389,3 +389,4 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 FoodDelivery/.vs/FoodDelivery/v16/.suo
+FoodDelivery/FoodDeliveryApi/appsettings.json

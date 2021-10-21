@@ -9,11 +9,11 @@ namespace FoodDelivery.ViewHolder
     public class ShoppingChartViewHolder : RecyclerView.ViewHolder
     {
         ChartRepository chart = new ChartRepository();
+     
         public ImageView ProductImage { get; set; }
         public TextView ProductName { get; set; }
-        public int id;
         public TextView Quantity { get; set; }
-
+        public int Id { get; set; }
         public Button AddQuantity { get; set; }
         public Button MinusQuantity { get; set; }
 
@@ -27,7 +27,7 @@ namespace FoodDelivery.ViewHolder
             MinusQuantity = itemView.FindViewById<Button>(Resource.Id.buttonMinus);
             AddQuantity.Click += AddQuantity_Click;
             MinusQuantity.Click += MinusQuantity_Click;
-            itemView.Click += (sender, e) => listener(base.LayoutPosition);
+            
         }
 
         private void MinusQuantity_Click(object sender, EventArgs e)
@@ -46,18 +46,20 @@ namespace FoodDelivery.ViewHolder
             AddProducts();
         }
 
-        private async void AddProducts()
+        private void AddProducts()
         {
             int quantity = int.Parse(Quantity.Text);
-            bool response = await chart.AddProductAsync(base.LayoutPosition, quantity);
+            chart.ChangeQuantity(Id,quantity);
         }
 
         private void DeleteProducts()
         {
             int quantity = int.Parse(Quantity.Text);
             if (quantity == 0)
-            { bool response = chart.DeleteProduct(base.LayoutPosition); }
+            { bool response = chart.DeleteProduct(Id); }
+            else { chart.ChangeQuantity(Id, quantity); }
 
         }
+        
     }
 }

@@ -6,6 +6,7 @@ using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
 using Java.Lang;
+using System;
 
 namespace FoodDelivery
 {
@@ -16,7 +17,7 @@ namespace FoodDelivery
         private RecyclerView.LayoutManager chartLayoutManager;
         private ShoppingChartAdapter chartAdapter;
         private Button order;
-        private TextView price;
+        public TextView price;
         private ChartRepository chart;
         private OrderRepository orderRepository;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,21 +31,27 @@ namespace FoodDelivery
             chartRecyclerView.SetLayoutManager(chartLayoutManager);
             chartAdapter = new ShoppingChartAdapter(ListProducts.listProducts);
             chartRecyclerView.SetAdapter(chartAdapter);
-            chartAdapter.ItemClick += ShoppingChartAdapter_ItemClick;
             chart = new ChartRepository();
             orderRepository = new OrderRepository();
-            price.Text = chart.GetMoney(price).ToString();
+            price.Text = ChartRepository.GetMoney().ToString();
             LinkEventHandler();
-            // Create your application here
-           
-        }
 
+        }
+        public override void OnContentChanged()
+        {
+            price = FindViewById<TextView>(Resource.Id.shoppingChartPriceInput);
+            price.Text = ChartRepository.GetMoney().ToString();
+        }
         private void LinkEventHandler()
         {
             order.Click += Order_Click;
         }
 
-        
+        public void RefreshContent() {
+            price = FindViewById<TextView>(Resource.Id.shoppingChartPriceInput);
+            price.Text = ChartRepository.GetMoney().ToString();
+        }
+   
 
 
         private async void Order_Click(object sender, System.EventArgs e)
@@ -62,13 +69,7 @@ namespace FoodDelivery
             }
         }
 
-       
-
-
-        private void ShoppingChartAdapter_ItemClick(object sender, int id)
-        {
-            
-        }
+    
 
 
     }

@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/colorBack">
     <TextView
         android:text="Our restaurants"
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_margin="50px"
+        android:background="@android:color/white"
         android:id="@+id/restaurantListRecyclerView" />
 
 </LinearLayout>

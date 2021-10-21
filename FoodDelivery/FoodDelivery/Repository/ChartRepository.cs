@@ -8,14 +8,13 @@ namespace FoodDelivery.Repository
     {
         ProductRepository productRepository;
 
-        public double GetMoney(TextView text)
+        public static double GetMoney()
         {
             double sum = 0;
             foreach (var item in ListProducts.listProducts)
             {
                 sum += double.Parse(item.Product.Price) * item.Quantity;
             }
-            text.Text = sum.ToString();
             return sum;
         }
         public async Task<bool> AddProductAsync(int id, int quantity)
@@ -34,7 +33,16 @@ namespace FoodDelivery.Repository
             }
             else { return false; }
         }
+        public void ChangeQuantity(int id, int quantity) {
 
+            foreach (var item in ListProducts.listProducts) {
+                if (item.Product.Id == id) {
+                    item.Quantity = quantity;
+                }
+            
+            }
+            
+        }
         public void ChangeRestaurant()
         {
             ListProducts.list.Clear();
