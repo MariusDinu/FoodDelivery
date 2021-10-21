@@ -1,4 +1,5 @@
-﻿using FoodDelivery.Model;
+﻿using Android.Widget;
+using FoodDelivery.Model;
 using System.Threading.Tasks;
 
 namespace FoodDelivery.Repository
@@ -7,13 +8,14 @@ namespace FoodDelivery.Repository
     {
         ProductRepository productRepository;
 
-        public double GetMoney()
+        public double GetMoney(TextView text)
         {
             double sum = 0;
             foreach (var item in ListProducts.listProducts)
             {
                 sum += double.Parse(item.Product.Price) * item.Quantity;
             }
+            text.Text = sum.ToString();
             return sum;
         }
         public async Task<bool> AddProductAsync(int id, int quantity)

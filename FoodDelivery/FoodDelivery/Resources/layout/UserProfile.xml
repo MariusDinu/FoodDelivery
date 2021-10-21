@@ -36,6 +36,12 @@
         android:text="@string/btnOrderProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnOrder" /> 
+        android:id="@+id/btnOrder" />
+    <Button
+        android:text="@string/buttonMyOrders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:id="@+id/button1" /> 
      
 </LinearLayout>

@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
 	<string name="buttonRegisterStart">Register</string>
 	<string name="buttonLoginStart">Login</string>
+	<string name="buttonMyOrders">My Orders</string>
 	<string name="TitleStart">Welcome!</string>
 	<string name="SpaceBetweenButtonsStart">Or if you have account </string>
 	<string name="navigation_drawer_open">Open navigation drawer</string>

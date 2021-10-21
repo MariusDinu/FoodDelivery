@@ -30,6 +30,7 @@ namespace FoodDelivery.Repository
         }
         public Order CreateOrder(string price)
         {
+           // {"2":"2","1":"3" }
             Order order = new Order(ListProducts.IdRestaurant, ListProducts.list.ToString(), price.ToString(), "Piata Unirii", "Delivering");
             return order;
         }

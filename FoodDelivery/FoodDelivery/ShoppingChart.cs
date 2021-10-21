@@ -5,6 +5,7 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using Java.Lang;
 
 namespace FoodDelivery
 {
@@ -32,9 +33,10 @@ namespace FoodDelivery
             chartAdapter.ItemClick += ShoppingChartAdapter_ItemClick;
             chart = new ChartRepository();
             orderRepository = new OrderRepository();
-            price.Text = chart.GetMoney().ToString();
+            price.Text = chart.GetMoney(price).ToString();
             LinkEventHandler();
             // Create your application here
+           
         }
 
         private void LinkEventHandler()
@@ -42,9 +44,7 @@ namespace FoodDelivery
             order.Click += Order_Click;
         }
 
-
-
-
+        
 
 
         private async void Order_Click(object sender, System.EventArgs e)
@@ -62,12 +62,12 @@ namespace FoodDelivery
             }
         }
 
-
+       
 
 
         private void ShoppingChartAdapter_ItemClick(object sender, int id)
         {
-
+            
         }
 
 

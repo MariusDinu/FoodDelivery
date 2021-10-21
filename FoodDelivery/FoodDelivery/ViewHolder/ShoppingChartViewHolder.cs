@@ -27,7 +27,6 @@ namespace FoodDelivery.ViewHolder
             MinusQuantity = itemView.FindViewById<Button>(Resource.Id.buttonMinus);
             AddQuantity.Click += AddQuantity_Click;
             MinusQuantity.Click += MinusQuantity_Click;
-
             itemView.Click += (sender, e) => listener(base.LayoutPosition);
         }
 
