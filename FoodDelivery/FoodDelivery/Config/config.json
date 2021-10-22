@@ -6,6 +6,9 @@
     "restaurants": "/restaurant/get",
     "products": "/product/get/restaurant/",
     "product": "/product/get/",
-    "command": "/order/add"
+    "command": "/order/add",
+    "restaurant": "/restaurant/get/",
+  "orders": "/order/get/user",
+  "order": "/order/get/"
   
   }

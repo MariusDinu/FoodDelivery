@@ -63,6 +63,20 @@ namespace FoodDeliveryApi.Controllers
             return Ok(orders);
         }
 
+       
+        [HttpGet("get/{id:int}")]
+        public IActionResult GetById(int id)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            User userFromToken = JwtUser.Decode(accessToken);
+            if (userFromToken != null)
+            {
+                Order order = orderRepository.GetById(id);
+                if (order != null) { return Ok(order);}
+                return BadRequest(new { suces = false, message = "Order with that id doesn't exist" });
+            }
+            return BadRequest(new { suces = false, message = "User with that id doesn't exist" });
+        }
 
         /**
          * Method: GET
@@ -74,6 +88,7 @@ namespace FoodDeliveryApi.Controllers
         [HttpGet("get/restaurant/{id:int}")]
         public IActionResult GetByRestaurantId(int id)
         {
+
             IEnumerable<Order> orders = orderRepository.GetByRestaurantId(id);
 
             if (orders == null)
@@ -91,16 +106,22 @@ namespace FoodDeliveryApi.Controllers
          * Ok - return the orders
          * BadRequest - if user doesnt't exist
          * */
-        [HttpGet("get/user/{id:int}")]
-        public IActionResult GetByUserId(int id)
+        [HttpGet("get/user")]
+        public IActionResult GetByUserId()
         {
-            IEnumerable<Order> orders = orderRepository.GetByUserId(id);
-
-            if (orders == null)
+            var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            User userFromToken = JwtUser.Decode(accessToken);
+            if (userFromToken != null)
             {
-                return BadRequest(new { suces = false, message = "User with that id doesn't exist" });
+                IEnumerable<Order> orders = orderRepository.GetByUserId(userFromToken.Id);
+
+                if (orders == null)
+                {
+                    return BadRequest(new { suces = false, message = "User with that id doesn't exist" });
+                }
+                return Ok(orders);
             }
-            return Ok(orders);
+            return BadRequest(new { suces = false, message = "User with that id doesn't exist" });
         }
 
         /**

@@ -3,18 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
     android:gravity="center">
     <TextView
-        android:text="Shopping Chart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="50dp"
-        android:paddingTop="25dp"
+        android:text="@string/titleShoppingCart"
+        style="@style/ShoppingText"
         android:id="@+id/shoppingChartTextView" />
     <TextView
-        android:text="Restaurant"
+        android:text="@string/restaurantShoppingCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="25px"
@@ -24,22 +22,23 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:scrollbars="vertical"
-        android:layout_margin="50dp"
         android:layout_width="match_parent"
-        android:layout_height="224.5dp"
+        android:layout_height="315.8dp"
         android:id="@+id/shoppingChartRecyclerView"
-        android:layout_marginTop="0.0dp" />
+        android:layout_marginTop="0.0dp"
+        android:layout_marginBottom="1.1dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        >
+        android:gravity="center">
 
         <TextView
-            android:text="Price"
+            android:text="@string/PriceShoppingCart"
+            style="@style/Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:minWidth="25px"
             android:minHeight="50dp"
             android:id="@+id/shoppingChartPriceText" />
@@ -47,16 +46,15 @@
             android:text="Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="25px"
-            android:minHeight="50dp"
-            android:layout_marginLeft="50dp"
+            android:gravity="center"
+            android:layout_margin="50dp"
             android:id="@+id/shoppingChartPriceInput"/>
-        
-    </LinearLayout>
-<Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <Button
+            style="@style/ButtonYellow"
+            android:background="@drawable/btnyellow"
+            android:text="@string/buttonOrderSend"
             android:id="@+id/buttonOrderFinal" />
+    </LinearLayout>
+
 
 </LinearLayout>

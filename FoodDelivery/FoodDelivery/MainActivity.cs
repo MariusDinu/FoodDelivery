@@ -10,7 +10,7 @@ using System;
 namespace FoodDelivery
 {
 
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "asdasddase",Theme ="@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         private Button login;

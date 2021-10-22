@@ -8,11 +8,13 @@ using System;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "Profile", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
+    [Activity(Label = "Profile", MainLauncher = false)]
     public class Profile : Activity
     {
         private Button btnToRestaurants;
         private Button btnToOrder;
+        private Button btntoMyOrders;
+        private Button btnLogOut;
         private TextView name;
         private TextView email;
         private ApiRepository apiRepository;
@@ -25,8 +27,12 @@ namespace FoodDelivery
 
             btnToRestaurants = FindViewById<Button>(Resource.Id.showResturantsButton);
             btnToOrder = FindViewById<Button>(Resource.Id.btnOrder);
+            btntoMyOrders = FindViewById<Button>(Resource.Id.btnMyOrders);
+            btnLogOut = FindViewById<Button>(Resource.Id.btnLogOut);
             btnToRestaurants.Click += BtnToRestaurants_Click;
             btnToOrder.Click += BtnToOrder_Click;
+            btntoMyOrders.Click += BtntoMyOrders_Click;
+            btnLogOut.Click += BtnLogOut_Click;
             apiRepository = new ApiRepository();
             LoadDataAsync();
 
@@ -35,6 +41,22 @@ namespace FoodDelivery
 
 
             // Create your application here
+        }
+
+        private void BtnLogOut_Click(object sender, EventArgs e)
+        {
+            JwtRepository.DeleteJWT();
+            Finish();
+            var intent = new Intent();
+            intent.SetClass(this, typeof(MainActivity));
+            StartActivity(intent);
+        }
+
+        private void BtntoMyOrders_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent.SetClass(this, typeof(MyOrders));
+            StartActivity(intent);
         }
 
         private void BtnToOrder_Click(object sender, EventArgs e)

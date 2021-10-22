@@ -20,6 +20,14 @@ namespace FoodDelivery.Repository
             return list;
         }
 
+        public async Task<string> GetRestaurant(int id)
+        {
+            var response = await httpRepository.client.GetAsync(config.Restaurant + id);
+            Restaurant restaurant = JsonConvert.DeserializeObject<Restaurant>(response.Content.ReadAsStringAsync().Result);
+
+            return restaurant.RestaurantName;
+        }
+
         public RestaurantRepository()
         {
             this.httpRepository = new HttpRepository();

@@ -3,45 +3,47 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="50dp"
+    android:background="@color/colorBack"
+    android:paddingRight="50dp"
     android:gravity="center">
-      <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:paddingBottom="50px"
+    <ImageView
+        android:src="@drawable/profile"
+        style="@style/ImageProfile"
+        android:contentDescription="ImageProfile"
         android:id="@+id/UserimageView"/>
     <TextView
         android:text="@string/textName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
+        style="@style/UsernameText"
         android:id="@+id/textViewProfileName" />
     <TextView
         android:text="@string/textEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:paddingBottom="50px"
+        style="@style/EmailText"
         android:id="@+id/textViewProfileEmail" />
     <Button
+        style="@style/ButtonGrey"
+        android:background="@drawable/btngrey"
         android:text="@string/btnOrderProducts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:drawableLeft="@drawable/ic_restaurant"
         android:id="@+id/showResturantsButton" />
     <Button
+        style="@style/ButtonGrey"
+        android:background="@drawable/btngrey"
         android:text="@string/btnOrderProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_shopping_cart"
         android:id="@+id/btnOrder" />
     <Button
+        style="@style/ButtonGrey"
+        android:background="@drawable/btngrey"
         android:text="@string/buttonMyOrders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:id="@+id/button1" /> 
+        android:drawableLeft="@drawable/ic_history"
+        android:id="@+id/btnMyOrders" />
+    <Button
+        style="@style/ButtonRed"
+        android:background="@drawable/btnred"
+        android:text="@string/buttonLogout"
+        android:drawableLeft="@drawable/ic_logout"
+        android:textAlignment="viewStart"
+        android:id="@+id/btnLogOut" /> 
      
 </LinearLayout>

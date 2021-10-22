@@ -4,16 +4,35 @@
 	<string name="buttonRegisterStart">Register</string>
 	<string name="buttonLoginStart">Login</string>
 	<string name="buttonMyOrders">My Orders</string>
+	<string name="buttonLogout">Log out</string>
+	<string name="buttonOrderSend">Order</string>
 	<string name="TitleStart">Welcome!</string>
 	<string name="SpaceBetweenButtonsStart">Or if you have account </string>
 	<string name="navigation_drawer_open">Open navigation drawer</string>
 	<string name="navigation_drawer_close">Close navigation drawer</string>
 	<string name="btnMinusProduct">-</string>
 	<string name="btnPlusProduct">+</string>
-	<string name="btnOrderProfile">Order</string>
+	<string name="btnOrderProfile">Shopping Cart</string>
 	<string name="textName">Name</string>
 	<string name="textEmail">Email</string>
 	<string name="btnOrderProducts">Restaurants</string>
-	
+
+	<string name="titleShoppingCart">Your Shopping Cart</string>
+	<string name="restaurantShoppingCart">Restaurant</string>
+	<string name="PriceShoppingCart">Price:</string>
+	<string name="QuantityOrderFinal"></string>
+	<string name="ProductName"></string>
+	<string name="MyOrders">Your Orders</string>
+	<string name="OrderName">Name</string>
+	<string name="OrderDate">Date</string>
+	<string name="OrderPrice">Price</string>
+	<string name="OrderStatus">Delivered</string>
+	<string name="OrderRestaurant">Restaurant</string>
+
+	<string name="OrderItemSummary">Your Summary</string>
+	<string name="OrderItemDate">Date:</string>
+	<string name="OrderItemPrice">Price:</string>
+	<string name="OrderItemStatus">Delivered:</string>
+	<string name="OrderItemRestaurant">Restaurant:</string>
 
 </resources>

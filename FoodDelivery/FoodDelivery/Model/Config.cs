@@ -11,8 +11,11 @@
         public string Products { get; set; }
         public string Product { get; set; }
         public string Command { get; set; }
+        public string Restaurant { get; set; }
+        public string Orders { get; set; }
+        public string Order { get; set; }
 
-        public Config(string ipPort, string login, string register, string profile, string restaurants, string products, string product, string command)
+        public Config(string ipPort, string login, string register, string profile, string restaurants, string products, string product, string command,string restaurant,string orders,string order)
         {
             this.IpPort = ipPort;
             this.Login = login;
@@ -22,6 +25,9 @@
             this.Products = products;
             this.Product = product;
             this.Command = command;
+            this.Restaurant = restaurant;
+            this.Orders = orders;
+            this.Order = order;
         }
 
         public Config() { }
