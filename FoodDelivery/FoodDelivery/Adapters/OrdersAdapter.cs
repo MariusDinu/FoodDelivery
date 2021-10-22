@@ -1,17 +1,9 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
-using FoodDelivery.Repository;
 using FoodDelivery.ViewHolder;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FoodDelivery.Adapters
 {
@@ -19,28 +11,25 @@ namespace FoodDelivery.Adapters
     {
         private List<Order> orders;
         private List<string> Names;
- 
+
         public override int ItemCount => orders.Count;
         public Action<object, int> ItemClick { get; internal set; }
 
-        public OrdersAdapter(List<Order> orders,List<string> names) {
+        public OrdersAdapter(List<Order> orders, List<string> names)
+        {
             this.orders = orders;
             this.Names = names;
         }
 
-       
+
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (holder is OrderViewHolder orderViewHolder)
             {
-
-                
-                orderViewHolder.Restaurant.Text =Names[position];
+                orderViewHolder.Restaurant.Text = Names[position];
                 orderViewHolder.Date.Text = orders[position].CreatedAt.ToString();
-                orderViewHolder.Price.Text = orders[position].Price;
+                orderViewHolder.Price.Text = orders[position].Price + " Ron";
                 orderViewHolder.Status.Text = orders[position].Status;
-                //add image
-
             }
         }
 

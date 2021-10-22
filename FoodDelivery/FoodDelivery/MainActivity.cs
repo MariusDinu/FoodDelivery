@@ -10,7 +10,7 @@ using System;
 namespace FoodDelivery
 {
 
-    [Activity(Label = "asdasddase",Theme ="@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "asdasddase", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         private Button login;
@@ -23,10 +23,10 @@ namespace FoodDelivery
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             if (!JwtRepository.ExpireJWT())
-             {
-            config = new ConfigRepository();
-            FindViews();
-            LinkEventHandler();
+            {
+                config = new ConfigRepository();
+                FindViews();
+                LinkEventHandler();
             }
             else
             {
@@ -35,7 +35,7 @@ namespace FoodDelivery
                 StartActivity(intent);
             }
         }
-       
+
         private void LinkEventHandler()
         {
             login.Click += Login_Click;

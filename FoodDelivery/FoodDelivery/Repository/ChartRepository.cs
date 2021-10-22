@@ -1,5 +1,5 @@
-﻿using Android.Widget;
-using FoodDelivery.Model;
+﻿using FoodDelivery.Model;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoodDelivery.Repository
@@ -17,7 +17,7 @@ namespace FoodDelivery.Repository
             }
             return sum;
         }
-        public async Task<bool> AddProductAsync(int id, int quantity)
+        public async Task<string> AddProductAsync(int id, int quantity)
         {
 
             Product productToAdd = await productRepository.GetProduct(id);
@@ -27,21 +27,26 @@ namespace FoodDelivery.Repository
             }
             if (productToAdd.IdRestaurant == ListProducts.IdRestaurant || ListProducts.IdRestaurant == 0)
             {
-                ListProducts.list.Add(new ItemList(id, quantity));
-                ListProducts.listProducts.Add(new ItemChart(productToAdd, quantity));
-                return true;
+                var Lambda = ListProducts.list.Where(x => x.Id == id).ToList();
+                if (Lambda.Count == 0)
+                {
+                    ListProducts.list.Add(new ItemList(id, quantity));
+                    ListProducts.listProducts.Add(new ItemChart(productToAdd, quantity));
+                    return "Ok";
+                }
+                return "Exist";
             }
-            else { return false; }
+            else { return "New"; }
         }
-        public void ChangeQuantity(int id, int quantity) {
-
-            foreach (var item in ListProducts.listProducts) {
-                if (item.Product.Id == id) {
+        public void ChangeQuantity(int id, int quantity)
+        {
+            foreach (var item in ListProducts.listProducts)
+            {
+                if (item.Product.Id == id)
+                {
                     item.Quantity = quantity;
                 }
-            
             }
-            
         }
         public void ChangeRestaurant()
         {
@@ -57,8 +62,8 @@ namespace FoodDelivery.Repository
                 ListProducts.IdRestaurant = 0;
                 return true;
             }
-            ListProducts.list.RemoveAt(id);
-            ListProducts.listProducts.RemoveAt(id);
+            ListProducts.list.RemoveAll(x => x.Id == id);
+            ListProducts.listProducts.RemoveAll(x => x.Product.Id == id);
             return true;
         }
         public ChartRepository()

@@ -5,8 +5,6 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using Java.Lang;
-using System;
 
 namespace FoodDelivery
 {
@@ -17,8 +15,7 @@ namespace FoodDelivery
         private RecyclerView.LayoutManager chartLayoutManager;
         private ShoppingChartAdapter chartAdapter;
         private Button order;
-        public TextView price;
-        private ChartRepository chart;
+        public static TextView price;
         private OrderRepository orderRepository;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,27 +28,19 @@ namespace FoodDelivery
             chartRecyclerView.SetLayoutManager(chartLayoutManager);
             chartAdapter = new ShoppingChartAdapter(ListProducts.listProducts);
             chartRecyclerView.SetAdapter(chartAdapter);
-            chart = new ChartRepository();
             orderRepository = new OrderRepository();
             price.Text = ChartRepository.GetMoney().ToString();
             LinkEventHandler();
 
         }
-        public override void OnContentChanged()
+        public static void RefreshPage()
         {
-            price = FindViewById<TextView>(Resource.Id.shoppingChartPriceInput);
             price.Text = ChartRepository.GetMoney().ToString();
         }
         private void LinkEventHandler()
         {
             order.Click += Order_Click;
         }
-
-        public void RefreshContent() {
-            price = FindViewById<TextView>(Resource.Id.shoppingChartPriceInput);
-            price.Text = ChartRepository.GetMoney().ToString();
-        }
-   
 
 
         private async void Order_Click(object sender, System.EventArgs e)
@@ -60,6 +49,9 @@ namespace FoodDelivery
             var response = await orderRepository.AddOrder(order);
             if (response.Equals("True"))
             {
+                ListProducts.list.Clear();
+                ListProducts.listProducts.Clear();
+                ListProducts.IdRestaurant = 0;
                 Toast.MakeText(Application.Context, "Succes!", ToastLength.Long).Show();
                 Finish();
             }
@@ -69,7 +61,7 @@ namespace FoodDelivery
             }
         }
 
-    
+
 
 
     }

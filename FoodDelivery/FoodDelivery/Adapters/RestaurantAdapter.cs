@@ -23,9 +23,6 @@ namespace FoodDelivery.Adapters
             if (holder is RestaurantViewHolder restaurantViewHolder)
             {
                 restaurantViewHolder.RestaurantNameView.Text = _restaurants[position].RestaurantName;
-
-                //add image
-
             }
         }
 

@@ -1,17 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodDelivery
@@ -25,7 +20,7 @@ namespace FoodDelivery
         private OrderRepository orderRepository;
         private RestaurantRepository restaurantRepository;
         private IEnumerable<Order> ordersList;
-        private List<string> senderStrings=new List<string>();
+        private List<string> senderStrings = new List<string>();
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -40,7 +35,7 @@ namespace FoodDelivery
             orderRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewMyOrders);
             orderLayoutManager = new LinearLayoutManager(this);
             orderRecyclerView.SetLayoutManager(orderLayoutManager);
-            orderAdapter = new OrdersAdapter(ordersList.ToList(),senderStrings);
+            orderAdapter = new OrdersAdapter(ordersList.ToList(), senderStrings);
             orderRecyclerView.SetAdapter(orderAdapter);
             orderAdapter.ItemClick += OrdersAdapter_ItemClick;
 
@@ -64,7 +59,8 @@ namespace FoodDelivery
         private async Task LoadDataNamesAsync(IEnumerable<Order> orders)
         {
             foreach (var item in orders)
-            { string reader = await restaurantRepository.GetRestaurant(item.IdRestaurant);
+            {
+                string reader = await restaurantRepository.GetRestaurant(item.IdRestaurant);
                 senderStrings.Add(reader);
             }
         }

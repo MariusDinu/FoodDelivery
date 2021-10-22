@@ -1,7 +1,6 @@
 ﻿using Plugin.SecureStorage;
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 namespace FoodDelivery.Repository
 {

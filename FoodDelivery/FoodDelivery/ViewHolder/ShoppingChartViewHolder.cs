@@ -9,7 +9,7 @@ namespace FoodDelivery.ViewHolder
     public class ShoppingChartViewHolder : RecyclerView.ViewHolder
     {
         ChartRepository chart = new ChartRepository();
-     
+
         public ImageView ProductImage { get; set; }
         public TextView ProductName { get; set; }
         public TextView Quantity { get; set; }
@@ -19,7 +19,6 @@ namespace FoodDelivery.ViewHolder
 
         public ShoppingChartViewHolder(View itemView, Action<int> listener) : base(itemView)
         {
-
             ProductImage = itemView.FindViewById<ImageView>(Resource.Id.productImageView);
             ProductName = itemView.FindViewById<TextView>(Resource.Id.ProductNameOrder);
             Quantity = itemView.FindViewById<TextView>(Resource.Id.ProductQuantityOrder);
@@ -27,7 +26,6 @@ namespace FoodDelivery.ViewHolder
             MinusQuantity = itemView.FindViewById<Button>(Resource.Id.buttonMinus);
             AddQuantity.Click += AddQuantity_Click;
             MinusQuantity.Click += MinusQuantity_Click;
-            
         }
 
         private void MinusQuantity_Click(object sender, EventArgs e)
@@ -49,17 +47,24 @@ namespace FoodDelivery.ViewHolder
         private void AddProducts()
         {
             int quantity = int.Parse(Quantity.Text);
-            chart.ChangeQuantity(Id,quantity);
+            chart.ChangeQuantity(Id, quantity);
+            ShoppingChart.RefreshPage();
         }
 
         private void DeleteProducts()
         {
             int quantity = int.Parse(Quantity.Text);
             if (quantity == 0)
-            { bool response = chart.DeleteProduct(Id); }
-            else { chart.ChangeQuantity(Id, quantity); }
+            {
+                _ = chart.DeleteProduct(Id);
 
+            }
+            else
+            {
+                chart.ChangeQuantity(Id, quantity);
+            }
+            ShoppingChart.RefreshPage();
         }
-        
+
     }
 }

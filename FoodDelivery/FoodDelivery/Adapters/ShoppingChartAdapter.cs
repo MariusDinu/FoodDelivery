@@ -1,9 +1,6 @@
-﻿using Android.App;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
-using FoodDelivery.Repository;
 using FoodDelivery.ViewHolder;
 using System;
 using System.Collections.Generic;
@@ -25,19 +22,12 @@ namespace FoodDelivery.Adapters
         {
             if (holder is ShoppingChartViewHolder shoppingChartViewHolder)
             {
-
                 var product = list[position].Product.Name;
                 shoppingChartViewHolder.ProductName.Text = product;
                 shoppingChartViewHolder.Quantity.Text = list[position].Quantity.ToString();
                 var productId = list[position].Product.Id;
                 shoppingChartViewHolder.Id = productId;
-                shoppingChartViewHolder.Quantity.AfterTextChanged += Quantity_AfterTextChanged; ;
             }
-        }
-
-        private void Quantity_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
-        {
-            
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

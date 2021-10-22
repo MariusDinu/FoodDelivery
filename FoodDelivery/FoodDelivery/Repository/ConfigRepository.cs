@@ -14,8 +14,6 @@ namespace FoodDelivery.Repository
             ISharedPreferencesEditor edit = pref.Edit();
             edit.PutString("Paths", ReadJson());
             edit.Apply();
-
-
         }
 
         private string ReadJson()
@@ -28,7 +26,6 @@ namespace FoodDelivery.Repository
                 var jsonString = reader.ReadToEnd();
                 return jsonString;
             }
-
         }
         public ConfigRepository() { AddConfig(); }
     }

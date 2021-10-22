@@ -15,7 +15,7 @@
         public string Orders { get; set; }
         public string Order { get; set; }
 
-        public Config(string ipPort, string login, string register, string profile, string restaurants, string products, string product, string command,string restaurant,string orders,string order)
+        public Config(string ipPort, string login, string register, string profile, string restaurants, string products, string product, string command, string restaurant, string orders, string order)
         {
             this.IpPort = ipPort;
             this.Login = login;

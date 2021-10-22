@@ -63,7 +63,7 @@ namespace FoodDeliveryApi.Controllers
             return Ok(orders);
         }
 
-       
+
         [HttpGet("get/{id:int}")]
         public IActionResult GetById(int id)
         {
@@ -72,7 +72,7 @@ namespace FoodDeliveryApi.Controllers
             if (userFromToken != null)
             {
                 Order order = orderRepository.GetById(id);
-                if (order != null) { return Ok(order);}
+                if (order != null) { return Ok(order); }
                 return BadRequest(new { suces = false, message = "Order with that id doesn't exist" });
             }
             return BadRequest(new { suces = false, message = "User with that id doesn't exist" });

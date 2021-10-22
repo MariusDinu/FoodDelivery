@@ -59,12 +59,15 @@ namespace FoodDelivery
         private async void AddProducts()
         {
             int quantity = int.Parse(productQuantityEditText.Text);
-            bool response = await chartRepository.AddProductAsync(Intent.GetIntExtra("productId", 0), quantity);
-            if (!response)
+            string response = await chartRepository.AddProductAsync(Intent.GetIntExtra("productId", 0), quantity);
+            if (response.Equals("New"))
             {
                 ShowAlert();
             }
-            else { Finish(); }
+            else
+            if (response.Equals("Exist")) { ShowAlertDuplicate(); }
+            else
+            { Finish(); }
 
         }
         private void ShowAlert()
@@ -79,6 +82,25 @@ namespace FoodDelivery
             {
                 chartRepository.ChangeRestaurant();
                 AddProducts();
+                Finish();
+
+
+            });
+            alert.SetButton2("Cancel", (c, ev) =>
+            {
+
+            });
+            alert.Show();
+        }
+        private void ShowAlertDuplicate()
+        {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            AlertDialog alert = dialog.Create();
+            string message = "You have that product in chart! Go to the chart and change the quantity";
+            alert.SetMessage(message);
+            //alert.SetIcon(Resource.Drawable.info);
+            alert.SetButton("OK", (c, ev) =>
+            {
                 Finish();
 
 

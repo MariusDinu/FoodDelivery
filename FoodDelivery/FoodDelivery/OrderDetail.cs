@@ -1,18 +1,13 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodDelivery
@@ -24,7 +19,7 @@ namespace FoodDelivery
         private OrderRepository orderRepository;
         private RestaurantRepository restaurantRepository;
         private Order order;
-        List<Product> products=new List<Product>();
+        List<Product> products = new List<Product>();
         List<ItemList> list = new List<ItemList>();
         private TextView restaurant;
         private TextView date;
@@ -40,8 +35,8 @@ namespace FoodDelivery
             SetContentView(Resource.Layout.OrderDetail);
             orderRepository = new OrderRepository();
             restaurantRepository = new RestaurantRepository();
-            order=await LoadDataAsync();
-            List<Product> products=await ReadProductsAsync(order.Products);
+            order = await LoadDataAsync();
+            List<Product> products = await ReadProductsAsync(order.Products);
             list = JsonConvert.DeserializeObject<List<ItemList>>(order.Products);
             name = await GetRestaurantName(order.IdRestaurant);
             // Create your application here
@@ -49,7 +44,7 @@ namespace FoodDelivery
             orderProductsRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewOrderProducts);
             orderProductsLayoutManager = new LinearLayoutManager(this);
             orderProductsRecyclerView.SetLayoutManager(orderProductsLayoutManager);
-            orderProductsAdapter = new OrderProductsAdapter(products,list);
+            orderProductsAdapter = new OrderProductsAdapter(products, list);
             orderProductsRecyclerView.SetAdapter(orderProductsAdapter);
 
             BindData();
@@ -63,7 +58,7 @@ namespace FoodDelivery
 
         private async Task<List<Product>> ReadProductsAsync(string productsString)
         {
-           products=await orderRepository.ReadStringAsync(productsString);
+            products = await orderRepository.ReadStringAsync(productsString);
             return products;
         }
 
@@ -77,7 +72,7 @@ namespace FoodDelivery
         {
             restaurant.Text = name;
             date.Text = order.CreatedAt.ToString();
-            price.Text = order.Price;
+            price.Text = order.Price + " Ron";
             status.Text = order.Status;
         }
 

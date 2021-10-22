@@ -16,8 +16,6 @@ namespace FoodDelivery.Repository
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             if (JwtRepository.CheckJWT())
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JwtRepository.GetJWT());
-
-
         }
     }
 }

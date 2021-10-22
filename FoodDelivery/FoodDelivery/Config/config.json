@@ -1,14 +1,13 @@
 {
-    "ipPort": "http://192.168.100.37:5000",
-    "login": "/user/auth",
-    "register": "/user/add",
-    "profile": "/user/profile",
-    "restaurants": "/restaurant/get",
-    "products": "/product/get/restaurant/",
-    "product": "/product/get/",
-    "command": "/order/add",
-    "restaurant": "/restaurant/get/",
+  "ipPort": "http://192.168.100.37:5000",
+  "login": "/user/auth",
+  "register": "/user/add",
+  "profile": "/user/profile",
+  "restaurants": "/restaurant/get",
+  "products": "/product/get/restaurant/",
+  "product": "/product/get/",
+  "command": "/order/add",
+  "restaurant": "/restaurant/get/",
   "orders": "/order/get/user",
   "order": "/order/get/"
-  
-  }
+}
