@@ -39,7 +39,7 @@ namespace FoodDelivery
         {
             if (CheckData())
             {
-                User user = apiRepository.CreateUser(username.Text, "", password.Text);
+                User user = apiRepository.CreateUser(username.Text, password.Text);
                 var response = await apiRepository.Login(user);
                 if (response.Equals("True"))
                 {

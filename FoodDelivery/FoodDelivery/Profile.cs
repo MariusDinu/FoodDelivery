@@ -1,10 +1,13 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
 using System;
+
 
 namespace FoodDelivery
 {
@@ -15,6 +18,7 @@ namespace FoodDelivery
         private Button btnToOrder;
         private Button btntoMyOrders;
         private Button btnLogOut;
+        private ImageView image;
         private TextView name;
         private TextView email;
         private ApiRepository apiRepository;
@@ -29,6 +33,7 @@ namespace FoodDelivery
             btnToOrder = FindViewById<Button>(Resource.Id.btnOrder);
             btntoMyOrders = FindViewById<Button>(Resource.Id.btnMyOrders);
             btnLogOut = FindViewById<Button>(Resource.Id.btnLogOut);
+            image = FindViewById<ImageView>(Resource.Id.UserimageView);
             btnToRestaurants.Click += BtnToRestaurants_Click;
             btnToOrder.Click += BtnToOrder_Click;
             btntoMyOrders.Click += BtntoMyOrders_Click;
@@ -78,6 +83,12 @@ namespace FoodDelivery
             User response = await apiRepository.GetProfile();
             name.Text = response.UserName;
             email.Text = response.Email;
+            byte[] bytes = Base64.Decode(response.Path, Base64Flags.Default);
+            // Initialize bitmap
+            Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+
+            image.SetImageBitmap(bitmap);
+
         }
 
     }

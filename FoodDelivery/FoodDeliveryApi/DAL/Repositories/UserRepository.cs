@@ -58,6 +58,7 @@ namespace FoodDeliveryApi.DAL.Repositories
             User existingUser = (from u in context.Users
                                  where (u.Id == id)
                                  select u).FirstOrDefault();
+
             return existingUser;
         }
 

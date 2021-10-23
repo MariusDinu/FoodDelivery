@@ -4,8 +4,11 @@ using Android.OS;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using PCLStorage;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
+using Xamarin.Essentials;
 
 namespace FoodDelivery
 {
@@ -13,11 +16,13 @@ namespace FoodDelivery
     public class Registration : Activity
     {
         private Button btnRegister;
+        private Button btnAdd;
         private EditText email;
         private EditText username;
         private EditText password;
         private EditText passwordConfirm;
         private ApiRepository apiRepository;
+        FileResult file;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,22 +31,32 @@ namespace FoodDelivery
             FindViews();
             apiRepository = new ApiRepository();
             btnRegister.Click += btnRegister_Click;
+            btnAdd.Click += AddFilesAsync;
         }
 
         private void FindViews()
         {
             btnRegister = FindViewById<Button>(Resource.Id.btnRegister);
+            btnAdd = FindViewById<Button>(Resource.Id.buttonAddFiles);
             email = FindViewById<EditText>(Resource.Id.editTextEmail);
             username = FindViewById<EditText>(Resource.Id.editTextUserName);
             password = FindViewById<EditText>(Resource.Id.editTextPassword);
             passwordConfirm = FindViewById<EditText>(Resource.Id.editTextPassword2);
+            email.Text = "mariansarbu@gmail.com";
+            username.Text = "marian123";
+            password.Text = "12345Marius@";
+            passwordConfirm.Text = "12345Marius@";
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
-            if (CheckData())
+            byte[] code;
+            if (CheckData()&&file!=null)
             {
-                User user = apiRepository.CreateUser(username.Text, email.Text, password.Text);
+                code = System.IO.File.ReadAllBytes(file.FullPath);
+                var stream = new MemoryStream(code);
+                string base64String = Convert.ToBase64String(stream.ToArray());
+                UserToSend user = apiRepository.CreateUser(username.Text, email.Text, password.Text, base64String) ;
                 var response = await apiRepository.Registration(user);
                 if (response.Equals("True"))
                 {
@@ -57,6 +72,16 @@ namespace FoodDelivery
 
         }
 
+        private async void AddFilesAsync(object sender, EventArgs e)
+        {
+            try
+            {
+                file = await FilePicker.PickAsync();
+                if (file == null) { return; }
+            }
+            catch (Exception) { System.Diagnostics.Debug.WriteLine(e); }
+
+        }
         private bool CheckData()
         {
 

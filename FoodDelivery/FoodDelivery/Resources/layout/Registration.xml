@@ -64,6 +64,11 @@
         android:textSize="25dp"
         android:id="@+id/editTextPassword2" />
     <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonAddFiles" />
+    <Button
         android:text="Register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

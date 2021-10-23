@@ -15,7 +15,8 @@ namespace FoodDeliveryApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
-                    Password = table.Column<string>(maxLength: 100, nullable: true)
+                    Password = table.Column<string>(maxLength: 100, nullable: true),
+                    Path= table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {

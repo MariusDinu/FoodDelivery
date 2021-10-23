@@ -1,13 +1,16 @@
 ﻿using FoodDeliveryApi.Config;
 using FoodDeliveryApi.DAL.IRepositories;
 using FoodDeliveryApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
-
-
+using System.IO;
+using System.Drawing;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FoodDeliveryApi.Controllers
 {
@@ -17,10 +20,12 @@ namespace FoodDeliveryApi.Controllers
     {
 
         private readonly IUserRepository userRepository;
+        private readonly IImageHelper imageHelper;
         private readonly JwtConfig jwtConfig;
-        public UserController(IUserRepository userRepository, IOptionsMonitor<JwtConfig> optionsMonitor)
+        public UserController(IUserRepository userRepository,IImageHelper imageHelper, IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             this.userRepository = userRepository;
+            this.imageHelper = imageHelper;
             jwtConfig = optionsMonitor.CurrentValue;
         }
 
@@ -34,24 +39,31 @@ namespace FoodDeliveryApi.Controllers
          * BadRequest - if Json is null or user already exist (email/username)
          * */
 
+
+
+      
         [HttpPost("add")]
-        public IActionResult Add(User user)
+        public IActionResult Add(UserToAdd user)
         {
-            if (user != null)
+            User userNew = new User(user.UserName, user.Email, user.Password);
+            if (userNew != null)
             {
-                var exists = userRepository.VerifyExistence(user);
+                var exists = userRepository.VerifyExistence(userNew);
                 if (exists == false)
                 {
                     return BadRequest(new { succes = false, message = "Email or Username already exist" });
                 }
-                var newUser = userRepository.Add(user);
-                var jwtToken = JwtUser.Encode(newUser, jwtConfig);
+                User userNew2 = new User(user.UserName, user.Email, user.Password);
+                userNew2.Path=imageHelper.AddImage(user.ImageData, user.Email);
+
+                var newUserToken = userRepository.Add(userNew2);
+                var jwtToken = JwtUser.Encode(newUserToken, jwtConfig);
                 return Ok(new { succes = true, token = jwtToken, message = "Succes" });
+
             }
-            return BadRequest(new { succes = false, message = "Null username" });
+            return BadRequest(new { succes = false, message = "Null user" });
+
         }
-
-
         /**
         * Method: POST
         * Description: Login 
@@ -98,7 +110,8 @@ namespace FoodDeliveryApi.Controllers
                 return Unauthorized();
             }
             User user = userRepository.GetById(userFromToken.Id);
-
+            string imageData = imageHelper.ReadImage(user.Path);
+            user.Path = imageData;
             if (user == null)
             {
                 return BadRequest(new { success = false, message = "User with that username does not exist!" });

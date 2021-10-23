@@ -124,7 +124,7 @@
                 1. The name exist
                 2. Internal problem(Sql server,visual)
         </member>
-        <member name="M:FoodDeliveryApi.Controllers.UserController.Add(FoodDeliveryApi.Models.User)">
+        <member name="M:FoodDeliveryApi.Controllers.UserController.Add(FoodDeliveryApi.Models.UserToAdd)">
             Method: POST
             Description: add an user in database
             Return:

@@ -13,6 +13,7 @@ namespace FoodDeliveryApi.Models
         public string Email { get; set; }
         [MaxLength(100)]
         public string Password { get; set; }
+        public string Path { get; set; }
         public User(int Id, string UserName, string Email, string Password)
         {
             this.Id = Id;
@@ -32,5 +33,13 @@ namespace FoodDeliveryApi.Models
             this.UserName = UserName;
         }
         public User() { }
+
+        public User(string userName, string email, string password, string path) 
+        {
+            this.UserName = userName;
+            this.Email = email;
+            this.Password = password;
+            this.Path = path;
+        }
     }
 }

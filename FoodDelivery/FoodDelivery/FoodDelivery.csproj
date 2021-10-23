@@ -81,6 +81,7 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Restaurant.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserToSend.cs" />
     <Compile Include="MyOrders.cs" />
     <Compile Include="OrderDetail.cs" />
     <Compile Include="Profile.cs" />
@@ -148,6 +149,9 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="PCLStorage">
+      <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>

@@ -82,9 +82,17 @@
               "target": "Package",
               "version": "[1.2.3, )"
             },
+            "PCLStorage": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [

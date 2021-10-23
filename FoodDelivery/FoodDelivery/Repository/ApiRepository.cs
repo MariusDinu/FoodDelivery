@@ -15,7 +15,7 @@ namespace FoodDelivery.Repository
         private readonly Config config;
         private HttpRepository httpRepository;
         ISharedPreferences pref;
-        public async Task<string> Registration(User user)
+        public async Task<string> Registration(UserToSend user)
         {
             var response = await httpRepository.client.PostAsync(config.Register, new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"));
             mess = JsonConvert.DeserializeObject<Response>(response.Content.ReadAsStringAsync().Result);
@@ -48,9 +48,15 @@ namespace FoodDelivery.Repository
             return listRestaurants;
         }
 
-        public User CreateUser(string username, string email, string password)
+        public UserToSend CreateUser(string username, string email, string password,string code)
         {
-            User user = new User(username, email, password);
+            UserToSend user = new UserToSend(username,email,password,code);
+            return user;
+        }
+
+        public User CreateUser(string username, string password)
+        {
+            User user = new User(username, password);
             return user;
         }
         public ApiRepository()
