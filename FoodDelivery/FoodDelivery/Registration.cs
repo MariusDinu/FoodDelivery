@@ -21,6 +21,7 @@ namespace FoodDelivery
         private EditText username;
         private EditText password;
         private EditText passwordConfirm;
+        private TextView addFiles;
         private ApiRepository apiRepository;
         FileResult file;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -42,6 +43,8 @@ namespace FoodDelivery
             username = FindViewById<EditText>(Resource.Id.editTextUserName);
             password = FindViewById<EditText>(Resource.Id.editTextPassword);
             passwordConfirm = FindViewById<EditText>(Resource.Id.editTextPassword2);
+            addFiles = FindViewById<TextView>(Resource.Id.textViewAddFiles);
+      
             email.Text = "mariansarbu@gmail.com";
             username.Text = "marian123";
             password.Text = "12345Marius@";
@@ -80,6 +83,7 @@ namespace FoodDelivery
                 if (file == null) { return; }
             }
             catch (Exception) { System.Diagnostics.Debug.WriteLine(e); }
+            addFiles.Text = file.FileName;
 
         }
         private bool CheckData()
