@@ -106,6 +106,10 @@ namespace FoodDelivery
                 Toast.MakeText(Application.Context, "Passwords doesn't match!", ToastLength.Short).Show();
                 return false;
             }
+            if (file.FileName == null) {
+                Toast.MakeText(Application.Context, "Profile picture missing!", ToastLength.Short).Show();
+                return false;
+            }
             return true;
         }
     }
