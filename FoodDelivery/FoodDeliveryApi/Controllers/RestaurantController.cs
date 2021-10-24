@@ -12,9 +12,11 @@ namespace FoodDeliveryApi.Controllers
     public class RestaurantController : Controller
     {
         private readonly IRestaurantRepository restaurantRepository;
-        public RestaurantController(IRestaurantRepository restaurantRepository)
+        private readonly IImageHelper imageHelper;
+        public RestaurantController(IRestaurantRepository restaurantRepository,IImageHelper imageHelper)
         {
             this.restaurantRepository = restaurantRepository;
+            this.imageHelper = imageHelper;
         }
 
 
@@ -27,16 +29,21 @@ namespace FoodDeliveryApi.Controllers
          * */
 
         [HttpPost("add")]
-        public IActionResult Add(Restaurant restaurant)
+        public IActionResult Add(RestaurantToAdd restaurant)
         {
-            if (restaurant != null)
+            Restaurant restaurantNew = new Restaurant(restaurant.RestaurantName, restaurant.Street, restaurant.StreetNumber,restaurant.Building);
+            if (restaurantNew != null)
             {
-                var exists = restaurantRepository.VerifyExistence(restaurant);
+                var exists = restaurantRepository.VerifyExistence(restaurantNew);
                 if (exists == false)
                 {
                     return BadRequest(new { succes = false, message = "This restaurant already exist" });
                 }
-                restaurantRepository.Add(restaurant);
+
+               
+                restaurantNew.Path = imageHelper.AddImageRestaurant(restaurant.ImageData,restaurant.RestaurantName);
+
+                restaurantRepository.Add(restaurantNew);
                 return Ok(new { succes = true });
             }
             return BadRequest(new { succes = false, message = "Null restaurant name" });
@@ -59,7 +66,8 @@ namespace FoodDeliveryApi.Controllers
             {
                 return Unauthorized();
             }
-            IEnumerable<Restaurant> restaurants = restaurantRepository.GetAll();
+            List<RestaurantToAdd> restaurants = restaurantRepository.GetAll();
+            
             return Ok(restaurants);
         }
 
@@ -95,7 +103,8 @@ namespace FoodDeliveryApi.Controllers
         public IActionResult GetById(int id)
         {
             Restaurant restaurant = restaurantRepository.GetById(id);
-
+            string imageData = imageHelper.ReadImage(restaurant.Path);
+            restaurant.Path = imageData;
             if (restaurant == null)
             {
                 return BadRequest(new { suces = false, message = "Restaurant with that id doesn't exist" });

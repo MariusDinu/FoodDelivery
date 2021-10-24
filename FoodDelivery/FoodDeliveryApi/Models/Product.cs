@@ -18,7 +18,7 @@ namespace FoodDeliveryApi.Models
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }
-
+        public string Path { get; set; }
         public Product(int Id, int IdRestaurant, string Name, string Price, string Description)
         {
             this.Id = Id;

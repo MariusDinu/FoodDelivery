@@ -11,5 +11,6 @@
         public string StreetNumber { get; set; }
 
         public string Building { get; set; }
+        public string ImageData { get; set; }
     }
 }

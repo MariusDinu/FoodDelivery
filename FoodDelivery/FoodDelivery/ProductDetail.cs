@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
@@ -14,6 +16,7 @@ namespace FoodDelivery
     {
         private Button btnAddToChart;
         private Button btnAddQuantity;
+        private ImageView image;
         //private Button btnRemovefromChart;
         private ProductRepository productRepository;
         private ChartRepository chartRepository;
@@ -123,6 +126,10 @@ namespace FoodDelivery
             productNameTextView.Text = selectedProduct.Name;
             productDescriptionTextView.Text = selectedProduct.Description;
             productPriceTextView.Text = selectedProduct.Price + " Ron";
+            byte[] bytes = Base64.Decode(selectedProduct.ImageData, Base64Flags.Default);
+            // Initialize bitmap
+            Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+            image.SetImageBitmap(bitmap);
         }
 
 
@@ -133,6 +140,7 @@ namespace FoodDelivery
             productDescriptionTextView = FindViewById<TextView>(Resource.Id.ProductDescriptionTextView);
             productPriceTextView = FindViewById<TextView>(Resource.Id.productPricetextView);
             productQuantityEditText = FindViewById<EditText>(Resource.Id.productQuantityEditText);
+            image = FindViewById<ImageView>(Resource.Id.imageViewProductDetail);
             btnAddToChart = FindViewById<Button>(Resource.Id.buttonAddChart);
             btnAddQuantity = FindViewById<Button>(Resource.Id.buttonAddQuantity);
 

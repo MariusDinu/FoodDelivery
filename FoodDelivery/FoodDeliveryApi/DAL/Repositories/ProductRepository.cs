@@ -9,10 +9,11 @@ namespace FoodDeliveryApi.DAL.Repositories
     public class ProductRepository : IProductRepository
     {
         private readonly FoodDeliveryContext context;
-
+        private readonly IImageHelper imageHelper;
         public ProductRepository(FoodDeliveryContext context)
         {
             this.context = context;
+            this.imageHelper = new ImageHelper();
         }
         Product IProductRepository.Add(Product product)
         {
@@ -26,16 +27,22 @@ namespace FoodDeliveryApi.DAL.Repositories
             return context.Products;
         }
 
-        Product IProductRepository.GetById(int id)
+        ProductToAdd IProductRepository.GetById(int id)
         {
             Product existingProduct = context.Products.Where(product => product.Id == id).FirstOrDefault();
-            return existingProduct;
+            ProductToAdd product = new ProductToAdd(existingProduct.Id, existingProduct.IdRestaurant, existingProduct.Name, existingProduct.Price, existingProduct.Description, imageHelper.ReadImage(existingProduct.Path));
+            return product;
         }
 
-        IEnumerable<Product> IProductRepository.GetByRestaurantId(int id)
+        List<ProductToAdd> IProductRepository.GetByRestaurantId(int id)
         {
+            List<ProductToAdd> products = new List<ProductToAdd>();
             IEnumerable<Product> existingProducts = context.Products.Where(product => product.IdRestaurant == id);
-            return existingProducts;
+            foreach (var item in existingProducts) {
+
+                products.Add(new ProductToAdd(item.Id,item.IdRestaurant,item.Name,item.Price,item.Description, imageHelper.ReadImage(item.Path)));
+            }
+            return products;
         }
 
         IEnumerable<Product> IProductRepository.GetByRestaurantName(string name)

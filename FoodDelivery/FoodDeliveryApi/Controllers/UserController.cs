@@ -53,10 +53,9 @@ namespace FoodDeliveryApi.Controllers
                 {
                     return BadRequest(new { succes = false, message = "Email or Username already exist" });
                 }
-                User userNew2 = new User(user.UserName, user.Email, user.Password);
-                userNew2.Path=imageHelper.AddImage(user.ImageData, user.Email);
+                userNew.Path=imageHelper.AddImage(user.ImageData, user.Email);
 
-                var newUserToken = userRepository.Add(userNew2);
+                var newUserToken = userRepository.Add(userNew);
                 var jwtToken = JwtUser.Encode(newUserToken, jwtConfig);
                 return Ok(new { succes = true, token = jwtToken, message = "Succes" });
 

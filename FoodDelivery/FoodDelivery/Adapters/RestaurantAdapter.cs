@@ -1,9 +1,12 @@
-﻿using Android.Views;
+﻿using Android.Graphics;
+using Android.Util;
+using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.ViewHolder;
 using System;
 using System.Collections.Generic;
+
 
 namespace FoodDelivery.Adapters
 {
@@ -23,6 +26,10 @@ namespace FoodDelivery.Adapters
             if (holder is RestaurantViewHolder restaurantViewHolder)
             {
                 restaurantViewHolder.RestaurantNameView.Text = _restaurants[position].RestaurantName;
+                byte[] bytes = Base64.Decode(_restaurants[position].ImageData, Base64Flags.Default);
+                // Initialize bitmap
+                Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+                restaurantViewHolder.RestaurantImageView.SetImageBitmap(bitmap);
             }
         }
 

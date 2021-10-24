@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/colorBack">
+    android:background="@drawable/backregister2">
     <TextView
         android:text="Our restaurants"
+        style="@style/ButtonYellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="25px"
@@ -16,12 +17,12 @@
         android:id="@+id/titleTextView" />
     <androidx.recyclerview.widget.RecyclerView
         android:minWidth="25px"
+        android:background="@drawable/border"
         android:minHeight="25px"
         android:scrollbars="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="682.0dp"
         android:layout_margin="50px"
-        android:background="@android:color/white"
         android:id="@+id/restaurantListRecyclerView" />
 
 </LinearLayout>

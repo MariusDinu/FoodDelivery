@@ -1,4 +1,6 @@
-﻿using Android.Views;
+﻿using Android.Graphics;
+using Android.Util;
+using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.ViewHolder;
@@ -28,6 +30,10 @@ namespace FoodDelivery.Adapters
                 productViewHolder.ProductTextView.Text = _products[position].Name;
                 // productViewHolder.ProductTextView.Text = _products[position].Description;
                 productViewHolder.ProductPriceTextView.Text = _products[position].Price + " Ron";
+                byte[] bytes = Base64.Decode(_products[position].ImageData, Base64Flags.Default);
+                // Initialize bitmap
+                Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+                productViewHolder.ProductImageView.SetImageBitmap(bitmap);
             }
         }
 

@@ -9,39 +9,58 @@
     android:paddingLeft="25dp"
     android:textAlignment="center"
     android:gravity="center"
+    android:background="@drawable/backLogin"
     android:id="@+id/linearLayout1">
-    <TextView
-        android:text="Username:"
+    <ImageView
+        android:src="@drawable/profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView1"
+        android:contentDescription=""
+        android:layout_margin="20dp"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/UsernameTextView" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20px"
-        android:textSize="25dp"
-        android:id="@+id/usernameEditText" />
+        android:background="@drawable/border"
+        android:layout_margin="10dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:text="Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/passwordTextView" />
-    <EditText
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:textSize="25dp"
-        android:id="@+id/passwordEditText" />
-   
-    <Button
-        android:text="Login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btnLogin" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:drawableLeft="@drawable/ic_supervised_user_circle"
+            android:hint="User Name"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:textSize="20dp"
+            android:id="@+id/usernameEditText"
+            android:textStyle="normal"
+            android:textColor="@android:color/black"
+            android:inputType="text" />
 
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:drawableLeft="@drawable/ic_security"
+            android:hint="Password"
+            android:layout_margin="20dp"
+            android:textColor="@android:color/black"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:id="@+id/passwordEditText" />
+
+        
+    </LinearLayout>
+        <Button
+            android:text="Login"
+            style="@style/ButtonYellow"
+            android:background="@drawable/btnyellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="50dp"
+            android:id="@+id/btnLogin" />
 </LinearLayout>

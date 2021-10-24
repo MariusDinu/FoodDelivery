@@ -19,7 +19,7 @@ namespace FoodDelivery.ViewHolder
 
         public ShoppingChartViewHolder(View itemView, Action<int> listener) : base(itemView)
         {
-            ProductImage = itemView.FindViewById<ImageView>(Resource.Id.productImageView);
+            ProductImage = itemView.FindViewById<ImageView>(Resource.Id.shoppingChartImageView);
             ProductName = itemView.FindViewById<TextView>(Resource.Id.ProductNameOrder);
             Quantity = itemView.FindViewById<TextView>(Resource.Id.ProductQuantityOrder);
             AddQuantity = itemView.FindViewById<Button>(Resource.Id.buttonPlus);

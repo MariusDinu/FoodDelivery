@@ -12,10 +12,12 @@ namespace FoodDeliveryApi.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository productRepository;
+        private readonly IImageHelper imageHelper;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository,IImageHelper imageHelper)
         {
             this.productRepository = productRepository;
+            this.imageHelper = imageHelper;
         }
 
 
@@ -29,16 +31,19 @@ namespace FoodDeliveryApi.Controllers
         * */
 
         [HttpPost("add")]
-        public IActionResult Add(Product product)
+        public IActionResult Add(ProductToAdd product)
         {
+            Product productNew = new Product(product.IdRestaurant,product.Name,product.Price,product.Description);
             if (product != null)
             {
-                var exists = productRepository.VerifyExistence(product);
+                var exists = productRepository.VerifyExistence(productNew);
                 if (exists == false)
                 {
                     return BadRequest(new { succes = false, message = "Product already exist in restaurant" });
                 }
-                productRepository.Add(product);
+                productNew.Path = imageHelper.AddImageProduct(product.ImageData,product.IdRestaurant,product.Name);
+
+                productRepository.Add(productNew);
                 return Ok(new { succes = true });
             }
             return BadRequest(new { succes = false, message = "Null product" });
@@ -77,7 +82,7 @@ namespace FoodDeliveryApi.Controllers
             {
                 return Unauthorized();
             }
-            IEnumerable<Product> product = productRepository.GetByRestaurantId(id);
+            List<ProductToAdd> product = productRepository.GetByRestaurantId(id);
 
             if (product == null)
             {
@@ -97,7 +102,7 @@ namespace FoodDeliveryApi.Controllers
         [HttpGet("get/{id:int}")]
         public IActionResult GetById(int id)
         {
-            Product product = productRepository.GetById(id);
+            ProductToAdd product = productRepository.GetById(id);
 
             if (product == null)
             {

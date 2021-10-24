@@ -9,10 +9,11 @@ namespace FoodDeliveryApi.DAL.Repositories
     public class RestaurantRepository : IRestaurantRepository
     {
         private readonly FoodDeliveryContext context;
-
+        private readonly IImageHelper imageHelper;
         public RestaurantRepository(FoodDeliveryContext context)
         {
             this.context = context;
+            this.imageHelper = new ImageHelper();
         }
 
         Restaurant IRestaurantRepository.Add(Restaurant restaurant)
@@ -22,9 +23,15 @@ namespace FoodDeliveryApi.DAL.Repositories
             return restaurant;
         }
 
-        IEnumerable<Restaurant> IRestaurantRepository.GetAll()
+        List<RestaurantToAdd> IRestaurantRepository.GetAll()
         {
-            return context.Restaurants;
+            List<RestaurantToAdd> restaurants = new List<RestaurantToAdd>();
+            foreach (var item in context.Restaurants)
+            {
+                restaurants.Add(new RestaurantToAdd(item.Id,item.RestaurantName, item.Street, item.StreetNumber, item.Building, imageHelper.ReadImage(item.Path)));
+            
+            }
+            return restaurants;
         }
 
         Restaurant IRestaurantRepository.GetById(int id)

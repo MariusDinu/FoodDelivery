@@ -3,22 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backlogin"
     android:gravity="center">
     
     <TextView
         android:text="@string/TitleStart"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20px"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
         android:id="@+id/textTitleStart" />
     <Button
         android:text="@string/buttonRegisterStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+       android:layout_width="150dp"
+        android:layout_height="70dp"
         android:minWidth="25px"
         android:minHeight="25px"
         android:padding="20px"
+        style="@style/ButtonYellow"
+        android:background="@drawable/btnyellow"
         android:id="@+id/buttonRegisterStart" />
     <TextView
         android:text="@string/SpaceBetweenButtonsStart"
@@ -29,8 +34,10 @@
         android:id="@+id/textSpaceBetweenStart" />
     <Button
         android:text="@string/buttonLoginStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonYellow"
+        android:background="@drawable/btnyellow"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:padding="20px"
         android:id="@+id/buttonLoginStart" />
 

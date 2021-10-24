@@ -41,10 +41,10 @@ namespace FoodDelivery.Repository
             User user = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
             return user;
         }
-        public async Task<IEnumerable<Restaurant>> GetRestaurants()
+        public async Task<List<Restaurant>> GetRestaurants()
         {
             var response = await httpRepository.client.GetAsync(config.Restaurants);
-            IEnumerable<Restaurant> listRestaurants = JsonConvert.DeserializeObject<IEnumerable<Restaurant>>(response.Content.ReadAsStringAsync().Result);
+            List<Restaurant> listRestaurants = JsonConvert.DeserializeObject<List<Restaurant>>(response.Content.ReadAsStringAsync().Result);
             return listRestaurants;
         }
 

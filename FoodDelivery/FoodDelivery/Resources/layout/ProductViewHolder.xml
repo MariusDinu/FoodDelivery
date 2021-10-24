@@ -3,30 +3,38 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:layout_margin="20dp"
     android:gravity="center_horizontal">
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="100dp"
-        android:layout_height="65dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
         android:id="@+id/productImageView" />
     <LinearLayout
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_width="233.0dp"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView
             android:text="ProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:layout_margin="10dp"
             android:id="@+id/productNameTextView" />
         <TextView
             android:text="ProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="18dp"
             android:id="@+id/productPriceTextView" />
     </LinearLayout>
 </LinearLayout>

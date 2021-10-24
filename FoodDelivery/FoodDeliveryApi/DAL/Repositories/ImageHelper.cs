@@ -9,6 +9,56 @@ namespace FoodDeliveryApi.DAL.Repositories
 {
     public class ImageHelper : IImageHelper
     {
+        public string AddImageProduct(string imageData, int id,string name)
+        {
+            var imageDataByteArray = Convert.FromBase64String(imageData);
+            var imageDataStream = new MemoryStream(imageDataByteArray);
+            try
+            {
+                if (!Directory.Exists(Environment.CurrentDirectory + "\\products\\"))
+                {
+                    Directory.CreateDirectory(Environment.CurrentDirectory + "\\products\\");
+                }
+
+                using (System.Drawing.Image image = System.Drawing.Image.FromStream(imageDataStream, true))
+                {
+                    image.Save(Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}"+$"{ name}.png");  // Or Png
+                }
+                return Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}" + $"{ name}.png";
+
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public string AddImageRestaurant(string imageData, string restaurantName)
+        {
+            var imageDataByteArray = Convert.FromBase64String(imageData);
+            var imageDataStream = new MemoryStream(imageDataByteArray);
+            try
+            {
+                if (!Directory.Exists(Environment.CurrentDirectory + "\\rests\\"))
+                {
+                    Directory.CreateDirectory(Environment.CurrentDirectory + "\\rests\\");
+                }
+
+                using (System.Drawing.Image image = System.Drawing.Image.FromStream(imageDataStream, true))
+                {
+                    image.Save(Environment.CurrentDirectory + "\\rests\\" + $"{restaurantName}.png");  // Or Png
+                }
+                return Environment.CurrentDirectory + "\\rests\\" + $"{restaurantName}.png";
+
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         string IImageHelper.AddImage(string Data, string Email)
         {
             var imageDataByteArray = Convert.FromBase64String(Data);

@@ -19,7 +19,7 @@ namespace FoodDelivery
         private RecyclerView.LayoutManager _restaurantLayoutManager;
         private RestaurantAdapter _restaurantAdapter;
         private ApiRepository apiRepository;
-        private IEnumerable<Restaurant> restaurantsList;
+        private List<Restaurant> restaurantsList;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,7 +33,7 @@ namespace FoodDelivery
             _restaurantRecyclerView = FindViewById<RecyclerView>(Resource.Id.restaurantListRecyclerView);
             _restaurantLayoutManager = new LinearLayoutManager(this);
             _restaurantRecyclerView.SetLayoutManager(_restaurantLayoutManager);
-            _restaurantAdapter = new RestaurantAdapter(restaurantsList.ToList());
+            _restaurantAdapter = new RestaurantAdapter(restaurantsList);
             _restaurantRecyclerView.SetAdapter(_restaurantAdapter);
             _restaurantAdapter.ItemClick += RestaurantAdapter_ItemClick;
             // Create your application here
@@ -41,9 +41,9 @@ namespace FoodDelivery
 
 
 
-        private async Task<IEnumerable<Restaurant>> LoadDataAsync()
+        private async Task<List<Restaurant>> LoadDataAsync()
         {
-            IEnumerable<Restaurant> restaurants = await apiRepository.GetRestaurants();
+            List<Restaurant> restaurants = await apiRepository.GetRestaurants();
             return restaurants;
         }
 

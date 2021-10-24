@@ -44,7 +44,7 @@
                 1. The order doesn't exist
                 2. Internal problem(Sql server,visual)
         </member>
-        <member name="M:FoodDeliveryApi.Controllers.ProductController.Add(FoodDeliveryApi.Models.Product)">
+        <member name="M:FoodDeliveryApi.Controllers.ProductController.Add(FoodDeliveryApi.Models.ProductToAdd)">
             Method: POST
             Description: add an product in database
             Return:
@@ -84,7 +84,7 @@
                 1. The name exist
                 2. Internal problem(Sql server,visual)
         </member>
-        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.Add(FoodDeliveryApi.Models.Restaurant)">
+        <member name="M:FoodDeliveryApi.Controllers.RestaurantController.Add(FoodDeliveryApi.Models.RestaurantToAdd)">
             Method: POST
             Description: add an restaurant in database
             Return:

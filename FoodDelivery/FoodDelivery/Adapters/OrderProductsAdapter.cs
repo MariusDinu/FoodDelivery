@@ -1,4 +1,6 @@
-﻿using Android.Views;
+﻿using Android.Graphics;
+using Android.Util;
+using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.ViewHolder;
@@ -23,6 +25,10 @@ namespace FoodDelivery.Adapters
             {
                 orderProductsViewHolder.Name.Text = products[position].Name;
                 orderProductsViewHolder.Quantity.Text = quantity[position].Quantity.ToString();
+                byte[] bytes = Base64.Decode(products[position].ImageData, Base64Flags.Default);
+                // Initialize bitmap
+                Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+                orderProductsViewHolder.Image.SetImageBitmap(bitmap);
             }
         }
 

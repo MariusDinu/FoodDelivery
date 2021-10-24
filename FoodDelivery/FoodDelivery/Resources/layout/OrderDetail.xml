@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/border"
     android:layout_margin="25dp">
     <TextView
         android:text="@string/OrderItemSummary"
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:minWidth="25px"
+        android:layout_margin="15dp"
         android:minHeight="25px"
         android:id="@+id/textView1" />
 
@@ -94,12 +96,14 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_green_light"
             android:id="@+id/textViewOrderDetailStatus" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:background="@drawable/border"
         android:minWidth="25px"
         android:minHeight="25px"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerViewOrderProducts" />

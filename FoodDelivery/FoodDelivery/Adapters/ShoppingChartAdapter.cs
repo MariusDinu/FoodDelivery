@@ -1,4 +1,6 @@
-﻿using Android.Views;
+﻿using Android.Graphics;
+using Android.Util;
+using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.ViewHolder;
@@ -27,6 +29,10 @@ namespace FoodDelivery.Adapters
                 shoppingChartViewHolder.Quantity.Text = list[position].Quantity.ToString();
                 var productId = list[position].Product.Id;
                 shoppingChartViewHolder.Id = productId;
+                byte[] bytes = Base64.Decode(list[position].Product.ImageData, Base64Flags.Default);
+                // Initialize bitmap
+                Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+                shoppingChartViewHolder.ProductImage.SetImageBitmap(bitmap);
             }
         }
 

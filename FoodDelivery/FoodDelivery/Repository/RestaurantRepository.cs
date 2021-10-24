@@ -12,10 +12,10 @@ namespace FoodDelivery.Repository
         private readonly Config config;
         private HttpRepository httpRepository;
         ISharedPreferences pref;
-        public async Task<IEnumerable<Product>> GetProducts(int id)
+        public async Task<List<Product>> GetProducts(int id)
         {
             var response = await httpRepository.client.GetAsync(config.Products + id);
-            IEnumerable<Product> list = JsonConvert.DeserializeObject<IEnumerable<Product>>(response.Content.ReadAsStringAsync().Result);
+            List<Product> list = JsonConvert.DeserializeObject<List<Product>>(response.Content.ReadAsStringAsync().Result);
 
             return list;
         }

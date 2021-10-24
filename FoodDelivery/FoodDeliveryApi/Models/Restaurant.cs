@@ -19,7 +19,7 @@ namespace FoodDeliveryApi.Models
         [Required]
         [MaxLength(100)]
         public string Building { get; set; }
-
+        public string Path { get; set; }
 
         public Restaurant(int Id, string RestaurantName, string Street, string StreetNumber, string Building)
         {
