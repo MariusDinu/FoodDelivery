@@ -4,7 +4,6 @@ using Android.OS;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using PCLStorage;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -44,7 +43,7 @@ namespace FoodDelivery
             password = FindViewById<EditText>(Resource.Id.editTextPassword);
             passwordConfirm = FindViewById<EditText>(Resource.Id.editTextPassword2);
             addFiles = FindViewById<TextView>(Resource.Id.textViewAddFiles);
-      
+
             email.Text = "mariansarbu@gmail.com";
             username.Text = "marian123";
             password.Text = "12345Marius@";
@@ -54,12 +53,12 @@ namespace FoodDelivery
         private async void btnRegister_Click(object sender, EventArgs e)
         {
             byte[] code;
-            if (CheckData()&&file!=null)
+            if (CheckData() && file != null)
             {
                 code = System.IO.File.ReadAllBytes(file.FullPath);
                 var stream = new MemoryStream(code);
                 string base64String = Convert.ToBase64String(stream.ToArray());
-                UserToSend user = apiRepository.CreateUser(username.Text, email.Text, password.Text, base64String) ;
+                UserToSend user = apiRepository.CreateUser(username.Text, email.Text, password.Text, base64String);
                 var response = await apiRepository.Registration(user);
                 if (response.Equals("True"))
                 {
@@ -110,7 +109,8 @@ namespace FoodDelivery
                 Toast.MakeText(Application.Context, "Passwords doesn't match!", ToastLength.Short).Show();
                 return false;
             }
-            if (file.FileName == null) {
+            if (file.FileName == null)
+            {
                 Toast.MakeText(Application.Context, "Profile picture missing!", ToastLength.Short).Show();
                 return false;
             }

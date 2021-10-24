@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -32,7 +31,7 @@ namespace FoodDelivery
                 config = new ConfigRepository();
                 FindViews();
                 LinkEventHandler();
-                
+
             }
             else
             {
@@ -67,7 +66,7 @@ namespace FoodDelivery
             login = FindViewById<Button>(Resource.Id.buttonLoginStart);
             register = FindViewById<Button>(Resource.Id.buttonRegisterStart);
             welcome = FindViewById<TextView>(Resource.Id.textTitleStart);
-            Color startColor =Color.ParseColor("#f3ae1b");
+            Color startColor = Color.ParseColor("#f3ae1b");
             Color endColor = Color.ParseColor("#6a3ab2");
             TextPaint paint = welcome.Paint;
             float width = paint.MeasureText("Tianjin, China");
@@ -76,7 +75,7 @@ namespace FoodDelivery
                             new int[] { startColor, endColor },
                             new float[] { 0, 1 }, Shader.TileMode.Clamp);
             paint.SetShader(textShader);
-          
+
         }
 
 

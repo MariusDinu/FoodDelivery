@@ -13,7 +13,7 @@ namespace FoodDeliveryApi.Controllers
     {
         private readonly IRestaurantRepository restaurantRepository;
         private readonly IImageHelper imageHelper;
-        public RestaurantController(IRestaurantRepository restaurantRepository,IImageHelper imageHelper)
+        public RestaurantController(IRestaurantRepository restaurantRepository, IImageHelper imageHelper)
         {
             this.restaurantRepository = restaurantRepository;
             this.imageHelper = imageHelper;
@@ -31,7 +31,7 @@ namespace FoodDeliveryApi.Controllers
         [HttpPost("add")]
         public IActionResult Add(RestaurantToAdd restaurant)
         {
-            Restaurant restaurantNew = new Restaurant(restaurant.RestaurantName, restaurant.Street, restaurant.StreetNumber,restaurant.Building);
+            Restaurant restaurantNew = new Restaurant(restaurant.RestaurantName, restaurant.Street, restaurant.StreetNumber, restaurant.Building);
             if (restaurantNew != null)
             {
                 var exists = restaurantRepository.VerifyExistence(restaurantNew);
@@ -40,8 +40,8 @@ namespace FoodDeliveryApi.Controllers
                     return BadRequest(new { succes = false, message = "This restaurant already exist" });
                 }
 
-               
-                restaurantNew.Path = imageHelper.AddImageRestaurant(restaurant.ImageData,restaurant.RestaurantName);
+
+                restaurantNew.Path = imageHelper.AddImageRestaurant(restaurant.ImageData, restaurant.RestaurantName);
 
                 restaurantRepository.Add(restaurantNew);
                 return Ok(new { succes = true });
@@ -67,7 +67,7 @@ namespace FoodDeliveryApi.Controllers
                 return Unauthorized();
             }
             List<RestaurantToAdd> restaurants = restaurantRepository.GetAll();
-            
+
             return Ok(restaurants);
         }
 

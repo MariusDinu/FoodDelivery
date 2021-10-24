@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FoodDeliveryApi.Models
 {
     public class ProductToAdd
     {
-        public ProductToAdd(int id,int idRestaurant, string name, string price, string description, string imageData)
+        public ProductToAdd(int id, int idRestaurant, string name, string price, string description, string imageData)
         {
             Id = id;
             IdRestaurant = idRestaurant;

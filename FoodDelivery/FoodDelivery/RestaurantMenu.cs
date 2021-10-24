@@ -6,7 +6,6 @@ using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoodDelivery

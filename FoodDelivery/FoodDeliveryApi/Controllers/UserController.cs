@@ -1,16 +1,11 @@
 ﻿using FoodDeliveryApi.Config;
 using FoodDeliveryApi.DAL.IRepositories;
 using FoodDeliveryApi.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Drawing;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace FoodDeliveryApi.Controllers
 {
@@ -22,7 +17,7 @@ namespace FoodDeliveryApi.Controllers
         private readonly IUserRepository userRepository;
         private readonly IImageHelper imageHelper;
         private readonly JwtConfig jwtConfig;
-        public UserController(IUserRepository userRepository,IImageHelper imageHelper, IOptionsMonitor<JwtConfig> optionsMonitor)
+        public UserController(IUserRepository userRepository, IImageHelper imageHelper, IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             this.userRepository = userRepository;
             this.imageHelper = imageHelper;
@@ -41,7 +36,7 @@ namespace FoodDeliveryApi.Controllers
 
 
 
-      
+
         [HttpPost("add")]
         public IActionResult Add(UserToAdd user)
         {
@@ -53,7 +48,7 @@ namespace FoodDeliveryApi.Controllers
                 {
                     return BadRequest(new { succes = false, message = "Email or Username already exist" });
                 }
-                userNew.Path=imageHelper.AddImage(user.ImageData, user.Email);
+                userNew.Path = imageHelper.AddImage(user.ImageData, user.Email);
 
                 var newUserToken = userRepository.Add(userNew);
                 var jwtToken = JwtUser.Encode(newUserToken, jwtConfig);

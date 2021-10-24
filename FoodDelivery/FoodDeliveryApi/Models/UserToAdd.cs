@@ -1,11 +1,4 @@
-﻿using FoodDeliveryApi.Data;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FoodDeliveryApi.Models
+﻿namespace FoodDeliveryApi.Models
 {
     public class UserToAdd
     {
@@ -18,24 +11,24 @@ namespace FoodDeliveryApi.Models
         public string ImageData { get; set; }
         public UserToAdd() { }
 
-        public UserToAdd( string imageData)
+        public UserToAdd(string imageData)
         {
 
             ImageData = imageData;
         }
 
-        public UserToAdd(string userName, string email, string password, string imageData) 
+        public UserToAdd(string userName, string email, string password, string imageData)
         {
             Email = email;
             UserName = userName;
             Password = password;
             ImageData = imageData;
         }
-        public UserToAdd(string userName, string email,string imageData)
+        public UserToAdd(string userName, string email, string imageData)
         {
             Email = email;
             UserName = userName;
-            
+
             ImageData = imageData;
         }
     }

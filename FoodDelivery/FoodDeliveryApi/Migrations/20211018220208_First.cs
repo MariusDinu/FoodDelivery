@@ -16,7 +16,7 @@ namespace FoodDeliveryApi.Migrations
                     UserName = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     Password = table.Column<string>(maxLength: 100, nullable: true),
-                    Path= table.Column<string>(maxLength: 100, nullable: true)
+                    Path = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {

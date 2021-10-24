@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FoodDeliveryApi.DAL.IRepositories
+﻿namespace FoodDeliveryApi.DAL.IRepositories
 {
     public interface IImageHelper
     {
-        string AddImage(string Data,string Email);
+        string AddImage(string Data, string Email);
         string ReadImage(string Path);
         string AddImageRestaurant(string imageData, string restaurantName);
-        string AddImageProduct(string imageData, int id,string name);
+        string AddImageProduct(string imageData, int id, string name);
     }
 }

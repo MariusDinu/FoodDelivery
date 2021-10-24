@@ -14,7 +14,7 @@ namespace FoodDeliveryApi.Controllers
         private readonly IProductRepository productRepository;
         private readonly IImageHelper imageHelper;
 
-        public ProductController(IProductRepository productRepository,IImageHelper imageHelper)
+        public ProductController(IProductRepository productRepository, IImageHelper imageHelper)
         {
             this.productRepository = productRepository;
             this.imageHelper = imageHelper;
@@ -33,7 +33,7 @@ namespace FoodDeliveryApi.Controllers
         [HttpPost("add")]
         public IActionResult Add(ProductToAdd product)
         {
-            Product productNew = new Product(product.IdRestaurant,product.Name,product.Price,product.Description);
+            Product productNew = new Product(product.IdRestaurant, product.Name, product.Price, product.Description);
             if (product != null)
             {
                 var exists = productRepository.VerifyExistence(productNew);
@@ -41,7 +41,7 @@ namespace FoodDeliveryApi.Controllers
                 {
                     return BadRequest(new { succes = false, message = "Product already exist in restaurant" });
                 }
-                productNew.Path = imageHelper.AddImageProduct(product.ImageData,product.IdRestaurant,product.Name);
+                productNew.Path = imageHelper.AddImageProduct(product.ImageData, product.IdRestaurant, product.Name);
 
                 productRepository.Add(productNew);
                 return Ok(new { succes = true });

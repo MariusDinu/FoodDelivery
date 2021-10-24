@@ -48,9 +48,9 @@ namespace FoodDelivery.Repository
             return listRestaurants;
         }
 
-        public UserToSend CreateUser(string username, string email, string password,string code)
+        public UserToSend CreateUser(string username, string email, string password, string code)
         {
-            UserToSend user = new UserToSend(username,email,password,code);
+            UserToSend user = new UserToSend(username, email, password, code);
             return user;
         }
 

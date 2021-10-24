@@ -8,7 +8,7 @@
             this.Password = password;
         }
 
-        public User(string username, string password,string path)
+        public User(string username, string password, string path)
         {
             this.UserName = username;
             this.Password = password;

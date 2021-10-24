@@ -34,7 +34,7 @@ namespace FoodDeliveryApi.Models
         }
         public User() { }
 
-        public User(string userName, string email, string password, string path) 
+        public User(string userName, string email, string password, string path)
         {
             this.UserName = userName;
             this.Email = email;

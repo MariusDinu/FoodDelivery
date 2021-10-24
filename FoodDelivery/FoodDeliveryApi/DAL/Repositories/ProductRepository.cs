@@ -38,9 +38,10 @@ namespace FoodDeliveryApi.DAL.Repositories
         {
             List<ProductToAdd> products = new List<ProductToAdd>();
             IEnumerable<Product> existingProducts = context.Products.Where(product => product.IdRestaurant == id);
-            foreach (var item in existingProducts) {
+            foreach (var item in existingProducts)
+            {
 
-                products.Add(new ProductToAdd(item.Id,item.IdRestaurant,item.Name,item.Price,item.Description, imageHelper.ReadImage(item.Path)));
+                products.Add(new ProductToAdd(item.Id, item.IdRestaurant, item.Name, item.Price, item.Description, imageHelper.ReadImage(item.Path)));
             }
             return products;
         }

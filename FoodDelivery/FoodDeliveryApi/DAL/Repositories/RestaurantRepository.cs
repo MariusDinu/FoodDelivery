@@ -28,8 +28,8 @@ namespace FoodDeliveryApi.DAL.Repositories
             List<RestaurantToAdd> restaurants = new List<RestaurantToAdd>();
             foreach (var item in context.Restaurants)
             {
-                restaurants.Add(new RestaurantToAdd(item.Id,item.RestaurantName, item.Street, item.StreetNumber, item.Building, imageHelper.ReadImage(item.Path)));
-            
+                restaurants.Add(new RestaurantToAdd(item.Id, item.RestaurantName, item.Street, item.StreetNumber, item.Building, imageHelper.ReadImage(item.Path)));
+
             }
             return restaurants;
         }

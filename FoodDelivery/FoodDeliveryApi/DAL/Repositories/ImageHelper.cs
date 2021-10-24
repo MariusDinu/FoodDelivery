@@ -1,15 +1,12 @@
 ﻿using FoodDeliveryApi.DAL.IRepositories;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FoodDeliveryApi.DAL.Repositories
 {
     public class ImageHelper : IImageHelper
     {
-        public string AddImageProduct(string imageData, int id,string name)
+        public string AddImageProduct(string imageData, int id, string name)
         {
             var imageDataByteArray = Convert.FromBase64String(imageData);
             var imageDataStream = new MemoryStream(imageDataByteArray);
@@ -22,7 +19,7 @@ namespace FoodDeliveryApi.DAL.Repositories
 
                 using (System.Drawing.Image image = System.Drawing.Image.FromStream(imageDataStream, true))
                 {
-                    image.Save(Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}"+$"{ name}.png");  // Or Png
+                    image.Save(Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}" + $"{ name}.png");  // Or Png
                 }
                 return Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}" + $"{ name}.png";
 
@@ -74,9 +71,9 @@ namespace FoodDeliveryApi.DAL.Repositories
                 {
                     image.Save(Environment.CurrentDirectory + "\\uploads\\" + $"{Email}.png");  // Or Png
                 }
-               return Environment.CurrentDirectory + "\\uploads\\" + $"{Email}.png";
+                return Environment.CurrentDirectory + "\\uploads\\" + $"{Email}.png";
 
-                
+
             }
             catch (Exception)
             {
