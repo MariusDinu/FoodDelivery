@@ -11,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace FoodDelivery
 {
-    [Activity(Label = "Registration", MainLauncher = true)]
+    [Activity(Label = "Registration")]
     public class Registration : Activity
     {
         private Button btnRegister;

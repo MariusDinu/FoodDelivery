@@ -24,7 +24,8 @@
         android:scrollbars="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="20dp"
+        android:layout_marginVertical="50dp"
+        android:layout_marginHorizontal="30dp"
         android:id="@+id/restaurantMenuRecyclerView" />
 
 </LinearLayout>

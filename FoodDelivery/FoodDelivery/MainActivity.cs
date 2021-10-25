@@ -13,7 +13,7 @@ using System;
 namespace FoodDelivery
 {
 
-    [Activity(Label = "asdasddase", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "FoodDelivery", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         private Button login;
