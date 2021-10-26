@@ -13,7 +13,7 @@ namespace FoodDeliveryApi.Models
         [Required]
         public int IdRestaurant { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(10000)]
         public string Products { get; set; }
         [Required]
         [MaxLength(100)]

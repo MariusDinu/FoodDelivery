@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:background="@drawable/border"
-    android:layout_margin="20dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="5dp"
     android:minWidth="25px"
     android:minHeight="25px">
     <ImageView
