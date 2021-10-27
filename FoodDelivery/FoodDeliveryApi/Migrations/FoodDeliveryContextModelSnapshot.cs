@@ -44,11 +44,6 @@ namespace FoodDeliveryApi.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Products")
-                        .IsRequired()
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,6 +53,22 @@ namespace FoodDeliveryApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("FoodDeliveryApi.Models.OrderProducts", b =>
+                {
+                    b.Property<int>("IdOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdProduct")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdOrder", "IdProduct", "Quantity");
+
+                    b.ToTable("OrderProducts");
                 });
 
             modelBuilder.Entity("FoodDeliveryApi.Models.Product", b =>

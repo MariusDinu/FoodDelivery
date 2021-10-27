@@ -21,13 +21,11 @@ namespace FoodDelivery
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Login);
+
             FindViews();
             apiRepository = new ApiRepository();
             LinkEventHandler();
-
-
         }
 
         private void LinkEventHandler()
@@ -43,15 +41,14 @@ namespace FoodDelivery
                 var response = await apiRepository.Login(user);
                 if (response.Equals("True"))
                 {
-                    Toast.MakeText(Application.Context, "Login successfully!", ToastLength.Long).Show();
+                    Toast.MakeText(Application.Context, GetString(Resource.String.LoginSucces), ToastLength.Long).Show();
                     Intent intent = new Intent(this, typeof(Profile));
                     StartActivity(intent);
                 }
                 else
                 {
-                    Toast.MakeText(Application.Context, response, ToastLength.Long).Show();
+                    Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show();
                 }
-
             }
         }
 
@@ -59,13 +56,13 @@ namespace FoodDelivery
         {
             if (!Regex.Match(username.Text, @"^[a-z0-9_-]{3,15}$").Success)
             {
-                Toast.MakeText(Application.Context, "Username doesn't match requirements!", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, GetString(Resource.String.UserNameMatch), ToastLength.Short).Show();
                 return false;
             }
             if (!Regex.Match(password.Text, @"^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$").Success ||
                 password.Text.Contains(" ") || password.Text.Length < 10)
             {
-                Toast.MakeText(Application.Context, "Password doesn't match requirements!", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, GetString(Resource.String.PasswordMatch), ToastLength.Short).Show();
                 return false;
             }
             return true;
@@ -82,7 +79,6 @@ namespace FoodDelivery
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 

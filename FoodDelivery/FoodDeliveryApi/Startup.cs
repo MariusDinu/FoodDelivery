@@ -43,6 +43,7 @@ namespace FoodDeliveryApi
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IImageHelper, ImageHelper>();
+            services.AddTransient<IOrderProductsRepository, OrderProductsRepository>();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

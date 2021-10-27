@@ -54,7 +54,6 @@ namespace FoodDeliveryApi.DAL.Repositories
             {
                 orderUpdate.Location = order.Location;
                 orderUpdate.Price = order.Price;
-                orderUpdate.Products = order.Products;
                 orderUpdate.Status = order.Status;
                 orderUpdate.UpdatedAt = DateTime.Now;
 

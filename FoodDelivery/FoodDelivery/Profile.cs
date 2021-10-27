@@ -26,7 +26,6 @@ namespace FoodDelivery
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.UserProfile);
 
             btnToRestaurants = FindViewById<Button>(Resource.Id.showResturantsButton);
@@ -34,18 +33,19 @@ namespace FoodDelivery
             btntoMyOrders = FindViewById<Button>(Resource.Id.btnMyOrders);
             btnLogOut = FindViewById<Button>(Resource.Id.btnLogOut);
             image = FindViewById<ImageView>(Resource.Id.UserimageView);
+            name = FindViewById<TextView>(Resource.Id.textViewProfileName);
+            email = FindViewById<TextView>(Resource.Id.textViewProfileEmail);
+
             btnToRestaurants.Click += BtnToRestaurants_Click;
             btnToOrder.Click += BtnToOrder_Click;
             btntoMyOrders.Click += BtntoMyOrders_Click;
             btnLogOut.Click += BtnLogOut_Click;
+
             apiRepository = new ApiRepository();
             LoadDataAsync();
 
-            name = FindViewById<TextView>(Resource.Id.textViewProfileName);
-            email = FindViewById<TextView>(Resource.Id.textViewProfileEmail);
 
 
-            // Create your application here
         }
 
         private void BtnLogOut_Click(object sender, EventArgs e)
@@ -80,15 +80,16 @@ namespace FoodDelivery
 
         private async void LoadDataAsync()
         {
-            User response = await apiRepository.GetProfile();
-            name.Text = response.UserName;
-            email.Text = response.Email;
-            byte[] bytes = Base64.Decode(response.Path, Base64Flags.Default);
-            // Initialize bitmap
-            Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
-
-            image.SetImageBitmap(bitmap);
-
+            try
+            {
+                User response = await apiRepository.GetProfile();
+                name.Text = response.UserName;
+                email.Text = response.Email;
+                byte[] bytes = Base64.Decode(response.Path, Base64Flags.Default);
+                Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+                image.SetImageBitmap(bitmap);
+            }
+            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
         }
 
     }

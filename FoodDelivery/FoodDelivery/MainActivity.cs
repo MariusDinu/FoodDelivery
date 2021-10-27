@@ -24,21 +24,24 @@ namespace FoodDelivery
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            if (!JwtRepository.ExpireJWT())
+            try
             {
-                config = new ConfigRepository();
-                FindViews();
-                LinkEventHandler();
+                if (!JwtRepository.ExpireJWT())
+                {
 
+                    config = new ConfigRepository();
+                    FindViews();
+                    LinkEventHandler();
+                }
+                else
+                {
+                    var intent = new Intent();
+                    intent.SetClass(this, typeof(Profile));
+                    StartActivity(intent);
+                }
             }
-            else
-            {
-                var intent = new Intent();
-                intent.SetClass(this, typeof(Profile));
-                StartActivity(intent);
-            }
+            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
         }
 
         private void LinkEventHandler()
@@ -75,17 +78,13 @@ namespace FoodDelivery
                             new int[] { startColor, endColor },
                             new float[] { 0, 1 }, Shader.TileMode.Clamp);
             paint.SetShader(textShader);
-
         }
 
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
     }
-
 }

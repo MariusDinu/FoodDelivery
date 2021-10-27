@@ -39,8 +39,6 @@ namespace FoodDeliveryApi.Controllers
                 {
                     return BadRequest(new { succes = false, message = "This restaurant already exist" });
                 }
-
-
                 restaurantNew.Path = imageHelper.AddImageRestaurant(restaurant.ImageData, restaurant.RestaurantName);
 
                 restaurantRepository.Add(restaurantNew);

@@ -73,9 +73,11 @@
     <Compile Include="Login.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\FullOrder.cs" />
     <Compile Include="Model\ItemList.cs" />
     <Compile Include="Model\ListProducts.cs" />
     <Compile Include="Model\ItemChart.cs" />
+    <Compile Include="Model\OrderProducts.cs" />
     <Compile Include="Model\Response.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
@@ -465,6 +467,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\btnPurple.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\scrollbar.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

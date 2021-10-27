@@ -10,12 +10,12 @@ namespace FoodDelivery.Adapters
 {
     public class OrderProductsAdapter : RecyclerView.Adapter
     {
-        List<Product> products = new List<Product>();
-        List<ItemList> quantity = new List<ItemList>();
-        public OrderProductsAdapter(List<Product> products, List<ItemList> quantity)
+        readonly List<Product> products = new List<Product>();
+        readonly List<OrderProducts> quantity = new List<OrderProducts>();
+        public OrderProductsAdapter(List<Product> products, List<OrderProducts> list)
         {
             this.products = products;
-            this.quantity = quantity;
+            this.quantity = list;
         }
         public override int ItemCount => products.Count;
 

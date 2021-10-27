@@ -7,38 +7,33 @@ namespace FoodDelivery.Model
         public int Id { get; set; }
         public int IdUser { get; set; }
         public int IdRestaurant { get; set; }
-        public string Products { get; set; }
         public string Price { get; set; }
         public string Location { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public string Status { get; set; }
 
-        public Order(int idRestaurant, string products, string price, string location, string status)
+        public Order(int idRestaurant, string price, string location, string status)
         {
             IdRestaurant = idRestaurant;
-            Products = products;
             Price = price;
             Location = location;
             Status = status;
         }
-
-        public Order(int idUser, int idRestaurant, string products, string price, string location, DateTime createdAt, DateTime updatedAt, string status)
+        public Order(int idUser, int idRestaurant, string price, string location, DateTime createdAt, DateTime updatedAt, string status)
         {
             IdUser = idUser;
             IdRestaurant = idRestaurant;
-            Products = products;
             Price = price;
             Location = location;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
             Status = status;
         }
-        public Order(int idUser, int idRestaurant, string products, string price, string location, DateTime createdAt, string status)
+        public Order(int idUser, int idRestaurant, string price, string location, DateTime createdAt, string status)
         {
             IdUser = idUser;
             IdRestaurant = idRestaurant;
-            Products = products;
             Price = price;
             Location = location;
             CreatedAt = createdAt;

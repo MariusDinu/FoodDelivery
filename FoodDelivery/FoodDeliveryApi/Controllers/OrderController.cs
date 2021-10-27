@@ -4,6 +4,7 @@ using FoodDeliveryApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FoodDeliveryApi.Controllers
 {
@@ -12,9 +13,11 @@ namespace FoodDeliveryApi.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository orderRepository;
-        public OrderController(IOrderRepository orderRepository)
+        private readonly IOrderProductsRepository orderProductsRepository;
+        public OrderController(IOrderRepository orderRepository, IOrderProductsRepository orderProductsRepository)
         {
             this.orderRepository = orderRepository;
+            this.orderProductsRepository = orderProductsRepository;
         }
 
 
@@ -28,25 +31,25 @@ namespace FoodDeliveryApi.Controllers
          * */
 
         [HttpPost("add")]
-        public IActionResult Add(Order order)
+        public IActionResult Add(FullOrder fullOrder)
         {
+            if (fullOrder == null) return BadRequest(new { succes = false, message = "Null order" });
             var accessToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
             User userFromToken = JwtUser.Decode(accessToken);
             if (userFromToken != null)
             {
-                order.IdUser = userFromToken.Id;
-                if (order != null)
+                fullOrder.order.IdUser = userFromToken.Id;
+                bool exists = orderRepository.VerifyExistence(fullOrder.order);
+                if (exists == false)
                 {
-                    var exists = orderRepository.VerifyExistence(order);
-                    if (exists == false)
-                    {
-                        return BadRequest(new { succes = false, message = "The order already exist" });
-                    }
-                    orderRepository.Add(order);
-                    return Ok(new { succes = true, message = "Succes!" });
+                    return BadRequest(new { succes = false, message = "Order already exist" });
                 }
+
+                Order orderNew = orderRepository.Add(fullOrder.order);
+                orderProductsRepository.Add(fullOrder.orderProducts, orderNew.Id);
+                return Ok(new { succes = true, message = "Order inserted" });
             }
-            return BadRequest(new { succes = false, message = "Null order" });
+            return BadRequest(new { succes = false, message = "Null user" });
         }
 
 
@@ -72,7 +75,9 @@ namespace FoodDeliveryApi.Controllers
             if (userFromToken != null)
             {
                 Order order = orderRepository.GetById(id);
-                if (order != null) { return Ok(order); }
+                IEnumerable<OrderProducts> orderProducts = orderProductsRepository.GetAllById(order.Id);
+                FullOrder fullOrder = new FullOrder(order, orderProducts.ToList());
+                if (order != null) { return Ok(fullOrder); }
                 return BadRequest(new { suces = false, message = "Order with that id doesn't exist" });
             }
             return BadRequest(new { suces = false, message = "User with that id doesn't exist" });

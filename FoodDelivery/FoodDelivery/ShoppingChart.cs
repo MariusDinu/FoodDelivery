@@ -5,6 +5,8 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using System;
+using System.Collections.Generic;
 
 namespace FoodDelivery
 {
@@ -29,10 +31,11 @@ namespace FoodDelivery
             chartAdapter = new ShoppingChartAdapter(ListProducts.listProducts);
             chartRecyclerView.SetAdapter(chartAdapter);
             orderRepository = new OrderRepository();
+
             price.Text = ChartRepository.GetMoney().ToString();
             LinkEventHandler();
-
         }
+
         public static void RefreshPage()
         {
             price.Text = ChartRepository.GetMoney().ToString();
@@ -46,23 +49,25 @@ namespace FoodDelivery
         private async void Order_Click(object sender, System.EventArgs e)
         {
             Order order = orderRepository.CreateOrder(price.Text);
-            var response = await orderRepository.AddOrder(order);
-            if (response.Equals("True"))
+            List<OrderProducts> orderProducts = orderRepository.CreateOrderProducts();
+            FullOrder fullOrder = new FullOrder(order, orderProducts);
+            var response = await orderRepository.AddOrder(fullOrder);
+            try
             {
-                ListProducts.list.Clear();
-                ListProducts.listProducts.Clear();
-                ListProducts.IdRestaurant = 0;
-                Toast.MakeText(Application.Context, "Succes!", ToastLength.Long).Show();
-                Finish();
+                if (response.Equals("True"))
+                {
+                    ListProducts.list.Clear();
+                    ListProducts.listProducts.Clear();
+                    ListProducts.IdRestaurant = 0;
+                    Toast.MakeText(Application.Context, GetString(Resource.String.SuccesMsg), ToastLength.Long).Show();
+                    Finish();
+                }
+                else
+                {
+                    Toast.MakeText(Application.Context, GetString(Resource.String.FailedMsg), ToastLength.Long).Show();
+                }
             }
-            else
-            {
-                Toast.MakeText(Application.Context, "Failed!", ToastLength.Long).Show();
-            }
+            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
         }
-
-
-
-
     }
 }

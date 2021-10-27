@@ -17,6 +17,8 @@
 	<string name="textEmail">Email</string>
 	<string name="btnOrderProducts">Restaurants</string>
 
+	<string name="priceCurrency"> Ron</string>
+	
 	<string name="titleShoppingCart">Your Shopping Cart</string>
 	<string name="restaurantShoppingCart">Restaurant</string>
 	<string name="PriceShoppingCart">Price:</string>
@@ -34,5 +36,17 @@
 	<string name="OrderItemPrice">Price:</string>
 	<string name="OrderItemStatus">Delivered:</string>
 	<string name="OrderItemRestaurant">Restaurant:</string>
-
+	<string name="Error1">You want to add a product from another restaurant. If you want to continue your shopping cart, it will empty. Press ok if you agree or cancel if you want to keep the current products.</string>
+	<string name="Error2">You have that product in chart! Go to the chart and change the quantity.</string>
+	<string name="SuccesMsg">Succes!</string>
+	<string name="FailedMsg">Failed!</string>
+	<string name="FailedAgainMsg">Try Again!</string>
+	<string name="FailedRestMsg">No restaurants!Try Again!</string>
+	<string name="RegisterSucces">Register successfully!</string>
+	<string name="LoginSucces">"Login successfully!"</string>
+	<string name="UserNameMatch">Username doesn t match requirements!</string>
+	<string name="PasswordMatch">Password doesn t match requirements!</string>
+	<string name="EmailMatch">Email doesn t match requirements!</string>
+	<string name="PictureMatch">Picture doesn t match requirements!</string>
+	<string name="PasswordEq">Passwords doesn t match!</string>
 </resources>

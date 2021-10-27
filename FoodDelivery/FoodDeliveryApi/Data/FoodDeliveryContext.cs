@@ -7,7 +7,7 @@ namespace FoodDeliveryApi.Data
 {
     public class FoodDeliveryContext : DbContext
     {
-
+        public DbSet<OrderProducts> OrderProducts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -38,7 +38,7 @@ namespace FoodDeliveryApi.Data
 
             modelBuilder.Entity<Order>();
 
-
+            modelBuilder.Entity<OrderProducts>().HasKey("IdOrder", "IdProduct", "Quantity");
 
         }
     }

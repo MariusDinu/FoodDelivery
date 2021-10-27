@@ -34,9 +34,6 @@ namespace FoodDeliveryApi.Controllers
          * BadRequest - if Json is null or user already exist (email/username)
          * */
 
-
-
-
         [HttpPost("add")]
         public IActionResult Add(UserToAdd user)
         {
@@ -53,7 +50,6 @@ namespace FoodDeliveryApi.Controllers
                 var newUserToken = userRepository.Add(userNew);
                 var jwtToken = JwtUser.Encode(newUserToken, jwtConfig);
                 return Ok(new { succes = true, token = jwtToken, message = "Succes" });
-
             }
             return BadRequest(new { succes = false, message = "Null user" });
 

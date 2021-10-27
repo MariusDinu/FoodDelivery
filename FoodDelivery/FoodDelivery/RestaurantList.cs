@@ -1,10 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,15 +37,21 @@ namespace FoodDelivery
             _restaurantAdapter = new RestaurantAdapter(restaurantsList);
             _restaurantRecyclerView.SetAdapter(_restaurantAdapter);
             _restaurantAdapter.ItemClick += RestaurantAdapter_ItemClick;
-            // Create your application here
         }
 
 
 
         private async Task<List<Restaurant>> LoadDataAsync()
         {
-            List<Restaurant> restaurants = await apiRepository.GetRestaurants();
-            return restaurants;
+            try
+            {
+                List<Restaurant> restaurants = await apiRepository.GetRestaurants();
+                return restaurants;
+            }
+            catch (Exception)
+            {
+                Toast.MakeText(Application.Context, GetString(Resource.String.FailedRestMsg), ToastLength.Long).Show(); return null;
+            }
         }
 
         private void RestaurantAdapter_ItemClick(object sender, int e)

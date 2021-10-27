@@ -17,7 +17,6 @@ namespace FoodDelivery
         private Button btnAddToChart;
         private Button btnAddQuantity;
         private ImageView image;
-        //private Button btnRemovefromChart;
         private ProductRepository productRepository;
         private ChartRepository chartRepository;
         private Product selectedProduct;
@@ -25,15 +24,15 @@ namespace FoodDelivery
         private TextView productDescriptionTextView;
         private TextView productPriceTextView;
         private EditText productQuantityEditText;
-        //private ImageView _productInageTextView;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ProductDetail);
+
             productRepository = new ProductRepository();
-            chartRepository = new ChartRepository();//repo with all products
-            //_chartRepository = new ShoppingChartRepository(); //repo with chart items
+            chartRepository = new ChartRepository();
             selectedProduct = await LoadDataAsync();
+
             FindViews();
             BinData();
             LinkEventHandler();
@@ -67,31 +66,31 @@ namespace FoodDelivery
             {
                 ShowAlert();
             }
+            else if (response.Equals("Exist"))
+            {
+                ShowAlertDuplicate();
+            }
             else
-            if (response.Equals("Exist")) { ShowAlertDuplicate(); }
-            else
-            { Finish(); }
+            {
+                Finish();
+            }
 
         }
         private void ShowAlert()
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             AlertDialog alert = dialog.Create();
-            string message = "You want to add a product from another restaurant. If you want to continue your shopping cart, it will empty. Press ok if you agree or cancel if you want to keep the current products.";
+            string message = GetString(Resource.String.Error1);
             alert.SetTitle("Info");
             alert.SetMessage(message);
-            //alert.SetIcon(Resource.Drawable.info);
             alert.SetButton("OK", (c, ev) =>
             {
                 chartRepository.ChangeRestaurant();
                 AddProducts();
                 Finish();
-
-
             });
             alert.SetButton2("Cancel", (c, ev) =>
             {
-
             });
             alert.Show();
         }
@@ -99,18 +98,14 @@ namespace FoodDelivery
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             AlertDialog alert = dialog.Create();
-            string message = "You have that product in chart! Go to the chart and change the quantity";
+            string message = GetString(Resource.String.Error2);
             alert.SetMessage(message);
-            //alert.SetIcon(Resource.Drawable.info);
             alert.SetButton("OK", (c, ev) =>
             {
                 Finish();
-
-
             });
             alert.SetButton2("Cancel", (c, ev) =>
             {
-
             });
             alert.Show();
         }
@@ -125,9 +120,8 @@ namespace FoodDelivery
         {
             productNameTextView.Text = selectedProduct.Name;
             productDescriptionTextView.Text = selectedProduct.Description;
-            productPriceTextView.Text = selectedProduct.Price + " Ron";
+            productPriceTextView.Text = selectedProduct.Price + GetString(Resource.String.priceCurrency);
             byte[] bytes = Base64.Decode(selectedProduct.ImageData, Base64Flags.Default);
-            // Initialize bitmap
             Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
             image.SetImageBitmap(bitmap);
         }
@@ -143,8 +137,6 @@ namespace FoodDelivery
             image = FindViewById<ImageView>(Resource.Id.imageViewProductDetail);
             btnAddToChart = FindViewById<Button>(Resource.Id.buttonAddChart);
             btnAddQuantity = FindViewById<Button>(Resource.Id.buttonAddQuantity);
-
-
         }
     }
 }

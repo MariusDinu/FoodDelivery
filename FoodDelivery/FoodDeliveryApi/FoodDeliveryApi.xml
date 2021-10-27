@@ -4,7 +4,7 @@
         <name>FoodDeliveryApi</name>
     </assembly>
     <members>
-        <member name="M:FoodDeliveryApi.Controllers.OrderController.Add(FoodDeliveryApi.Models.Order)">
+        <member name="M:FoodDeliveryApi.Controllers.OrderController.Add(FoodDeliveryApi.Models.FullOrder)">
             Method: POST
             Description: add an order in database
             Return:

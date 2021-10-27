@@ -19,9 +19,9 @@ namespace FoodDeliveryApi.DAL.Repositories
 
                 using (System.Drawing.Image image = System.Drawing.Image.FromStream(imageDataStream, true))
                 {
-                    image.Save(Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}" + $"{ name}.png");  // Or Png
+                    image.Save(Environment.CurrentDirectory + "\\products\\" + $"{id}" + $"{ name}.png");  // Or Png
                 }
-                return Environment.CurrentDirectory + "\\products\\" + $"{id.ToString()}" + $"{ name}.png";
+                return Environment.CurrentDirectory + "\\products\\" + $"{id}" + $"{ name}.png";
 
 
             }
@@ -84,10 +84,15 @@ namespace FoodDeliveryApi.DAL.Repositories
 
         string IImageHelper.ReadImage(string path)
         {
-            byte[] code = System.IO.File.ReadAllBytes(path);
-            var stream = new MemoryStream(code);
-            string base64String = Convert.ToBase64String(stream.ToArray());
-            return base64String;
+            try
+            {
+                byte[] code = System.IO.File.ReadAllBytes(path);
+                var stream = new MemoryStream(code);
+                string base64String = Convert.ToBase64String(stream.ToArray());
+                return base64String;
+            }
+            catch (Exception) { return null; }
+
 
         }
     }

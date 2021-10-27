@@ -6,7 +6,7 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
-using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,9 +18,9 @@ namespace FoodDelivery
 
         private OrderRepository orderRepository;
         private RestaurantRepository restaurantRepository;
-        private Order order;
+        private FullOrder order;
         List<Product> products = new List<Product>();
-        List<ItemList> list = new List<ItemList>();
+        readonly List<ItemList> list = new List<ItemList>();
         private TextView restaurant;
         private TextView date;
         private TextView price;
@@ -36,19 +36,20 @@ namespace FoodDelivery
             orderRepository = new OrderRepository();
             restaurantRepository = new RestaurantRepository();
             order = await LoadDataAsync();
-            List<Product> products = await ReadProductsAsync(order.Products);
-            list = JsonConvert.DeserializeObject<List<ItemList>>(order.Products);
-            name = await GetRestaurantName(order.IdRestaurant);
-            // Create your application here
+            products = await orderRepository.ReadStringAsync(order.orderProducts);
+
+            name = await GetRestaurantName(order.order.IdRestaurant);
+
             FindViews();
             orderProductsRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewOrderProducts);
             orderProductsLayoutManager = new LinearLayoutManager(this);
             orderProductsRecyclerView.SetLayoutManager(orderProductsLayoutManager);
-            orderProductsAdapter = new OrderProductsAdapter(products, list);
+            orderProductsAdapter = new OrderProductsAdapter(products, order.orderProducts);
             orderProductsRecyclerView.SetAdapter(orderProductsAdapter);
-
             BindData();
         }
+
+
 
         private async Task<string> GetRestaurantName(int idRestaurant)
         {
@@ -56,24 +57,24 @@ namespace FoodDelivery
             return response;
         }
 
-        private async Task<List<Product>> ReadProductsAsync(string productsString)
-        {
-            products = await orderRepository.ReadStringAsync(productsString);
-            return products;
-        }
 
-        private async Task<Order> LoadDataAsync()
+
+        private async Task<FullOrder> LoadDataAsync()
         {
-            Order order = await orderRepository.GetOrder(Intent.Extras.GetInt("orderId"));
-            return order;
+            try
+            {
+                FullOrder order = await orderRepository.GetOrder(Intent.Extras.GetInt("orderId"));
+                return order;
+            }
+            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); return null; }
         }
 
         private void BindData()
         {
             restaurant.Text = name;
-            date.Text = order.CreatedAt.ToString();
-            price.Text = order.Price + " Ron";
-            status.Text = order.Status;
+            date.Text = order.order.CreatedAt.ToString();
+            price.Text = order.order.Price + GetString(Resource.String.priceCurrency);
+            status.Text = order.order.Status;
         }
 
         private void FindViews()

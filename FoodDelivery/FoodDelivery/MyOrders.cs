@@ -1,10 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +22,7 @@ namespace FoodDelivery
         private OrderRepository orderRepository;
         private RestaurantRepository restaurantRepository;
         private IEnumerable<Order> ordersList;
-        private List<string> senderStrings = new List<string>();
+        readonly private List<string> senderStrings = new List<string>();
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -38,8 +40,6 @@ namespace FoodDelivery
             orderAdapter = new OrdersAdapter(ordersList.ToList(), senderStrings);
             orderRecyclerView.SetAdapter(orderAdapter);
             orderAdapter.ItemClick += OrdersAdapter_ItemClick;
-
-            // Create your application here
         }
 
         private void OrdersAdapter_ItemClick(object sender, int e)
@@ -52,19 +52,25 @@ namespace FoodDelivery
 
         private async Task<IEnumerable<Order>> LoadDataAsync()
         {
-            IEnumerable<Order> orders = await orderRepository.GetOrders();
-            return orders;
+            try
+            {
+                IEnumerable<Order> orders = await orderRepository.GetOrders();
+                return orders;
+            }
+            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); return null; }
         }
 
         private async Task LoadDataNamesAsync(IEnumerable<Order> orders)
         {
-            foreach (var item in orders)
+            try
             {
-                string reader = await restaurantRepository.GetRestaurant(item.IdRestaurant);
-                senderStrings.Add(reader);
+                foreach (var item in orders)
+                {
+                    string reader = await restaurantRepository.GetRestaurant(item.IdRestaurant);
+                    senderStrings.Add(reader);
+                }
             }
+            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
         }
-
-
     }
 }
