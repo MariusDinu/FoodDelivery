@@ -29,7 +29,6 @@ namespace FoodDelivery.Repository
             var response = await httpRepository.client.PostAsync(config.Login, new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"));
             mess = JsonConvert.DeserializeObject<Response>(response.Content.ReadAsStringAsync().Result);
 
-
             if (!response.IsSuccessStatusCode) return mess.Message;
             JwtRepository.SaveJWT(mess.Token);
             return mess.Succes.ToString();

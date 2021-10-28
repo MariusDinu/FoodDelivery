@@ -47,7 +47,7 @@ namespace FoodDelivery
                 }
                 else
                 {
-                    Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show();
+                    Toast.MakeText(Application.Context, response, ToastLength.Long).Show();
                 }
             }
         }

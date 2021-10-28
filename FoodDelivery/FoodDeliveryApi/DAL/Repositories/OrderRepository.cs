@@ -43,7 +43,7 @@ namespace FoodDeliveryApi.DAL.Repositories
 
         IEnumerable<Order> IOrderRepository.GetByUserId(int id)
         {
-            IEnumerable<Order> orders = context.Orders.Where(order => order.IdUser == id);
+            IEnumerable<Order> orders = context.Orders.Where(order => order.IdUser == id).OrderByDescending(c=>c.CreatedAt);
             return orders;
         }
 
