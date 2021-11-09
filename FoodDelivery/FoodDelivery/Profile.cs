@@ -89,7 +89,7 @@ namespace FoodDelivery
                 Bitmap bitmap = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
                 image.SetImageBitmap(bitmap);
             }
-            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
+            catch (Exception ex) { Serilog.Log.Error(ex.ToString()); Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
         }
 
     }

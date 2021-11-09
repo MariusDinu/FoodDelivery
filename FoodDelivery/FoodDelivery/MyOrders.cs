@@ -6,6 +6,7 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,7 @@ namespace FoodDelivery
                 IEnumerable<Order> orders = await orderRepository.GetOrders();
                 return orders;
             }
-            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); return null; }
+            catch (Exception ex) { Log.Error(ex.ToString()); Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); return null; }
         }
 
         private async Task LoadDataNamesAsync(IEnumerable<Order> orders)

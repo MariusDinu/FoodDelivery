@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Serilog;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
@@ -48,9 +49,9 @@ namespace FoodDelivery
                 List<Restaurant> restaurants = await apiRepository.GetRestaurants();
                 return restaurants;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Toast.MakeText(Application.Context, GetString(Resource.String.FailedRestMsg), ToastLength.Long).Show(); return null;
+                Log.Error(ex.ToString()); Toast.MakeText(Application.Context, GetString(Resource.String.FailedRestMsg), ToastLength.Long).Show(); return null;
             }
         }
 

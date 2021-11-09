@@ -7,6 +7,7 @@ using Android.Text;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using FoodDelivery.Repository;
+using Serilog;
 using System;
 
 
@@ -41,7 +42,7 @@ namespace FoodDelivery
                     StartActivity(intent);
                 }
             }
-            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
+            catch (Exception ex) { Log.Error(ex.ToString()); Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
         }
 
         private void LinkEventHandler()

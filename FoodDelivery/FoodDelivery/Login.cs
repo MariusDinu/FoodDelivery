@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
 using System.Text.RegularExpressions;
 
@@ -17,8 +19,10 @@ namespace FoodDelivery
         private EditText username;
         private EditText password;
         private ApiRepository apiRepository;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+           
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.Login);
@@ -47,6 +51,7 @@ namespace FoodDelivery
                 }
                 else
                 {
+                   
                     Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show();
                 }
             }

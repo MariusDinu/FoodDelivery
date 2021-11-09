@@ -11,7 +11,7 @@ namespace FoodDelivery.Repository
         {
             this.client = new HttpClient
             {
-                BaseAddress = new Uri("http://192.168.100.37:5000")
+                BaseAddress = new Uri("http://192.168.8.106:5000")
             };
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             if (JwtRepository.CheckJWT())

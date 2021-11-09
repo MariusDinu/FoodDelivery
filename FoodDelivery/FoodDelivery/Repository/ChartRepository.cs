@@ -47,6 +47,15 @@ namespace FoodDelivery.Repository
                     item.Quantity = quantity;
                 }
             }
+            foreach (var item in ListProducts.list)
+            {
+                if (item.Id == id)
+                {
+                    item.Quantity = quantity;
+                }
+            }
+
+
         }
         public void ChangeRestaurant()
         {

@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace FoodDeliveryApi
 {
@@ -7,7 +9,9 @@ namespace FoodDeliveryApi
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+            CreateHostBuilder(args).UseSerilog().Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

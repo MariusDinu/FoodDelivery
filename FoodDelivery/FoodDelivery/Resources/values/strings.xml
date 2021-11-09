@@ -49,4 +49,6 @@
 	<string name="EmailMatch">Email doesn t match requirements!</string>
 	<string name="PictureMatch">Picture doesn t match requirements!</string>
 	<string name="PasswordEq">Passwords doesn t match!</string>
+	<string name="OrderNoItem">Please enter items before sending the order!</string>
+	
 </resources>

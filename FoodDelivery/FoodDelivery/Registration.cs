@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Widget;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using Serilog;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -48,23 +49,31 @@ namespace FoodDelivery
         private async void btnRegister_Click(object sender, EventArgs e)
         {
             byte[] code;
-            if (CheckData() && file != null)
+            try
             {
-                code = File.ReadAllBytes(file.FullPath);
-                var stream = new MemoryStream(code);
-                string base64String = Convert.ToBase64String(stream.ToArray());
-                UserToSend user = apiRepository.CreateUser(username.Text, email.Text, password.Text, base64String);
-                var response = await apiRepository.Registration(user);
-                if (response.Equals("True"))
+                if (CheckData() && file != null)
                 {
-                    Toast.MakeText(Application.Context, GetString(Resource.String.RegisterSucces), ToastLength.Long).Show();
-                    Intent intent = new Intent(this, typeof(Login));
-                    StartActivity(intent);
+                    code = File.ReadAllBytes(file.FullPath);
+                    var stream = new MemoryStream(code);
+                    string base64String = Convert.ToBase64String(stream.ToArray());
+                    UserToSend user = apiRepository.CreateUser(username.Text, email.Text, password.Text, base64String);
+                    var response = await apiRepository.Registration(user);
+                    if (response.Equals("True"))
+                    {
+                        Toast.MakeText(Application.Context, GetString(Resource.String.RegisterSucces), ToastLength.Long).Show();
+                        Intent intent = new Intent(this, typeof(Login));
+                        StartActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show();
+                    }
                 }
-                else
-                {
-                    Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show();
-                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                Toast.MakeText(Application.Context, GetString(Resource.String.FailedMsg), ToastLength.Long).Show();
             }
         }
 
@@ -75,7 +84,7 @@ namespace FoodDelivery
                 file = await FilePicker.PickAsync();
                 if (file == null) { return; }
             }
-            catch (Exception) { Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
+            catch (Exception ex) { Log.Error(ex.ToString()); Toast.MakeText(Application.Context, GetString(Resource.String.FailedAgainMsg), ToastLength.Long).Show(); }
             addFiles.Text = file.FileName;
         }
         private bool CheckData()

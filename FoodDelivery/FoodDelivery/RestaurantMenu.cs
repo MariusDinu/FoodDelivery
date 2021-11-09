@@ -6,6 +6,7 @@ using AndroidX.RecyclerView.Widget;
 using FoodDelivery.Adapters;
 using FoodDelivery.Model;
 using FoodDelivery.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -43,9 +44,9 @@ namespace FoodDelivery
                 var response = await restaurantRepository.GetProducts(Intent.GetIntExtra("id", 0));
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Toast.MakeText(Application.Context, GetString(Resource.String.FailedMsg), ToastLength.Long).Show(); return null;
+                Log.Error(ex.ToString()); Toast.MakeText(Application.Context, GetString(Resource.String.FailedMsg), ToastLength.Long).Show(); return null;
             }
 
         }

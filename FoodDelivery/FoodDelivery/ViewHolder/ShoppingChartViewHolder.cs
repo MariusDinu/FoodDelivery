@@ -31,8 +31,11 @@ namespace FoodDelivery.ViewHolder
         private void MinusQuantity_Click(object sender, EventArgs e)
         {
             var count = int.Parse(Quantity.Text);
-            count--;
-            Quantity.Text = count.ToString();
+            if (count>0)
+            {
+                count--;
+                Quantity.Text = count.ToString();
+            }          
             DeleteProducts();
         }
 
@@ -56,7 +59,7 @@ namespace FoodDelivery.ViewHolder
             int quantity = int.Parse(Quantity.Text);
             if (quantity == 0)
             {
-                _ = chart.DeleteProduct(Id);
+                chart.DeleteProduct(Id);
 
             }
             else

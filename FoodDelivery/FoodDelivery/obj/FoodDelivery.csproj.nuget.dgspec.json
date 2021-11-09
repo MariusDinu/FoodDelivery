@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj": {}
+    "C:\\Users\\V3790388\\Desktop\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj": {
+    "C:\\Users\\V3790388\\Desktop\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
+        "projectUniqueName": "C:\\Users\\V3790388\\Desktop\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
         "projectName": "FoodDelivery",
-        "projectPath": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
-        "packagesPath": "C:\\Users\\V3790391\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\FoodDelivery\\FoodDelivery\\FoodDelivery\\obj\\",
+        "projectPath": "C:\\Users\\V3790388\\Desktop\\FoodDelivery\\FoodDelivery\\FoodDelivery\\FoodDelivery.csproj",
+        "packagesPath": "C:\\Users\\V3790388\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\V3790388\\Desktop\\FoodDelivery\\FoodDelivery\\FoodDelivery\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\V3790391\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\V3790388\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -47,6 +47,18 @@
             "PCLStorage": {
               "target": "Package",
               "version": "[1.0.2, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.3.0, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
